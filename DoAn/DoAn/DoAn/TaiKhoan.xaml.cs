@@ -19,7 +19,7 @@ namespace DoAn
 
         private void btnDNDK_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DangNhap());
+            Navigation.PushAsync(new DaDangNhap());
         }
     }
 }
