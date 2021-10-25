@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "D:\\DoAnCK\\DoAn\\DoAn\\DoAn.iOS\\DoAn.iOS.csproj": {}
   },
   "projects": {
@@ -19,6 +20,28 @@
         ],
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "D:\\Mobile\\DoAn\\DoAn\\DoAn.iOS\\DoAn.iOS.csproj": {}
+  },
+  "projects": {
+    "D:\\Mobile\\DoAn\\DoAn\\DoAn.iOS\\DoAn.iOS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Mobile\\DoAn\\DoAn\\DoAn.iOS\\DoAn.iOS.csproj",
+        "projectName": "DoAn.iOS",
+        "projectPath": "D:\\Mobile\\DoAn\\DoAn\\DoAn.iOS\\DoAn.iOS.csproj",
+        "packagesPath": "C:\\Users\\TinhBui\\.nuget\\packages\\",
+        "outputPath": "D:\\Mobile\\DoAn\\DoAn\\DoAn.iOS\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\TinhBui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> 36cbc8c608579958df36ff54faa0b890a5fadb7d
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -32,8 +55,13 @@
         "frameworks": {
           "xamarinios10": {
             "projectReferences": {
+<<<<<<< HEAD
               "D:\\DoAnCK\\DoAn\\DoAn\\DoAn\\DoAn.csproj": {
                 "projectPath": "D:\\DoAnCK\\DoAn\\DoAn\\DoAn\\DoAn.csproj"
+=======
+              "D:\\Mobile\\DoAn\\DoAn\\DoAn\\DoAn.csproj": {
+                "projectPath": "D:\\Mobile\\DoAn\\DoAn\\DoAn\\DoAn.csproj"
+>>>>>>> 36cbc8c608579958df36ff54faa0b890a5fadb7d
               }
             }
           }
@@ -65,6 +93,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "D:\\DoAnCK\\DoAn\\DoAn\\DoAn\\DoAn.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -79,6 +108,24 @@
         ],
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "D:\\Mobile\\DoAn\\DoAn\\DoAn\\DoAn.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Mobile\\DoAn\\DoAn\\DoAn\\DoAn.csproj",
+        "projectName": "DoAn",
+        "projectPath": "D:\\Mobile\\DoAn\\DoAn\\DoAn\\DoAn.csproj",
+        "packagesPath": "C:\\Users\\TinhBui\\.nuget\\packages\\",
+        "outputPath": "D:\\Mobile\\DoAn\\DoAn\\DoAn\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\TinhBui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> 36cbc8c608579958df36ff54faa0b890a5fadb7d
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -130,7 +177,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+>>>>>>> 36cbc8c608579958df36ff54faa0b890a5fadb7d
         }
       }
     }

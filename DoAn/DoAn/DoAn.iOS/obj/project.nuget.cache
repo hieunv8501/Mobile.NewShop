@@ -1,10 +1,18 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "F0Uf48JOvwo4KvrI6jH0t9JgDXOGZ4pWZBU3fkXcSk8ssUtGo6PTWS5MM0R0G+lq+E7k+0IXSyh8MMTXYEZTjQ==",
   "success": true,
   "projectFilePath": "D:\\DoAnCK\\DoAn\\DoAn\\DoAn.iOS\\DoAn.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+=======
+  "dgSpecHash": "bKPp6yeU6Xzt/OmxSJiRS/gntPnkeOL3Hv86mttKAIBbXHsNCZmuW3AF7RIGem/87FOME/w9nnleijz/KChWBw==",
+  "success": true,
+  "projectFilePath": "D:\\Mobile\\DoAn\\DoAn\\DoAn.iOS\\DoAn.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\TinhBui\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+>>>>>>> 36cbc8c608579958df36ff54faa0b890a5fadb7d
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
   ],

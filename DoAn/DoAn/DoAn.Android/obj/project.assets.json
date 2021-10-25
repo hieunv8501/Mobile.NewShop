@@ -2142,12 +2142,18 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Admin\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\TinhBui\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+>>>>>>> 36cbc8c608579958df36ff54faa0b890a5fadb7d
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "D:\\DoAnCK\\DoAn\\DoAn\\DoAn.Android\\DoAn.Android.csproj",
       "projectName": "DoAn.Android",
       "projectPath": "D:\\DoAnCK\\DoAn\\DoAn\\DoAn.Android\\DoAn.Android.csproj",
@@ -2160,6 +2166,22 @@
       ],
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "D:\\Mobile\\DoAn\\DoAn\\DoAn.Android\\DoAn.Android.csproj",
+      "projectName": "DoAn.Android",
+      "projectPath": "D:\\Mobile\\DoAn\\DoAn\\DoAn.Android\\DoAn.Android.csproj",
+      "packagesPath": "C:\\Users\\TinhBui\\.nuget\\packages\\",
+      "outputPath": "D:\\Mobile\\DoAn\\DoAn\\DoAn.Android\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\TinhBui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> 36cbc8c608579958df36ff54faa0b890a5fadb7d
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -2173,8 +2195,13 @@
       "frameworks": {
         "monoandroid11.0": {
           "projectReferences": {
+<<<<<<< HEAD
             "D:\\DoAnCK\\DoAn\\DoAn\\DoAn\\DoAn.csproj": {
               "projectPath": "D:\\DoAnCK\\DoAn\\DoAn\\DoAn\\DoAn.csproj"
+=======
+            "D:\\Mobile\\DoAn\\DoAn\\DoAn\\DoAn.csproj": {
+              "projectPath": "D:\\Mobile\\DoAn\\DoAn\\DoAn\\DoAn.csproj"
+>>>>>>> 36cbc8c608579958df36ff54faa0b890a5fadb7d
             }
           }
         }
