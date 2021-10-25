@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.GioHang">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="WhiteSmoke">
+            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0">
+                <Label Text="Giỏ hàng" HorizontalTextAlignment="Start" TextColor="White" FontSize="20" Padding="15"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

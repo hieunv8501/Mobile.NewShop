@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.TaiKhoan" BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="WhiteSmoke">
+            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0">
+                <Label Text="Tài khoản" HorizontalTextAlignment="Start" TextColor="White" FontSize="20" Padding="15"/>
+            </Frame>
+            <Grid HeightRequest="100" Margin="-10" ColumnSpacing="0" RowSpacing="0" BackgroundColor="white">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.6*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="IconUser.png" Aspect="Fill" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></Image>
+                <Label Text="Chào mừng bạn đến với Newshop" FontSize="15" TextColor="black" Grid.Column="1" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="0,10,50,0"></Label>
+                <Button x:Name="btnDNDK" Text="Đăng nhập/Đăng ký" TextColor="#2c55a5" BackgroundColor="White" HorizontalOptions="StartAndExpand" Margin="-10,0,50,0" Grid.Column="1" Grid.Row="1" Clicked="btnDNDK_Clicked"></Button>
+            </Grid>
+            <Grid HeightRequest="80" ColumnSpacing="0" RowSpacing="3" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" Grid.Row="0" BackgroundColor="white" HeightRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Image x:Name="imgCheckList" Source="CheckList.png" WidthRequest="60" HeightRequest="20" BackgroundColor="white" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Image>
+                </StackLayout>
+                <Button x:Name="btn_kiemtradonhang" Padding="0,0,250,0" Text="Kiểm tra đơn hàng" FontSize="15" BackgroundColor="White" WidthRequest="385" TextTransform="None" HeightRequest="20" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" ></Button>
+                <StackLayout Grid.Column="0" Grid.Row="1" BackgroundColor="white" HeightRequest="21" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Image x:Name="imgHeadphone" Source="HeadphoneIcon.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="White" WidthRequest="20" HeightRequest="20" ></Image>
+                </StackLayout>
+                <Button x:Name="btn_hotro"
+                    Padding="0,0,330,0"
+                    Text="Hỗ trợ" FontSize="15" BackgroundColor="White" WidthRequest="385" HeightRequest="20" HorizontalOptions="Start" TextTransform="None" Grid.Column="1" Grid.Row="1">
+                </Button>
+            </Grid>
+
+            <Label x:Name="lbl_version" Text="Phiên bản 1.10 (13)" HorizontalTextAlignment="Center" Margin="20"></Label>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

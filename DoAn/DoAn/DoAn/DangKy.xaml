@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.DangKy"
+             Title="Đăng ký">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="WhiteSmoke">
+            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0" HeightRequest="160">
+                <Image Source="logo_newshop.jpg" Aspect="Fill"></Image>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
