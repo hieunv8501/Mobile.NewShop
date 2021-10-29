@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.DangKy"
+             Title="Đăng ký">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="WhiteSmoke">
+            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0" HeightRequest="160">
+                <Image Aspect="Fill" Margin="20,0,20,0" Source="logo_newshop.jpg"></Image>
+            </Frame>
+            <StackLayout Margin="20,0,20,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="370"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Entry Placeholder="Họ tên" Grid.Column="0" Grid.Row="0"></Entry>
+                    <Entry Placeholder="Email" IsPassword="True" Grid.Column="0" Grid.Row="1"></Entry>
+                    <Entry Placeholder="Mật khẩu" IsPassword="True" Grid.Column="0" Grid.Row="2"></Entry>
+                </Grid>
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <CheckBox Grid.Column="0" Grid.Row="0"></CheckBox>
+                    <Label Text="Nhận các thông tin và chương trình khuyến mãi qua email" Margin="7,0,0,0" FontSize="12" Grid.Column="1" Grid.Row="0"></Label>
+                </StackLayout>
+                <Label Text="Khi đăng ký là bạn đã chấp nhận điều khoản sử dụng và chính sách của Newshop." Margin="7,0,0,0" FontSize="12"></Label>
+                <Button x:Name="btndk_dk" Text="Đăng Ký" TextTransform="None" BackgroundColor="red" TextColor="WhiteSmoke" FontSize="18"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

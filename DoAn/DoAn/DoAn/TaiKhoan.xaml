@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.TaiKhoan" BackgroundColor="White"
+             Title="Tài khoản">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#f4f4f4">
+            <Grid Padding="10" BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="icon_account.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></Image>
+                <Label Text="Chào mừng bạn đến với Newshop" FontSize="15" TextColor="black" Grid.Column="1" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="0,10,50,0"></Label>
+                <Button x:Name="dangnhap_dangky" Clicked="dangnhap_dangky_Clicked" Text="Đăng nhập/Đăng ký" TextColor="#2c55a5" BackgroundColor="White" HorizontalOptions="StartAndExpand" Margin="-10,0,50,0" Grid.Column="1" Grid.Row="1"></Button>
+            </Grid>
+            
+            <ListView x:Name="listdn" BackgroundColor="WhiteSmoke" ItemTapped="listdn_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding icon}" Grid.Column="0" Grid.Row="0"></Image>
+                                <Label Text="{Binding text}" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" FontSize="18" HorizontalOptions="Start"></Label>
+                                <Image Source="{Binding icon_next}" Grid.Column="2" Grid.Row="0"></Image>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Text="Phiên bản 1.10 (13)" HorizontalOptions="Center" HeightRequest="350" FontSize="18"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

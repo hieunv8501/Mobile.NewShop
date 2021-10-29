@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.QuenMatKhau"
+             Title="Quên Mật Khẩu">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="WhiteSmoke">
+            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0" HeightRequest="170">
+                <Image Margin="30" Source="logo_newshop.jpg" Aspect="Fill"></Image>
+            </Frame>
+
+            <Grid Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>                
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblEmail" Grid.Row="0" Grid.Column="0" FontSize="18"></Label>
+                <Entry Placeholder="Nhập Email hoặc Số điện thoại để lấy lại mật khẩu" FontSize="15" Grid.Column="0" Grid.Row="1" Focused="Entry_Focused" Unfocused="Entry_Unfocused"></Entry>
+                <Button x:Name="btnSend" Text="Gửi" TextTransform="None" BackgroundColor="red" TextColor="WhiteSmoke" FontSize="18" Grid.Row="2" Grid.Column="0"></Button>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

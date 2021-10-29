@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.DangNhap"
+             Title="Đăng nhập"
+             NavigationPage.BackButtonTitle="CloseIcon.png">
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="WhiteSmoke">
+            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0" HeightRequest="130">
+                <Image Aspect="Fill" Margin="20,0,20,0" Source="logo_newshop.jpg"></Image>
+            </Frame>
+            <StackLayout Margin="20,0,20,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="UserIcon.png" Grid.Column="0" Grid.Row="0"></Image>
+                    <Entry Placeholder="Email / Số điện thoại" Grid.Column="1" Grid.Row="0"></Entry>
+                    <Image Source="passwordicon.ico" Grid.Column="0" Grid.Row="1" WidthRequest="40" HeightRequest="40"></Image>
+                    <Entry Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1"></Entry>
+                </Grid>
+            </StackLayout>
+            <StackLayout Margin="20,5,20,0">
+                <Button x:Name="dnbtn" Clicked="dnbtn_Clicked" Text="ĐĂNG NHẬP" BackgroundColor="red" TextColor="White" FontSize="18"></Button>
+                <Button x:Name="dkbtn" Clicked="dkbtn_Clicked" Text="ĐĂNG KÝ" BackgroundColor="WhiteSmoke" TextColor="black" BorderColor="Black" BorderWidth="1" FontSize="18"></Button>
+                <Button x:Name="qmkbtn" Clicked="qmkbtn_Clicked" Text="Quên mật khẩu" TextTransform="None" TextColor="gray" BackgroundColor="WhiteSmoke" FontSize="15" HorizontalOptions="End"></Button>
+                <Label Margin="0,-10,0,0" Text="Hoặc đăng nhập với" TextColor="Gray" FontSize="15" HorizontalOptions="Start"></Label>
+            </StackLayout>
+
+            <ListView x:Name="lstdn_choice" Margin="20,20,20,0" ItemTapped="lstdn_choice_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding icon}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" BackgroundColor="WhiteSmoke"></Image>
+                                <Label Text="{Binding text}" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="black" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" ></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
