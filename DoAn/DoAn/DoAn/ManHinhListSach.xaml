@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.ManHinhListSach">
+    <ScrollView Orientation="Vertical">
+        <ListView x:Name="LstSach" RowHeight="100" ItemSelected="LstSach_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="600">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="2*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding ImageURL}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  >
+                            </Image>
+                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" ></Label>
+                            <Label Text="{Binding Price,StringFormat='{0:C}' }" Grid.Row="1" Grid.Column="1" TextColor="red"></Label>
+                            <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding .}" Clicked="cmdchonmua_Clicked" Grid.Row="2" Grid.Column="1"></Button>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ScrollView>
+</ContentPage>

@@ -45,8 +45,8 @@
                                     <ColumnDefinition Width="20"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding icon}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" BackgroundColor="WhiteSmoke"></Image>
-                                <Label Text="{Binding text}" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="black" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" ></Label>
+                                <Image Source="{Binding Icon}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" BackgroundColor="WhiteSmoke"></Image>
+                                <Label Text="{Binding Text}" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="black" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" ></Label>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

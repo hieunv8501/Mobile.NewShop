@@ -20,20 +20,20 @@ namespace DoAn
         {
             InitializeComponent();
 
-            MDH.Text = "Mã đơn hàng: " + donhang.madonhang;
-            TinhTrang.Text = "Trang thái: " + donhang.tinhtrang;
-            tennguoinhan.Text = donhang.tennguoinhan;
-            sdt.Text = donhang.sdt;
-            diachi.Text = "Địa chỉ: " + donhang.diachi;
-            hinhthucvanchuyen.Text = donhang.hinhthucvanchuyen;
-            hinhthucthanhtoan.Text = donhang.hinhthucthanhtoan;
-            image.Source = donhang.image;
-            tensach.Text = donhang.tensach;
-            Gia.Text = donhang.gia.ToString() + "đ x " + donhang.soluong.ToString();
-            giamgia.Text = "Giảm:" + donhang.giamgia.ToString() + "%";
-            Thanhtien.Text = ((donhang.gia - (donhang.gia * donhang.giamgia / 100)) * donhang.soluong).ToString() + "đ";
-            phivanchuyen.Text = donhang.phivanchuyen.ToString() + "đ";
-            tongthanhtoan.Text = ((donhang.gia - (donhang.gia * donhang.giamgia / 100)) + donhang.phivanchuyen).ToString() + "đ";
+            MDH.Text = "Mã đơn hàng: " + donhang.Madonhang;
+            TinhTrang.Text = "Trang thái: " + donhang.Tinhtrang;
+            tennguoinhan.Text = donhang.Tennguoinhan;
+            sdt.Text = donhang.Sdt;
+            diachi.Text = "Địa chỉ: " + donhang.Diachi;
+            hinhthucvanchuyen.Text = donhang.Hinhthucvanchuyen;
+            hinhthucthanhtoan.Text = donhang.Hinhthucthanhtoan;
+            image.Source = donhang.Image;
+            tensach.Text = donhang.Tensach;
+            Gia.Text = donhang.Gia.ToString() + "đ x " + donhang.Soluong.ToString();
+            giamgia.Text = "Giảm:" + donhang.Giamgia.ToString() + "%";
+            Thanhtien.Text = ((donhang.Gia - (donhang.Gia * donhang.Giamgia / 100)) * donhang.Soluong).ToString() + "đ";
+            phivanchuyen.Text = donhang.Phivanchuyen.ToString() + "đ";
+            tongthanhtoan.Text = ((donhang.Gia - (donhang.Gia * donhang.Giamgia / 100)) + donhang.Phivanchuyen).ToString() + "đ";
 
         }
     }

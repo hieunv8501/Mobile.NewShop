@@ -6,20 +6,20 @@ namespace DoAn
 {
     public class DonHang
     {
-        public string madonhang { get; set; }
-        public string tinhtrang { get; set; }
-        public string icon { get; set; }
-        public string tensach { get; set; }
-        public string tennguoinhan { get; set; }
-        public string sdt { get; set; }
-        public string diachi { get; set; }
-        public string hinhthucvanchuyen { get; set; }
-        public string hinhthucthanhtoan { get; set; }
-        public string image { get; set; }
-        public int gia { get; set; }
-        public int soluong { get; set; }
-        public int giamgia { get; set; }
-        public int phivanchuyen { get; set; }
-        public string tong { get; set; }
+        public string Madonhang { get; set; }
+        public string Tinhtrang { get; set; }
+        public string Icon { get; set; }
+        public string Tensach { get; set; }
+        public string Tennguoinhan { get; set; }
+        public string Sdt { get; set; }
+        public string Diachi { get; set; }
+        public string Hinhthucvanchuyen { get; set; }
+        public string Hinhthucthanhtoan { get; set; }
+        public string Image { get; set; }
+        public int Gia { get; set; }
+        public int Soluong { get; set; }
+        public int Giamgia { get; set; }
+        public int Phivanchuyen { get; set; }
+        public string Tong { get; set; }
     }
 }

@@ -6,9 +6,9 @@ namespace DoAn
 {
     class DanhMuc_TK
     {
-        public string id { get; set; }
-        public string icon { get; set; }
-        public string text { get; set; }
-        public string icon_next { get; set; }
+        public string ID { get; set; }
+        public string Icon { get; set; }
+        public string Text { get; set; }
+        public string Icon_next { get; set; }
     }
 }

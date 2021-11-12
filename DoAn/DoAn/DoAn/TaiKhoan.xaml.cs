@@ -20,8 +20,8 @@ namespace DoAn
         void Create_danhmuc()
         {           
             List<DanhMuc_TK> danhmuc = new List<DanhMuc_TK>();
-            danhmuc.Add(new DanhMuc_TK { id = "KTDH", text = "Kiểm tra đơn hàng", icon = "icon_KTDH.png", icon_next = "icon_next.png" });
-            danhmuc.Add(new DanhMuc_TK { id = "HT", text = "Hỗ trợ", icon = "icon_HT.png", icon_next = "icon_next.png" });
+            danhmuc.Add(new DanhMuc_TK { ID = "KTDH", Text = "Kiểm tra đơn hàng", Icon = "icon_KTDH.png", Icon_next = "icon_next.png" });
+            danhmuc.Add(new DanhMuc_TK { ID = "HT", Text = "Hỗ trợ", Icon = "icon_HT.png", Icon_next = "icon_next.png" });
             listdn.ItemsSource = danhmuc;
         }
 
@@ -35,12 +35,12 @@ namespace DoAn
             DanhMuc_TK danhMuc_TK = (DanhMuc_TK)listdn.SelectedItem;
             listdn.SelectedItem = "";
 
-            if (danhMuc_TK.id == "KTDH")
+            if (danhMuc_TK.ID == "KTDH")
             {
 
                 Navigation.PushAsync(new KiemTraDonHang());
             }
-            if (danhMuc_TK.id == "HT")
+            if (danhMuc_TK.ID == "HT")
             {
 
                 Navigation.PushAsync(new HoTro());

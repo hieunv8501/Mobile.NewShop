@@ -19,6 +19,9 @@
     <EmbeddedResource Update="ChiTietDonHang.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="ChiTietSach.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="DaDangNhap.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -46,6 +49,9 @@
     <EmbeddedResource Update="KiemTraDonHang.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="ManHinhListSach.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="QuenMatKhau.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -64,10 +70,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ChiTietSach.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="DangKy.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="DangNhap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ManHinhListSach.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>

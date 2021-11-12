@@ -20,8 +20,8 @@ namespace DoAn
         void Create_danhmuc()
         {
             List<DanhMuc_TK> danhmuc = new List<DanhMuc_TK>();
-            danhmuc.Add(new DanhMuc_TK { id = "gg", text = "Sign in with Google", icon = "ggicon.png", icon_next = "icon_next.png" });
-            danhmuc.Add(new DanhMuc_TK { id = "fb", text = "Sign in with Facebook", icon = "fbicon.png", icon_next = "icon_next.png" });
+            danhmuc.Add(new DanhMuc_TK { ID = "gg", Text = "Sign in with Google", Icon = "ggicon.png", Icon_next = "icon_next.png" });
+            danhmuc.Add(new DanhMuc_TK { ID = "fb", Text = "Sign in with Facebook", Icon = "fbicon.png", Icon_next = "icon_next.png" });
             lstdn_choice.ItemsSource = danhmuc;
         }
 
@@ -46,11 +46,11 @@ namespace DoAn
             DanhMuc_TK danhmuc = (DanhMuc_TK)lstdn_choice.SelectedItem;
             lstdn_choice.SelectedItem = "";
 
-            if (danhmuc.id == "fb")
+            if (danhmuc.ID == "fb")
             {
                 DisplayAlert("Đăng nhập bằng facebook", "Facebook", "OK");
             }
-            else if (danhmuc.id == "gg")
+            else if (danhmuc.ID == "gg")
             {
                 DisplayAlert("Đăng nhập bằng Google", "Google", "OK");
             }

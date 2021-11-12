@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.ChiTietSach">
+    <ContentPage.Content>
+        <StackLayout x:Name="chitietsach">
+            <Image x:Name="image"></Image>
+            <Label x:Name="tensach" TextColor="Black" FontSize="30"></Label>
+            <Label x:Name="giaban" TextColor="red" FontSize="20" FontAttributes="Bold"></Label>
+            <Button x:Name="cmdChonMua" Text="Chọn mua" Clicked="cmdChonMua_Clicked" CommandParameter="{Binding .}" BackgroundColor="red" FontSize="18" FontAttributes="Bold"></Button>
+            <Label Text="Thông tin chi tiết" FontSize="30"></Label>
+            <Label x:Name="mota"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
