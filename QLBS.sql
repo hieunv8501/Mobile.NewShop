@@ -209,3 +209,52 @@ as begin
 		delete from HOADON where MaHoaDon = @MaHoaDon
 	end
 end
+
+create procedure sp_ThemSach @MaSach int ,@MaLoaiSach int,
+	@TenSach varchar (50),
+	@Gia money,
+	@MoTa nvarchar(50),
+	@Hinh varchar (100)
+as begin
+
+	insert into SACH values(@MaSach,@MaLoaiSach,@TenSach,@Gia,@MoTa,@Hinh);
+
+end
+
+
+
+create procedure sp_CapNhatSach @MaSach int ,@MaLoaiSach int,
+	@TenSach varchar (50),
+	@Gia money,
+	@MoTa nvarchar(50),
+	@Hinh varchar (100)
+as begin
+
+	Update  SACH  set MaLoaiSach=@MaLoaiSach,TenSach=@TenSach,Gia=@Gia,MoTa=@MoTa,Hinh=@Hinh where MaSach=@MaSach;
+
+end
+
+create procedure sp_XoaSach @MaSach int 
+as begin
+
+	Delete From SACH where MaSach=@MaSach;
+
+end
+
+
+create procedure sp_XoaLoaiSach @MaLoaiSach int
+as begin
+Delete From LOAISACH where MaLoaiSach=@MaLoaiSach;
+
+end
+
+create procedure sp_ThemLoaiSach @MaLoaiSach int,@TenLoaiSach varchar(50),@Hinh varchar(100)
+as begin
+insert into LOAISACH values (@MaLoaiSach,@TenLoaiSach, @Hinh);
+end
+
+
+create procedure sp_CapNhatLoaiSach @MaLoaiSach int,@TenLoaiSach varchar(50),@Hinh varchar(100)
+as begin
+Update LOAISACH Set  TenLoaiSach=@TenLoaiSach,Hinh= @Hinh where MaLoaiSach=@MaLoaiSach;
+end
