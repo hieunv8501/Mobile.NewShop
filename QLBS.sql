@@ -181,7 +181,7 @@ go
 create procedure sp_ThemHoaDon @TenDangNhap varchar(50), @NgayHoaDon datetime, @MaDiaChi int
 as begin
 	-- Tạo hóa đơn
-	declare @TongTien money, declare @MaHoaDon int
+	declare @TongTien money, @MaHoaDon int
 	select @TongTien = TongTien from GIOHANG where TenDangNhap = @TenDangNhap
 	set @MaHoaDon = 1
 	while @MaHoaDon in (select MaHoaDon from HOADON)
