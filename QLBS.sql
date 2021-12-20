@@ -301,16 +301,40 @@ as begin
 	update  GIOHANG set TongTien = TongTien + @ThanhTien where MaGioHang = @MaGioHang
 end
 go
--- Tính tổng tiền khi sửa/xóa giỏ hàng
+-- Tính tổng tiền khi sửa giỏ hàng
 create trigger trigger_update_CTGIOHANG on CT_GIOHANG
-for update, delete
+for update
 as begin
 	declare @TongTien money, @MaGioHang int, @ThanhTien money, @SoLuong int, @Gia money, @MaSach int
 	select @SoLuong = SoLuong, @MaSach = MaSach from inserted
 	select @Gia = Gia from SACH where MaSach = @MaSach
+
 	select @MaGioHang = MaGioHang From deleted
 
-	update CT_GIOHANG set ThanhTien = @SoLuong*@Gia
+	update CT_GIOHANG set ThanhTien = @SoLuong*@Gia where MaSach = @MaSach and MaGioHang = @MaGioHang
+
+	set @TongTien = 0
+
+	declare CUR_GIOHANG cursor for select ThanhTien from CT_GIOHANG where MaGioHang = @MaGioHang
+	open CUR_GIOHANG
+	FETCH NEXT FROM CUR_GIOHANG INTO @ThanhTien
+	WHILE @@FETCH_STATUS = 0
+	BEGIN
+		Set @TongTien = @TongTien + @ThanhTien
+		FETCH NEXT FROM CUR_GIOHANG INTO @ThanhTien
+	END
+	CLOSE CUR_GIOHANG
+	DEALLOCATE CUR_GIOHANG
+
+	update GIOHANG set TongTien = @TongTien where MaGioHang = @MaGioHang
+end
+go
+-- Tính tổng tiền khi xóa giỏ hàng
+create trigger trigger_delete_CTGIOHANG on CT_GIOHANG
+for delete
+as begin
+	declare @TongTien money, @MaGioHang int, @ThanhTien money, @SoLuong int, @Gia money, @MaSach int
+	select @MaGioHang = MaGioHang From deleted
 
 	set @TongTien = 0
 
@@ -347,19 +371,38 @@ end
 --update CT_GIOHANG set SoLuong = 3
 
 go
--- Thay đổi số lượng + xóa khỏi giỏ hàng
-create procedure sp_ThayDoiSoLuong @MaGioHang int, @MaSach int , @SoLuong int
+-- Giảm số lượng
+create procedure sp_GiamSoLuong @MaGioHang int, @MaSach int
 as begin
-	if(@SoLuong = 0)
+	declare @SoLuongHienTai int
+	select @SoLuongHienTai = SoLuong from CT_GIOHANG where MaGioHang = @MaGioHang and MaSach = @MaSach
+	set @SoLuongHienTai = @SoLuongHienTai - 1
+
+	if(@SoLuongHienTai = 0)
 	begin 
 		Delete from CT_GIOHANG where MaGioHang = @MaGioHang and MaSach = @MaSach
 	end
 	else begin
 		declare @ThanhTien money, @Gia money
 		select @Gia = Gia from SACH where MaSach = @MaSach
-		set @ThanhTien = @Gia*@SoLuong
-		Update CT_GIOHANG set SoLuong = @SoLuong, ThanhTien = @ThanhTien where MaSach = @MaSach
+		set @ThanhTien = @Gia*@SoLuongHienTai
+		Update CT_GIOHANG set SoLuong = @SoLuongHienTai, ThanhTien = @ThanhTien where MaSach = @MaSach and MaGioHang = @MaGioHang
 	end
+end
+go
+-- Tăng số lượng
+create procedure sp_TangSoLuong @MaGioHang nvarchar(50), @MaSach int
+as begin
+	declare @SoLuongHienTai int
+	select @SoLuongHienTai = SoLuong from CT_GIOHANG where MaGioHang = @MaGioHang and MaSach = @MaSach
+	
+	set @SoLuongHienTai = @SoLuongHienTai + 1
+
+		declare @ThanhTien money, @Gia money
+		select @Gia = Gia from SACH where MaSach = @MaSach
+		set @ThanhTien = @Gia*@SoLuongHienTai
+		Update CT_GIOHANG set SoLuong = @SoLuongHienTai, ThanhTien = @ThanhTien where MaSach = @MaSach and MaGioHang = @MaGioHang
+
 end
 
 --exec sp_ThayDoiSoLuong 1, 2, 3
@@ -375,11 +418,13 @@ end
 
 go
 -- Lấy thông tin giỏ hàng theo tên đăng nhập
-create procedure sp_LayThongTinGioHang @TenDangNhap nvarchar(50)
+create procedure sp_LayThongTinGioHang @TenDangNhap varchar(50)
 as begin
-	select TenSach, ThanhTien, SoLuong, Hinh, TongTien
+
+	select TenSach, ThanhTien, SoLuong, Hinh, TongTien, GIOHANG.MaGioHang, CT_GIOHANG.MaSach
 	from GIOHANG, SACH, CT_GIOHANG
 	where CT_GIOHANG.MaSach = SACH.MaSach and CT_GIOHANG.MaGioHang = GIOHANG.MaGioHang and TenDangNhap = @TenDangNhap
+
 end
 
 --exec sp_LayThongTinGioHang tinh

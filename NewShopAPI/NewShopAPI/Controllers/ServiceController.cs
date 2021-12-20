@@ -151,7 +151,71 @@ namespace NewShopAPI.Controllers
         //        return NotFound();
         //    }
         //}
-      
+
+
+        [Route("api/ServiceController/LayThongTinGioHang")]
+        [HttpGet]
+        public IHttpActionResult LayThongTinGioHang(string TenDangNhap)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+
+                DataTable result = Database.Database.Read_Table("sp_LayThongTinGioHang", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/ServiceController/TangSoLuong")]
+        [HttpGet]
+        public IHttpActionResult TangSoLuong(int MaGioHang, int MaSach)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaGioHang", MaGioHang);
+                param.Add("MaSach", MaSach);
+
+                DataTable result = Database.Database.Read_Table("sp_TangSoLuong", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/GiamSoLuong")]
+        [HttpGet]
+        public IHttpActionResult GiamSoLuong(int MaGioHang, int MaSach)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaGioHang", MaGioHang);
+                param.Add("MaSach", MaSach);
+
+                DataTable result = Database.Database.Read_Table("sp_GiamSoLuong", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
 
     }
 }
