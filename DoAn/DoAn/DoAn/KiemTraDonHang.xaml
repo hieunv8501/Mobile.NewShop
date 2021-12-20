@@ -28,7 +28,7 @@
             <Entry Placeholder="Mã đơn hàng" Focused="Entry_Focused_1" Unfocused="Entry_Unfocused_1" VerticalTextAlignment="Center"  Grid.Column="0" Grid.Row="5"></Entry>
             
             <Button x:Name="check" Text="Kiểm tra" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" BackgroundColor="blue" Grid.Column="0" Grid.Row="6"></Button>
-            <Label Text="Mẹo nhỏ: Đăng nhập để kiểm tra tất cả đơn hàng" BackgroundColor="LightYellow" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Grid.Column="0" Grid.Row="7"></Label>
+            <Label Text="Mẹo nhỏ: Đăng nhập để kiểm tra tất cả đơn hàng" BackgroundColor="#9E9F4F" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Grid.Column="0" Grid.Row="7"></Label>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

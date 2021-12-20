@@ -32,9 +32,9 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="50"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding icon}" Grid.Column="0" Grid.Row="0"></Image>
-                                <Label Text="{Binding text}" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" FontSize="18" HorizontalOptions="Start"></Label>
-                                <Image Source="{Binding icon_next}" Grid.Column="2" Grid.Row="0"></Image>
+                                <Image Source="{Binding Icon}" Grid.Column="0" Grid.Row="0"></Image>
+                                <Label Text="{Binding Text}" TextColor="Black" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" FontSize="18" HorizontalOptions="Start"></Label>
+                                <Image Source="{Binding Icon_next}" Grid.Column="2" Grid.Row="0"></Image>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

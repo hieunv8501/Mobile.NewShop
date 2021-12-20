@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="WhiteSmoke">
             <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0" HeightRequest="130">
-                <Image Aspect="Fill" Margin="20,0,20,0" Source="logo_newshop.jpg"></Image>
+                <Image Aspect="Fill" Margin="60,10,60,10" Source="logo_newshop.jpg"></Image>
             </Frame>
             <StackLayout Margin="20,0,20,0">
                 <Grid>

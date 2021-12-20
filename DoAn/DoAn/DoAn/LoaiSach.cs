@@ -6,8 +6,8 @@ namespace DoAn
 {
     public class LoaiSach
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public string ImageURL { get; set; }
+        public string MaLoaiSach { get; set; }
+        public string TenLoaiSach { get; set; }
+        public string Hinh { get; set; }
     }
 }

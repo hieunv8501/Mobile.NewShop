@@ -28,14 +28,14 @@
                             <RowDefinition Height="60"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="10*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                     </Grid>
                     <CheckBox Grid.Column="0" Grid.Row="0"></CheckBox>
-                    <Label Text="Nhận các thông tin và chương trình khuyến mãi qua email" Margin="7,0,0,0" FontSize="12" Grid.Column="1" Grid.Row="0"></Label>
+                    <Label TextColor="Black" Text="Nhận các thông tin và chương trình khuyến mãi qua email" Margin="7,0,0,0" FontSize="12" Grid.Column="1" Grid.Row="0"></Label>
                 </StackLayout>
-                <Label Text="Khi đăng ký là bạn đã chấp nhận điều khoản sử dụng và chính sách của Newshop." Margin="7,0,0,0" FontSize="12"></Label>
+                <Label TextColor="Black" Text="Khi đăng ký là bạn đã chấp nhận điều khoản sử dụng và chính sách của Newshop." Margin="7,0,0,0" FontSize="12"></Label>
                 <Button x:Name="btndk_dk" Text="Đăng Ký" TextTransform="None" BackgroundColor="red" TextColor="WhiteSmoke" FontSize="18"></Button>
             </StackLayout>
         </StackLayout>

@@ -16,24 +16,24 @@ namespace DoAn
         {
             InitializeComponent();
         }
-        public ChiTietDonHang(DonHang donhang)
+        public ChiTietDonHang(HOADON hoadon)
         {
             InitializeComponent();
 
-            MDH.Text = "Mã đơn hàng: " + donhang.Madonhang;
-            TinhTrang.Text = "Trang thái: " + donhang.Tinhtrang;
-            tennguoinhan.Text = donhang.Tennguoinhan;
-            sdt.Text = donhang.Sdt;
-            diachi.Text = "Địa chỉ: " + donhang.Diachi;
-            hinhthucvanchuyen.Text = donhang.Hinhthucvanchuyen;
-            hinhthucthanhtoan.Text = donhang.Hinhthucthanhtoan;
-            image.Source = donhang.Image;
-            tensach.Text = donhang.Tensach;
-            Gia.Text = donhang.Gia.ToString() + "đ x " + donhang.Soluong.ToString();
-            giamgia.Text = "Giảm:" + donhang.Giamgia.ToString() + "%";
-            Thanhtien.Text = ((donhang.Gia - (donhang.Gia * donhang.Giamgia / 100)) * donhang.Soluong).ToString() + "đ";
-            phivanchuyen.Text = donhang.Phivanchuyen.ToString() + "đ";
-            tongthanhtoan.Text = ((donhang.Gia - (donhang.Gia * donhang.Giamgia / 100)) + donhang.Phivanchuyen).ToString() + "đ";
+            //MDH.Text = "Mã đơn hàng: " + hoadon.MaHoaDon;
+            //TinhTrang.Text = "Trang thái: " + hoadon.TinhTrangDisplay;
+            //tennguoinhan.Text = hoadon.Tennguoinhan;
+            //sdt.Text = hoadon.Sdt;
+            //diachi.Text = "Địa chỉ: " + hoadon.Diachi;
+            //hinhthucvanchuyen.Text = hoadon.Hinhthucvanchuyen;
+            //hinhthucthanhtoan.Text = hoadon.Hinhthucthanhtoan;
+            //image.Source = hoadon.Image;
+            //tensach.Text = hoadon.Tensach;
+            //Gia.Text = hoadon.Gia.ToString() + "đ x " + hoadon.Soluong.ToString();
+            //giamgia.Text = "Giảm:" + hoadon.Giamgia.ToString() + "%";
+            //Thanhtien.Text = ((hoadon.Gia - (hoadon.Gia * hoadon.Giamgia / 100)) * hoadon.Soluong).ToString() + "đ";
+            //phivanchuyen.Text = hoadon.Phivanchuyen.ToString() + "đ";
+            //tongthanhtoan.Text = ((hoadon.Gia - (hoadon.Gia * hoadon.Giamgia / 100)) + hoadon.Phivanchuyen).ToString() + "đ";
 
         }
     }

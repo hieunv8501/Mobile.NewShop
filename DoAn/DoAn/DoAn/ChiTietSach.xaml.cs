@@ -21,12 +21,12 @@ namespace DoAn
         {
             InitializeComponent();
             Title = "Thông tin chi tiết sách";
-            image.Source = sach.ImageURL;
-            tensach.Text = sach.Name;
-            mota.Text = sach.Name;
+            image.Source = sach.Hinh;
+            tensach.Text = sach.TenSach;
+            mota.Text = sach.MoTa;
             //giaban.Text = sach.Price.ToString("C");
             CultureInfo cultureInfo = new CultureInfo("vi-VN");
-            giaban.Text = string.Format(cultureInfo, "{0:C}", sach.Price);
+            giaban.Text = string.Format(cultureInfo, "{0:C}", sach.Gia);
         }
         private void cmdChonMua_Clicked(object sender, EventArgs e)
         {

@@ -6,9 +6,13 @@ namespace DoAn
 {
     public class Sach
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public string ImageURL { get; set; }
-        public int Price { get; set; }
+        public int MaSach { get; set; }
+        public int MaLoaiSach { get; set; }
+        public string TenSach { get; set; }
+        public string Hinh { get; set; }
+        public string MoTa { get; set; }
+        public Nullable<Decimal> Gia { get; set; }
+        public string GiaDisplay => $"{Gia} vnd";
+
     }
 }

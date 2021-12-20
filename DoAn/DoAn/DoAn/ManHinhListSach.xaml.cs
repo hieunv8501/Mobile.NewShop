@@ -20,54 +20,54 @@ namespace DoAn
         public ManHinhListSach(LoaiSach loaisach)
         {
             InitializeComponent();
-            Title = loaisach.Name;
-            InitializeManHinhListSach(loaisach);
+            Title = loaisach.TenLoaiSach;
+            //InitializeManHinhListSach(loaisach);
         }
-        void InitializeManHinhListSach(LoaiSach LoaiSach)
-        {
-            CultureInfo.CurrentCulture = new CultureInfo("vi-VN");
-            List<Sach> Sachs = new List<Sach>();
-            switch (LoaiSach.ID)
-            {
-                case ("BC"):
-                    {
-                        Sachs.Add(new Sach { ID = "BV", Name = " Khách Sạn Ba Vì", ImageURL = "ThieuNhi.jpg", Price = 115000 });
-                        Sachs.Add(new Sach { ID = "AB", Name = " Amorita Boutique Sach Hanoi", ImageURL = "ThieuNhi.jpg", Price = 115000 });
-                        Sachs.Add(new Sach { ID = "LG", Name = "Le Grand Hanoi Sach", ImageURL = "ThieuNhi.jpg", Price = 115000 });
-                        Sachs.Add(new Sach { ID = "LHH", Name = " Lotte Sach Hanoi", ImageURL = "ThieuNhi.jpg", Price = 115000 });
-                        Sachs.Add(new Sach { ID = "BV", Name = " Khách Sạn Ba Vì", ImageURL = "ThieuNhi.jpg", Price = 115000 });
-                        break;
-                    }
-                case ("KD"):
-                    {
-                        Sachs.Add(new Sach { ID = "SG", Name = " Khách Sạn Sài Gòn", ImageURL = "ThieuNhi.jpg", Price = 115000 });
-                        Sachs.Add(new Sach { ID = "PH", Name = " PIANO Sach", ImageURL = "PianoSach.jpg", Price = 115000 });
-                        Sachs.Add(new Sach { ID = "SYH", Name = "Silverland Yen Sach", ImageURL = "SilverlandSach.jpg", Price = 115000 });
-                        break;
-                    }
-                case ("TN"):
-                    {
-                        Sachs.Add(new Sach { ID = "HPS", Name = " Khách sạn Hoa Păng Sê Đà Lạt ", ImageURL = "ThieuNhi.jpg", Price = 115000 });
-                        break;
-                    }
-                case ("VT"):
-                    {
-                        Sachs.Add(new Sach { ID = "HH", Name = " Hafi Sach", ImageURL = "HH.jpg", Price = 115000 });
-                        break;
-                    }
-                case ("KNS"):
-                    {
-                        Sachs.Add(new Sach { ID = "Hue", Name = " Hue Serene Palace Sach", ImageURL = "HH.jpg", Price = 115000 });
-                        break;
-                    }
+        //void InitializeManHinhListSach(LoaiSach LoaiSach)
+        //{
+        //    CultureInfo.CurrentCulture = new CultureInfo("vi-VN");
+        //    List<Sach> Sachs = new List<Sach>();
+        //    switch (LoaiSach.ID)
+        //    {
+        //        case ("BC"):
+        //            {
+        //                Sachs.Add(new Sach { MaSach = "BV", TenSach = " Khách Sạn Ba Vì", Hinh = "ThieuNhi.jpg", Gia = 115000 });
+        //                Sachs.Add(new Sach { MaSach = "AB", TenSach = " Amorita Boutique Sach Hanoi", Hinh = "ThieuNhi.jpg", Gia = 115000 });
+        //                Sachs.Add(new Sach { MaSach = "LG", TenSach = "Le Grand Hanoi Sach", Hinh = "ThieuNhi.jpg", Gia = 115000 });
+        //                Sachs.Add(new Sach { MaSach = "LHH", TenSach = " Lotte Sach Hanoi", Hinh = "ThieuNhi.jpg", Gia = 115000 });
+        //                Sachs.Add(new Sach { MaSach = "BV", TenSach = " Khách Sạn Ba Vì", Hinh = "ThieuNhi.jpg", Gia = 115000 });
+        //                break;
+        //            }
+        //        case ("KD"):
+        //            {
+        //                Sachs.Add(new Sach { MaSach = "SG", TenSach = " Khách Sạn Sài Gòn", Hinh = "ThieuNhi.jpg", Gia = 115000 });
+        //                Sachs.Add(new Sach { MaSach = "PH", TenSach = " PIANO Sach", Hinh = "PianoSach.jpg", Gia = 115000 });
+        //                Sachs.Add(new Sach { MaSach = "SYH", TenSach = "Silverland Yen Sach", Hinh = "SilverlandSach.jpg", Gia = 115000 });
+        //                break;
+        //            }
+        //        case ("TN"):
+        //            {
+        //                Sachs.Add(new Sach { MaSach = "HPS", TenSach = " Khách sạn Hoa Păng Sê Đà Lạt ", Hinh = "ThieuNhi.jpg", Gia = 115000 });
+        //                break;
+        //            }
+        //        case ("VT"):
+        //            {
+        //                Sachs.Add(new Sach { MaSach = "HH", TenSach = " Hafi Sach", Hinh = "HH.jpg", Gia = 115000 });
+        //                break;
+        //            }
+        //        case ("KNS"):
+        //            {
+        //                Sachs.Add(new Sach { MaSach = "Hue", NaTenSachme = " Hue Serene Palace Sach", Hinh = "HH.jpg", Gia = 115000 });
+        //                break;
+        //            }
 
-                default:
-                    {
-                        break;
-                    }
-            }
-            LstSach.ItemsSource = Sachs;
-        }
+        //        default:
+        //            {
+        //                break;
+        //            }
+        //    }
+        //    LstSach.ItemsSource = Sachs;
+        //}
 
         private void LstSach_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -82,7 +82,7 @@ namespace DoAn
         {
             Button chon = (Button)sender;
             Sach Sachchon = (Sach)chon.CommandParameter;
-            DisplayAlert(Sachchon.Name, "Đã chọn", "OK");
+            DisplayAlert(Sachchon.TenSach, "Đã chọn", "OK");
         }
     }
 }

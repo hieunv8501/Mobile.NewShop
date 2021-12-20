@@ -20,11 +20,11 @@ namespace DoAn
         List<LoaiSach> LoaiSachs = new List<LoaiSach>();
         void TaoCacLoaiSach()
         {
-            LoaiSachs.Add(new LoaiSach { ID = "BC", Name = "Sách Bán Chạy", ImageURL = "BanChay.jpg" });
-            LoaiSachs.Add(new LoaiSach { ID = "KD", Name = "Sách Quản Lý - Kinh Doanh", ImageURL = "KinhDoanh.jpg" });
-            LoaiSachs.Add(new LoaiSach { ID = "NN", Name = "Sách Ngoại Ngữ", ImageURL = "NgoaiNgu.jpg" });
-            LoaiSachs.Add(new LoaiSach { ID = "TN", Name = "Sách Thiếu Nhi", ImageURL = "ThieuNhi.jpg" });
-            LoaiSachs.Add(new LoaiSach { ID = "KNS", Name = "Sách Kỹ Năng Sống", ImageURL = "YChi.jpg" });
+            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "BC", TenLoaiSach = "Sách Bán Chạy", Hinh = "BanChay.jpg" });
+            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "KD", TenLoaiSach = "Sách Quản Lý - Kinh Doanh", Hinh = "KinhDoanh.jpg" });
+            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "NN", TenLoaiSach = "Sách Ngoại Ngữ", Hinh = "NgoaiNgu.jpg" });
+            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "TN", TenLoaiSach = "Sách Thiếu Nhi", Hinh = "ThieuNhi.jpg" });
+            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "KNS", TenLoaiSach = "Sách Kỹ Năng Sống", Hinh = "YChi.jpg" });
             LstLoaiSach.ItemsSource = LoaiSachs;
         }
         private void search_Clicked(object sender, EventArgs e)
@@ -38,11 +38,11 @@ namespace DoAn
             {
                 return search;
             }
-            return LoaiSachs.Where(p => p.Name.Contains(searchtext));
+            return LoaiSachs.Where(p => p.TenLoaiSach.Contains(searchtext));
         }
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            LstLoaiSach.ItemsSource = LoaiSachs.Where(p => p.Name.ToLower().Contains(Search.Text.ToLower()));
+            LstLoaiSach.ItemsSource = LoaiSachs.Where(p => p.TenLoaiSach.ToLower().Contains(Search.Text.ToLower()));
 
         }
 

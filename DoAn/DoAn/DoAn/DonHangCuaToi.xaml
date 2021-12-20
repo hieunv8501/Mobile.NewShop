@@ -5,7 +5,7 @@
              Title="Đơn hàng của tôi">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lst_donhang" HasUnevenRows="True"  ItemTapped="lst_donhang_ItemSelected" Margin="10">
+            <ListView x:Name="lst_donhang" HasUnevenRows="True" ItemTapped="lst_donhang_ItemSelected" Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -20,10 +20,10 @@
                                     <ColumnDefinition Width="20"></ColumnDefinition>
 
                                 </Grid.ColumnDefinitions>
-                                <Label  Text="{Binding tensach}" FontSize="18" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
-                                <Label  Text="{Binding madonhang}" FontSize="16" Grid.Column="0" Grid.Row="1"></Label>
-                                <Label  Text= "{Binding tinhtrang}" FontSize="16" Grid.Column="0" Grid.Row="2"></Label>
-                                <Image Source="{Binding icon}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"></Image>
+                                <Label  Text="{Binding TenSach}" FontSize="18" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label  Text="{Binding MaHoaDon}" FontSize="16" Grid.Column="0" Grid.Row="1"></Label>
+                                <Label  Text= "{Binding TinhTrang}" FontSize="16" Grid.Column="0" Grid.Row="2"></Label>
+                                <Image Source="{Binding Icon}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"></Image>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

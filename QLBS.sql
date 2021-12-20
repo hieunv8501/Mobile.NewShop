@@ -13,7 +13,6 @@ create table TAIKHOAN
 	Email varchar(50),
 	NgaySinh datetime,
 	GioiTinh bit
-
 )
 
 create table LOAISACH
@@ -116,6 +115,7 @@ as begin
 	select * from TAIKHOAN
 end
 
+exec sp_LayDanhSachTaiKhoan
 go
 -- Lấy thông tin tài khoản theo tên đăng nhâp
 create procedure sp_LayThongTinTaiKhoan @TenDangNhap nvarchar(50)
@@ -165,6 +165,7 @@ as begin
 end
 
 go
+--Thêm tài khoản
 create procedure sp_ThemTaiKhoan @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit
 as begin
 	insert into TAIKHOAN values(@TenDangNhap, @MatKhau, @TenKhachHang, @SoDienThoai, @Email, @NgaySinh, @GioiTinh)
