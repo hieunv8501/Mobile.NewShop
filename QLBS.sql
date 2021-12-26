@@ -147,8 +147,17 @@ as begin
 		where LOAISACH.MaLoaiSach = @MaLoaiSach
 	end
 end
-
 go
+
+-- Lấy danh sách sách theo mã khuyến mãi của sách
+create procedure sp_LayDanhSachSachTheoKhuyenMai
+as begin
+	select top 10 *
+	from SACH
+	order by GiamGia Desc
+end
+go
+
 -- Lấy hóa đơn theo tên đăng nhâp
 create procedure sp_LayHoaDonTheoTenDangNhap @TenDangNhap varchar(50)
 as begin
