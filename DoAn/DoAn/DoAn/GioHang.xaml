@@ -6,7 +6,70 @@
 >
     <ContentPage.Content>
         <StackLayout BackgroundColor="WhiteSmoke">
-            
+            <ListView x:Name="lstGioHang" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding Hinh}"  HeightRequest="500"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Image>
+                                <Label Text="{Binding TenSach}" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" ></Label>
+                                <Label Text="{Binding ThanhTien}" FontSize="20" TextColor="red" Grid.Row="1" Grid.Column="1" ></Label>
+                                <Grid Grid.Row="2" Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="GiamSL"  Clicked="GiamSL_Clicked"  Text="-" Grid.Row="0" HorizontalOptions="End" WidthRequest="50" Grid.Column="0" CommandParameter="{Binding MaSach}"></Button>
+                                    <Label Text="{Binding SoLuong}" FontSize="20" FontAttributes="Bold" HeightRequest="25" BackgroundColor="AliceBlue" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" Grid.Row="0" Grid.Column="1" ></Label>
+                                    <Button x:Name="TangSL" Clicked="TangSL_Clicked" Text="+" HorizontalOptions="Start" WidthRequest="50" Grid.Row="0" Grid.Column="2" CommandParameter="{Binding MaSach}"></Button>
+                                </Grid>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid   HeightRequest="150" Padding="20, 0, 20, 0" Margin="0, 0, 0, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Nhập mã giảm giá" FontSize="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+                <Entry Placeholder="Mã giảm giá" Grid.Column="0" Grid.Row="1"></Entry>
+                <Button x:Name="ApDung" Text="Áp dụng" Grid.Row="1" Grid.Column="1" BackgroundColor="Orange" TextColor="White" FontAttributes="Bold"></Button>
+
+            </Grid>
+            <Grid  HeightRequest="150" Padding="20, 0, 20, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Thành tiền:" FontSize="20"></Label>
+                <Label x:Name="lbTongTien" HorizontalTextAlignment="End" TextColor="Red" FontSize="25" Grid.Row="0" Grid.Column="1"></Label>
+                <Button x:Name="DatHang" Text="Tiến hành đặt hàng" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Red" TextColor="White" FontSize="20"></Button>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
