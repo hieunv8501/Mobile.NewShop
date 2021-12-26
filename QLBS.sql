@@ -27,8 +27,9 @@ create table SACH
 	MaLoaiSach int,
 	TenSach varchar(50),
 	Gia money,
-	MoTa nvarchar(50),
-	Hinh varchar(100),
+	MoTa nvarchar(max),
+	Hinh varchar(max),
+	GiamGia int
 )
 
 create table DIACHI
@@ -98,16 +99,17 @@ alter table CT_GIOHANG add constraint fk_CTGIOHANG_GIOHANG foreign key (MaGioHan
 set dateformat dmy;
 
 insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1)
-insert into LOAISACH values (1, 'Loaisach1', 'Loaisach1.jpg'), 
-			(2, 'Loaisach2', 'Loaisach2.jpg'), 
-			(3, 'Loaisach3', 'Loaisach3.jpg')
-insert into SACH values (1, 1, 'TenSach1', 500, N'Mô tả TenSach1', 'sach1.jpg'), 
-			(2, 1, 'TenSach2', 1000, N'Mô tả TenSach2', 'sach2.jpg'),
-			(3, 2, 'TenSach3', 100, N'Mô tả TenSach3', 'sach3.jpg'), 
-			(4, 2, 'TenSach4', 1500, N'Mô tả TenSach4', 'sach4.jpg'),
-			(5, 2, 'TenSach5', 3000, N'Mô tả TenSach5', 'sach5.jpg'),
-			(6, 3, 'TenSach6', 1500, N'Mô tả TenSach6', 'sach6.jpg')
+insert into LOAISACH values (1, 'Văn Học', 'vanhoc.jpg'), 
+			(2, 'Sách Tham Khảo', 'thamkhao.jpg'), 
+			(3, 'Sách Ngoại Ngữ', 'ngoaingu.jpg')
+insert into SACH values (1, 1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Thành Phố - Tập tản văn cũng có những chiêm nghiệm khác rút ra từ cuộc sống hàng ngày, thể hiện cách nhìn đời nhẹ nhàng, vị tha của một bác sĩ đã từng chứng kiến nhiều cuộc sinh tử biệt ly và biết điều gì là đáng quý nhất trong đời.', 'sach1.jpg', 20), 
+			(2, 1, N'Người Thăng Long', 100000, N'Người Thăng Long - Bản trường ca hào hùng về các vị vương, tướng nhà Trần trong cuộc chiến chống Nguyên Mông lần thứ hai.', 'sach2.jpg', 5),
+			(3, 2, N'Chinh Phục 4 Kỹ Năng Tiếng Anh Nghe-Nói-Đọc-Viết', 100000, N'Chinh Phục 4 Kỹ Năng Tiếng Anh Nghe - Nói - Đọc - Viết Lớp 9 - Tập 1 - Sách tập trung vào việc rèn luyện các kỹ năng cơ bản như: Nghe, Nói, Đọc, Viết thông qua các bài tập và phát triển các kỹ năng giao tiếp tổng hợp về cách phát âm đúng; từ vựng phong phú, đọc các đoạn hội thoại, đoạn văn; viết câu hoặc đoạn văn theo mẫu, nói theo chủ đề từng bài học, nhằm giúp các em học sinh vận dụng và tổng hợp kiến thức hiệu quả nhất.', 'sach3.jpg', 15), 
+			(4, 2, N'Luyện Chuyên Sâu Ngữ Pháp Và Từ Vựng Tiếng Anh Lớp 8', 150000, N'Luyện Chuyên Sâu Ngữ Pháp Và Từ Vựng Tiếng Anh Lớp 8 - Tập 1 - Cuốn sách các em đang cầm trên tay là cuốn sách không thể thiếu trong quá trình học tập tiếng Anh dành cho các em học sinh nhằm bổ trợ và nâng cao kiến thức trong chương trình Tiếng Anh hiện hành.', 'sach4.jpg', 17),
+			(5, 2, N'Tự Học Tiếng Anh (Kèm CD)', 300000, N'Tự Học Tiếng Hoa Cấp Tốc (Kèm CD) - Cuốn sách với các tình huống đa dạng, cách trình bày bố cục rõ ràng cùng với cách phiên âm chuyển ngữ sang tiếng Việt', 'sach5.jpg', 7),
+			(6, 3, N'Tiếng Anh Xã Giao (Tặng Kèm CD)', 150000, N'Tiếng Anh Xã Giao (Tặng Kèm CD) - Giúp bạn đọc tự học, tự rèn luyện để mạnh dạn giao tiếp trong mọi lĩnh vực, tình huống và ngữ cảnh khác nhau. Nội dung sách trình bày rõ ràng, thực tế. bao gồm những mẫu câu thường gặp nhất và các bài đàm thoại liên quan đến tình huống đó. Sách dùng trong: Sinh hoạt hàng ngày, khi đi du lịch, công tác nước ngoài.', 'sach6.jpg', 22)
 
+--select * from SACH
 go
 -- Lấy danh sách tài khoản
 create procedure sp_LayDanhSachTaiKhoan

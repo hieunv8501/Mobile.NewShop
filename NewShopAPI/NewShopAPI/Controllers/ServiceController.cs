@@ -57,7 +57,18 @@ namespace NewShopAPI.Controllers
             else
                 return NotFound();
         }
+	
+	[Route("api/ServiceController/LayDanhSachSachTheoKhuyenMai")]
+        [HttpGet]
+        public IHttpActionResult LayDanhSachSachTheoKhuyenMai()
+        {
+            DataTable kq = Database.Database.Read_Table("sp_LayDanhSachSachTheoKhuyenMai");
+            if (kq != null && kq.Rows.Count > 0)
+                return Ok(kq);
+            else
+                return NotFound();
 
+        }
 
         [Route("api/ServiceController/LayDanhSachSachTheoLoaiSach")]
         [HttpGet]
