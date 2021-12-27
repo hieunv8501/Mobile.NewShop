@@ -15,20 +15,20 @@ create table TAIKHOAN
 	GioiTinh bit
 )
 
-create table LOAISACH
+CREATE TABLE LOAISACH
 (
-	MaLoaiSach int primary key,
-	TenLoaiSach varchar(50),
-	Hinh varchar(100),
+	MaLoaiSach int identity(1,1) primary key,
+	TenLoaiSach nvarchar(50),
+	Hinh nvarchar(200),
 )
 create table SACH
 (
-	MaSach int primary key,
+	MaSach int identity(1,1) primary key,
 	MaLoaiSach int,
-	TenSach varchar(50),
+	TenSach nvarchar(50),
 	Gia money,
-	MoTa nvarchar(50),
-	Hinh varchar(100),
+	MoTa nvarchar(2000),
+	Hinh nvarchar(200),
 )
 
 create table DIACHI
@@ -61,6 +61,7 @@ create table CT_HOADON
 	primary key (MaHoaDon, MaSach)
 )
 
+
 -- Giỏ hàng sẽ được tạo khi thêm tài khoản
 create table GIOHANG 
 (
@@ -85,23 +86,27 @@ create table MAGIAMGIA
 	TiLeGiam int,
 )
 
-alter table HOADON add constraint fk_HOADON_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
-alter table CT_HOADON add constraint fk_CTHOADON_HOADON foreign key (MaHoaDon) references HOADON(MaHoaDon)
-alter table CT_HOADON add constraint fk_CTHOADON_SACH foreign key (MaSach) references SACH(MaSach)
-alter table SACH add constraint fk_SACH_LOAISACH foreign key (MaLoaiSach) references LOAISACH(MaLoaiSach)
-alter table DIACHI add constraint fk_DIACHI_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
-alter table HOADON add constraint fk_HOADON_DIACHI foreign key (MaDiaChi) references DIACHI(MaDiaChi)
-alter table GIOHANG add constraint fk_GIOHANG_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
-alter table CT_GIOHANG add constraint fk_CTGIOHANG_SACH foreign key (MaSach) references SACH(MaSach)
-alter table CT_GIOHANG add constraint fk_CTGIOHANG_GIOHANG foreign key (MaGioHang) references GIOHANG(MaGioHang)
+create table HOADON add constraint fk_HOADON_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
+create table CT_HOADON add constraint fk_CTHOADON_HOADON foreign key (MaHoaDon) references HOADON(MaHoaDon)
+create table CT_HOADON add constraint fk_CTHOADON_SACH foreign key (MaSach) references SACH(MaSach)
+create table SACH add constraint fk_SACH_LOAISACH foreign key (MaLoaiSach) references LOAISACH(MaLoaiSach)
+create table DIACHI add constraint fk_DIACHI_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
+create table HOADON add constraint fk_HOADON_DIACHI foreign key (MaDiaChi) references DIACHI(MaDiaChi)
+create table GIOHANG add constraint fk_GIOHANG_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
+create table CT_GIOHANG add constraint fk_CTGIOHANG_SACH foreign key (MaSach) references SACH(MaSach)
+create table CT_GIOHANG add constraint fk_CTGIOHANG_GIOHANG foreign key (MaGioHang) references GIOHANG(MaGioHang)
 
 set dateformat dmy;
 
 insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1)
-insert into LOAISACH values (1, 'Loaisach1', 'Loaisach1.jpg'), 
-			(2, 'Loaisach2', 'Loaisach2.jpg'), 
-			(3, 'Loaisach3', 'Loaisach3.jpg')
-insert into SACH values (1, 1, 'TenSach1', 500, N'Mô tả TenSach1', 'sach1.jpg'), 
+insert into LOAISACH values (N'Sách Bán Chạy', N'http://172.20.10.4/newshopwebapi/Image/BanChay.jpg'), 
+			( N'Sách Quản Lý - Kinh Doanh', N'http://172.20.10.4/newshopwebapi/Image/NgoaiNgu.jpg'), 
+			( N'Sách Ngoại Ngữ', N'http://172.20.10.4/newshopwebapi/Image/NgoaiNgu.jpg'),( N'Sách Thiếu Nhi', N'http://172.20.10.4/newshopwebapi/Image/ThieuNhi.jpg'),( N'Sách Kỹ Năng Sống', N'http://172.20.10.4/newshopwebapi/Image/YChi.jpg')
+insert into SACH values (1, 1, N'Làm quen THỐNG KÊ HỌC qua biếm họa', 89000, N'Cuốn sách sẽ đem đến cho người đọc những kiến thức căn bản về thống kê từ việc lấy mẫu dữ liệu thô đến lập biểu đồ, từ kiểm định giả thiết đến đánh giá độ tin cậy. Nhưng may mắn thay, những khái niệm này không được trình bày giống như trong cuốn giáo trình làm chúng ta phát hoảng, mà dưới những ví dụ hấp dẫn về kích cỡ của các nàng tiên cá, tốc độ bay của lũ rồng, mức độ ghét nhau của hai tộc người ngoài hành tinh,… Tất cả sẽ làm chúng ta sảng khoái đến mức "phải lòng" thống kê học (trong một chừng mực nào đó)!
+
+"Một nhà thống kê và một nghệ sĩ đã hợp sức để làm sáng tỏ những dữ liệu khó nhằn cho số đông. Thông qua những chuyện khôi hài về đua rồng, thu thập mẫu giun và uống soda vô độ, Klein và Dabney đã minh họa cách thức các nhà thống kê thu thập dư liệu như thế nào và đưa ra các dự đoán ra sao… Và vô cùng thú vị." - Scientific American.
+
+"Ơn Chúa là cuối cùng cũng có ai đó viết một cuốn sách về thống kê thật sự vui nhộn đáng đọc. Cẩn thận khi mua cuốn sách này, bạn sẽ chẳng thể đặt được nó xuống trước khi đọc đến dòng cuối cùng." - Sebastian Thrun, Thành viên của Google  và CEO của Udacity.', N'http://172.20.10.4/newshopwebapi/Image/BanChay.jpg'), 
 			(2, 1, 'TenSach2', 1000, N'Mô tả TenSach2', 'sach2.jpg'),
 			(3, 2, 'TenSach3', 100, N'Mô tả TenSach3', 'sach3.jpg'), 
 			(4, 2, 'TenSach4', 1500, N'Mô tả TenSach4', 'sach4.jpg'),
@@ -492,3 +497,113 @@ create proc sp_SuaDiaChi @MaDiaChi int
 as begin
 	delete from DIACHI where MaDiaChi = @MaDiaChi
 end
+
+--Them sach
+create PROC  sp_ThemSach (@MaLoaiSach int,
+	@TenSach nvarchar (50),
+	@Gia money,
+	@MoTa nvarchar(2000),
+	@Hinh nvarchar (200),@CurrentID int output)
+as
+begin try
+
+if(exists(select * from SACH where TenSach=@TenSach and MaLoaiSach=@MaLoaiSach))
+begin
+set @CurrentID=0
+return
+end
+insert into SACH values(@MaLoaiSach,@TenSach,@Gia,@MoTa,@Hinh);
+set @CurrentID=@@IDENTITY
+end try
+begin catch
+set @CurrentID=0
+end catch
+
+
+--Cap nhat sach
+create PROC sp_CapNhatSach (@MaSach int ,@MaLoaiSach int,
+	@TenSach nvarchar (50),
+	@Gia money,
+	@MoTa nvarchar(2000),
+	@Hinh nvarchar (200),@CurrentID int output)
+as
+begin try
+if(not exists(select * from SACH where MaSach=@MaSach and MaLoaiSach=@MaLoaiSach))
+begin
+set @CurrentID=0
+return
+end
+Update  SACH  set MaLoaiSach=@MaLoaiSach,TenSach=@TenSach,Gia=@Gia,MoTa=@MoTa,Hinh=@Hinh where MaSach=@MaSach;
+set @CurrentID=1
+end try
+begin catch
+set @CurrentID=0
+end catch
+--Xoa sach
+
+create PROC sp_XoaSach @MaSach int,@CurrentID int output
+as
+begin try
+if(not exists(select * from SACH where MaSach=@MaSach))
+begin
+set @CurrentID=0
+return
+end
+Delete From SACH where MaSach=@MaSach;
+set @CurrentID=1
+end try
+begin catch
+set @CurrentID=0
+end catch
+
+--Xoa loai sach
+
+create PROC sp_XoaLoaiSach @MaLoaiSach int,@CurrentID int output
+as
+begin try
+if(not exists(select * from LOAISACH where MaLoaiSach=@MaLoaiSach) or (select COUNT(*) from SACH where MaLoaiSach=@MaLoaiSach)>0)
+begin
+set @CurrentID=0
+return
+end
+Delete From LOAISACH where MaLoaiSach=@MaLoaiSach;
+set @CurrentID=1
+end try
+begin catch
+set @CurrentID=0
+end catch
+
+--Them loai sach
+create PROC sp_ThemLoaiSach(@TenLoaiSach nvarchar(50),@Hinh nvarchar(200),@CurrentID int output)
+as
+begin try
+
+if(exists(select * from LOAISACH where TenLoaiSach=@TenLoaiSach))
+begin
+set @CurrentID=0
+return
+end
+insert into LOAISACH values (@TenLoaiSach, @Hinh);
+set @CurrentID=@@IDENTITY
+end try
+begin catch
+set @CurrentID=0
+end catch
+--Sua loai sach
+
+create PROC sp_CapNhatLoaiSach( @MaLoaiSach int,@TenLoaiSach nvarchar(50),@Hinh nvarchar(200),@CurrentID int output)
+as
+begin try
+if(not exists(select * from LOAISACH where MaLoaiSach=@MaLoaiSach))
+begin
+set @CurrentID=0
+return
+end
+Update LOAISACH Set  TenLoaiSach=@TenLoaiSach,Hinh= @Hinh where MaLoaiSach=@MaLoaiSach;
+set @CurrentID=1
+end try
+begin catch
+set @CurrentID=0
+end catch
+
+ 

@@ -151,7 +151,103 @@ namespace NewShopAPI.Controllers
         //        return NotFound();
         //    }
         //}
-      
 
+
+        //LoaiSach
+        [Route("api/ServiceController/ThemLoaiSach")]
+        [HttpGet]
+        public IHttpActionResult ThemLoaiSach(string TenLoaiSach, string Hinh)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenLoaiSach", TenLoaiSach);
+                param.Add("Hinh", Hinh);
+
+                int kq = int.Parse(Database.Database.Exec_Command("sp_ThemLoaiSach", param).ToString());
+                if (kq  > 0)
+                    return Ok(kq);
+                else
+                    return NotFound();
+            }
+            catch
+            { return NotFound(); }
+        }
+        [Route("api/ServiceController/XoaLoaiSach")]
+        [HttpGet]
+        public IHttpActionResult XoaLoaiSach(int MaLoaiSach)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("MaLoaiSach", MaLoaiSach);
+            int kq = int.Parse(Database.Database.Exec_Command("sp_XoaLoaiSach", param).ToString());
+            if (kq > 0)
+                return Ok(kq);
+            else
+                return NotFound();
+        }
+        [Route("api/ServiceController/CapNhatLoaiSach")]
+        [HttpGet]
+        public IHttpActionResult CapNhatLoaiSach(int MaLoaiSach,string TenLoaiSach,string Hinh)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("MaLoaiSach", MaLoaiSach);
+            param.Add("TenLoaiSach", TenLoaiSach);
+            param.Add("Hinh", Hinh);
+            int kq = int.Parse(Database.Database.Exec_Command("sp_CapNhatLoaiSach", param).ToString());
+            if (kq > 0)
+                return Ok(kq);
+            else
+                return NotFound();
+        }
+        //Sach
+        [Route("api/ServiceController/ThemSach")]
+        [HttpGet]
+        public IHttpActionResult ThemSach(int MaLoaiSach, string TenSach,double Gia ,string MoTa, string Hinh)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+        
+            param.Add("MaLoaiSach", MaLoaiSach);
+            param.Add("TenSach", TenSach);
+            param.Add("Gia", Gia);
+            param.Add("MoTa",MoTa);
+            param.Add("Hinh", Hinh);
+
+            int kq = int.Parse(Database.Database.Exec_Command("sp_ThemSach", param).ToString());
+            if (kq > 0)
+                return Ok(kq);
+            else
+                return NotFound();
+            
+        }
+        [Route("api/ServiceController/CapNhatSach")]
+        [HttpGet]
+        public IHttpActionResult CapNhatSach(int MaSach, int MaLoaiSach, string TenSach, double Gia, string MoTa, string Hinh)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("MaSach", MaSach);
+            param.Add("MaLoaiSach", MaLoaiSach);
+            param.Add("TenSach", TenSach);
+            param.Add("Gia", Gia);
+            param.Add("MoTa", MoTa);
+            param.Add("Hinh", Hinh);
+            int kq = int.Parse(Database.Database.Exec_Command("sp_CapNhatSach", param).ToString());
+            if (kq > 0)
+                return Ok(kq);
+            else
+                return NotFound();
+
+        }
+        [Route("api/ServiceController/XoaSach")]
+        [HttpGet]
+        public IHttpActionResult XoaSach(int MaSach)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("MaSach", MaSach);
+            int kq = int.Parse(Database.Database.Exec_Command("sp_XoaSach", param).ToString());
+            if (kq > 0)
+                return Ok(kq);
+            else
+                return NotFound();
+        }
     }
 }

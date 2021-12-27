@@ -130,10 +130,10 @@ namespace NewShopAPI.Database
                 {
                     cmd.ExecuteNonQuery();
                     result = cmd.Parameters["@CurrentID"].Value;
-                    // Attempt to commit the transaction.
-                    transaction.Commit();
+                   // Attempt to commit the transaction.
+                   transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                     result = null;
