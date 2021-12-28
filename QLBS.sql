@@ -1,6 +1,5 @@
 ﻿create database QuanLyBanSach
 go
-
 use QuanLyBanSach
 go
 
@@ -25,7 +24,7 @@ create table SACH
 (
 	MaSach int identity(1,1) primary key,
 	MaLoaiSach int,
-	TenSach nvarchar(50),
+	TenSach nvarchar(100),
 	Gia money,
 	MoTa nvarchar(max),
 	Hinh nvarchar(200),
@@ -59,8 +58,7 @@ create table GIAOHANG
 (
 	Gia money primary key,
 )
-insert into GIAOHANG values (15000)
-
+--insert into GIAOHANG values (15000)
 
 create table CT_HOADON
 (
@@ -104,7 +102,7 @@ alter table HOADON add constraint fk_HOADON_DIACHI foreign key (MaDiaChi) refere
 alter table GIOHANG add constraint fk_GIOHANG_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
 alter table CT_GIOHANG add constraint fk_CTGIOHANG_SACH foreign key (MaSach) references SACH(MaSach)
 alter table CT_GIOHANG add constraint fk_CTGIOHANG_GIOHANG foreign key (MaGioHang) references GIOHANG(MaGioHang)
-
+--EXEC sp_msforeachtable "ALTER TABLE ? NOCHECK CONSTRAINT ALL";
 set dateformat dmy;
 
 insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1)
@@ -115,16 +113,17 @@ insert into LOAISACH values (N'Sách Văn Học', N'http://192.168.1.5/newshopwe
 			(N'Sách Ngoại Ngữ', N'http://192.168.1.5/newshopwebapi/Image/NgoaiNgu.jpg'),
 			(N'Sách Thiếu Nhi', N'http://192.168.1.5/newshopwebapi/Image/ThieuNhi.jpg'),
 			(N'Sách Kỹ Năng Sống', N'http://192.168.1.5/newshopwebapi/Image/YChi.jpg')						
+--select * from LOAISACH
 
-insert into SACH values (1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Thành Phố - Tập tản văn cũng có những chiêm nghiệm khác rút ra từ cuộc sống hàng ngày, thể hiện cách nhìn đời nhẹ nhàng, vị tha của một bác sĩ đã từng chứng kiến nhiều cuộc sinh tử biệt ly và biết điều gì là đáng quý nhất trong đời.', 'sach1.jpg', 20), 
-			(1, N'Người Thăng Long', 100000, N'Người Thăng Long - Bản trường ca hào hùng về các vị vương, tướng nhà Trần trong cuộc chiến chống Nguyên Mông lần thứ hai.', 'sach2.jpg', 5),
-			(2, N'Chinh Phục 4 Kỹ Năng Tiếng Anh Nghe-Nói-Đọc-Viết', 100000, N'Chinh Phục 4 Kỹ Năng Tiếng Anh Nghe - Nói - Đọc - Viết Lớp 9 - Tập 1 - Sách tập trung vào việc rèn luyện các kỹ năng cơ bản như: Nghe, Nói, Đọc, Viết thông qua các bài tập và phát triển các kỹ năng giao tiếp tổng hợp về cách phát âm đúng; từ vựng phong phú, đọc các đoạn hội thoại, đoạn văn; viết câu hoặc đoạn văn theo mẫu, nói theo chủ đề từng bài học, nhằm giúp các em học sinh vận dụng và tổng hợp kiến thức hiệu quả nhất.', 'sach3.jpg', 15), 
-			(2, N'Luyện Chuyên Sâu Ngữ Pháp Và Từ Vựng Tiếng Anh Lớp 8', 150000, N'Luyện Chuyên Sâu Ngữ Pháp Và Từ Vựng Tiếng Anh Lớp 8 - Tập 1 - Cuốn sách các em đang cầm trên tay là cuốn sách không thể thiếu trong quá trình học tập tiếng Anh dành cho các em học sinh nhằm bổ trợ và nâng cao kiến thức trong chương trình Tiếng Anh hiện hành.', 'sach4.jpg', 17),
-			(2, N'Tự Học Tiếng Anh (Kèm CD)', 300000, N'Tự Học Tiếng Hoa Cấp Tốc (Kèm CD) - Cuốn sách với các tình huống đa dạng, cách trình bày bố cục rõ ràng cùng với cách phiên âm chuyển ngữ sang tiếng Việt', 'sach5.jpg', 7),
+insert into SACH values (1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Thành Phố - Tập tản văn cũng có những chiêm nghiệm khác rút ra từ cuộc sống hàng ngày, thể hiện cách nhìn đời nhẹ nhàng, vị tha của một bác sĩ đã từng chứng kiến nhiều cuộc sinh tử biệt ly và biết điều gì là đáng quý nhất trong đời.', N'http://192.168.1.5/newshopwebapi/Image/sach1.jpg', 20), 
+			(1, N'Người Thăng Long', 100000, N'Người Thăng Long - Bản trường ca hào hùng về các vị vương, tướng nhà Trần trong cuộc chiến chống Nguyên Mông lần thứ hai.', N'http://192.168.1.5/newshopwebapi/Image/sach2.jpg', 5),
+			(2, N'Chinh Phục 4 Kỹ Năng Tiếng Anh Nghe-Nói-Đọc-Viết', 100000, N'Chinh Phục 4 Kỹ Năng Tiếng Anh Nghe - Nói - Đọc - Viết Lớp 9 - Tập 1 - Sách tập trung vào việc rèn luyện các kỹ năng cơ bản như: Nghe, Nói, Đọc, Viết thông qua các bài tập và phát triển các kỹ năng giao tiếp tổng hợp về cách phát âm đúng; từ vựng phong phú, đọc các đoạn hội thoại, đoạn văn; viết câu hoặc đoạn văn theo mẫu, nói theo chủ đề từng bài học, nhằm giúp các em học sinh vận dụng và tổng hợp kiến thức hiệu quả nhất.', N'http://192.168.1.5/newshopwebapi/Image/sach3.jpg', 15), 
+			(2, N'Chuyên Sâu Ngữ Pháp Và Từ Vựng Tiếng Anh Lớp 8', 150000, N'Luyện Chuyên Sâu Ngữ Pháp Và Từ Vựng Tiếng Anh Lớp 8 - Tập 1 - Cuốn sách các em đang cầm trên tay là cuốn sách không thể thiếu trong quá trình học tập tiếng Anh dành cho các em học sinh nhằm bổ trợ và nâng cao kiến thức trong chương trình Tiếng Anh hiện hành.', N'http://192.168.1.5/newshopwebapi/Image/sach4.jpg', 17),
+			(2, N'Tự Học Tiếng Anh (Kèm CD)', 300000, N'Tự Học Tiếng Hoa Cấp Tốc (Kèm CD) - Cuốn sách với các tình huống đa dạng, cách trình bày bố cục rõ ràng cùng với cách phiên âm chuyển ngữ sang tiếng Việt', N'http://192.168.1.5/newshopwebapi/Image/sach5.jpg', 7),
 			(3, N'Làm quen THỐNG KÊ HỌC qua biếm họa', 89000, N'Cuốn sách sẽ đem đến cho người đọc những kiến thức căn bản về thống kê từ việc lấy mẫu dữ liệu thô đến lập biểu đồ, từ kiểm định giả thiết đến đánh giá độ tin cậy. Nhưng may mắn thay, những khái niệm này không được trình bày giống như trong cuốn giáo trình làm chúng ta phát hoảng, mà dưới những ví dụ hấp dẫn về kích cỡ của các nàng tiên cá, tốc độ bay của lũ rồng, mức độ ghét nhau của hai tộc người ngoài hành tinh,… Tất cả sẽ làm chúng ta sảng khoái đến mức "phải lòng" thống kê học (trong một chừng mực nào đó)!
 "Một nhà thống kê và một nghệ sĩ đã hợp sức để làm sáng tỏ những dữ liệu khó nhằn cho số đông. Thông qua những chuyện khôi hài về đua rồng, thu thập mẫu giun và uống soda vô độ, Klein và Dabney đã minh họa cách thức các nhà thống kê thu thập dư liệu như thế nào và đưa ra các dự đoán ra sao… Và vô cùng thú vị." - Scientific American.
-"Ơn Chúa là cuối cùng cũng có ai đó viết một cuốn sách về thống kê thật sự vui nhộn đáng đọc. Cẩn thận khi mua cuốn sách này, bạn sẽ chẳng thể đặt được nó xuống trước khi đọc đến dòng cuối cùng." - Sebastian Thrun, Thành viên của Google  và CEO của Udacity.', N'http://172.20.10.4/newshopwebapi/Image/BanChay.jpg', 0),
-			(4, N'Tiếng Anh Xã Giao (Tặng Kèm CD)', 150000, N'Tiếng Anh Xã Giao (Tặng Kèm CD) - Giúp bạn đọc tự học, tự rèn luyện để mạnh dạn giao tiếp trong mọi lĩnh vực, tình huống và ngữ cảnh khác nhau. Nội dung sách trình bày rõ ràng, thực tế. bao gồm những mẫu câu thường gặp nhất và các bài đàm thoại liên quan đến tình huống đó. Sách dùng trong: Sinh hoạt hàng ngày, khi đi du lịch, công tác nước ngoài.', 'sach6.jpg', 22)
+"Ơn Chúa là cuối cùng cũng có ai đó viết một cuốn sách về thống kê thật sự vui nhộn đáng đọc. Cẩn thận khi mua cuốn sách này, bạn sẽ chẳng thể đặt được nó xuống trước khi đọc đến dòng cuối cùng." - Sebastian Thrun, Thành viên của Google  và CEO của Udacity.', N'http://192.168.1.5/newshopwebapi/Image/BanChay.jpg', 0),
+			(4, N'Tiếng Anh Xã Giao (Tặng Kèm CD)', 150000, N'Tiếng Anh Xã Giao (Tặng Kèm CD) - Giúp bạn đọc tự học, tự rèn luyện để mạnh dạn giao tiếp trong mọi lĩnh vực, tình huống và ngữ cảnh khác nhau. Nội dung sách trình bày rõ ràng, thực tế. bao gồm những mẫu câu thường gặp nhất và các bài đàm thoại liên quan đến tình huống đó. Sách dùng trong: Sinh hoạt hàng ngày, khi đi du lịch, công tác nước ngoài.', N'http://192.168.1.5/newshopwebapi/Image/sach6.jpg', 22)
 
 --select * from SACH
 go
@@ -158,11 +157,11 @@ create procedure sp_LayDanhSachSachTheoLoaiSach @MaLoaiSach int
 as begin
 	if (@MaLoaiSach = 0)
 	begin
-		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh
+		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 	end
 	else begin
-		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh
+		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 		where LOAISACH.MaLoaiSach = @MaLoaiSach
 	end
@@ -190,7 +189,7 @@ go
 -- Lấy CTHD theo mã hóa đơn
 create procedure sp_LayCTHDTheoMaHoaDon @MaHoaDon int
 as begin
-	select MaHoaDon, SACH.TenSach, SoLuong, SACH.Gia, ThanhTien, SACH.Hinh
+	select MaHoaDon, SACH.TenSach, SoLuong, SACH.Gia, SACH.GiamGia, ThanhTien, SACH.Hinh
 	from CT_HOADON join SACH on CT_HOADON.MaSach = SACH.MaSach
 	where MaHoaDon = @MaHoaDon
 end
@@ -261,15 +260,16 @@ end
 
 go
 --Lấy CT_HOADON theo MaHoaDon
-create proc sp_LayChiTietHoaDon  @MaHoaDon int
+create proc sp_LayChiTietHoaDon @MaHoaDon int
 as begin
-	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   
+	from CT_HOADON, HOADON, DIACHI, SACH 
+	where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
 end
-
 
 go
 --Lấy thông tin hóa đơn theo TenDangNhap
-alter proc sp_LayThongTinHoaDon @TenDangNhap varchar(50)
+create proc sp_LayThongTinHoaDon @TenDangNhap varchar(50)
 as begin
 	select COUNT(*) as SoCTHD, HOADON.MaHoaDon, TinhTrang into Temp
 	from HOADON, CT_HOADON
@@ -325,20 +325,20 @@ for insert
 as begin
 	declare @TongTien money, @MaGioHang int, @ThanhTien money
 	select @MaGioHang = MaGioHang, @ThanhTien = ThanhTien from inserted
-	update  GIOHANG set TongTien = TongTien + @ThanhTien, DaDungMaGiamGia = 0 where MaGioHang = @MaGioHang
+	update GIOHANG set TongTien = TongTien + @ThanhTien, DaDungMaGiamGia = 0 where MaGioHang = @MaGioHang
 end
 go
 -- Tính tổng tiền khi sửa giỏ hàng
 create trigger trigger_update_CTGIOHANG on CT_GIOHANG
 for update
 as begin
-	declare @TongTien money, @MaGioHang int, @ThanhTien money, @SoLuong int, @Gia money, @MaSach int
+	declare @TongTien money, @MaGioHang int, @ThanhTien money, @SoLuong int, @Gia money, @GiamGiaSach int, @MaSach int
 	select @SoLuong = SoLuong, @MaSach = MaSach from inserted
 	select @Gia = Gia from SACH where MaSach = @MaSach
-
+	select @GiamGiaSach = GiamGia from SACH where MaSach = @MaSach
 	select @MaGioHang = MaGioHang From deleted
 
-	update CT_GIOHANG set ThanhTien = @SoLuong*@Gia where MaSach = @MaSach and MaGioHang = @MaGioHang
+	update CT_GIOHANG set ThanhTien = @SoLuong*(@Gia - @Gia*@GiamGiaSach/100) where MaSach = @MaSach and MaGioHang = @MaGioHang
 
 	set @TongTien = 0
 
@@ -383,8 +383,10 @@ go
 -- Thêm sách vào giỏ hàng 
 create procedure sp_ThemSachVaoGioHang @TenDangNhap varchar(50), @MaSach int
 as begin
-	declare @MaGioHang int, @ThanhTien money
-	select @ThanhTien = Gia from SACH where MaSach = @MaSach
+	declare @MaGioHang int, @ThanhTien money, @Gia money, @GiamGiaSach int
+	select @Gia = Gia from SACH where MaSach = @MaSach
+	select @GiamGiaSach = GiamGia from SACH where MaSach = @MaSach
+	set @ThanhTien = @Gia - @Gia*@GiamGiaSach/100;
 	select @MaGioHang = MaGioHang from GIOHANG where TenDangNhap = @TenDangNhap
 	insert into CT_GIOHANG(MaGioHang, MaSach, ThanhTien) values (@MaGioHang, @MaSach, @ThanhTien);
 end
@@ -409,9 +411,10 @@ as begin
 		Delete from CT_GIOHANG where MaGioHang = @MaGioHang and MaSach = @MaSach
 	end
 	else begin
-		declare @ThanhTien money, @Gia money
+		declare @ThanhTien money, @Gia money, @GiamGiaSach int
 		select @Gia = Gia from SACH where MaSach = @MaSach
-		set @ThanhTien = @Gia*@SoLuongHienTai
+		select @GiamGiaSach = GiamGia from SACH where MaSach = @MaSach
+		set @ThanhTien = (@Gia - @Gia*@GiamGiaSach/100)*@SoLuongHienTai
 		Update CT_GIOHANG set SoLuong = @SoLuongHienTai, ThanhTien = @ThanhTien where MaSach = @MaSach and MaGioHang = @MaGioHang
 	end
 end
@@ -424,9 +427,10 @@ as begin
 	
 	set @SoLuongHienTai = @SoLuongHienTai + 1
 
-		declare @ThanhTien money, @Gia money
+		declare @ThanhTien money, @Gia money, @GiamGiaSach int
 		select @Gia = Gia from SACH where MaSach = @MaSach
-		set @ThanhTien = @Gia*@SoLuongHienTai
+		select @GiamGiaSach = GiamGia from SACH where MaSach = @MaSach
+		set @ThanhTien = (@Gia - @Gia*@GiamGiaSach/100)*@SoLuongHienTai
 		Update CT_GIOHANG set SoLuong = @SoLuongHienTai, ThanhTien = @ThanhTien where MaSach = @MaSach and MaGioHang = @MaGioHang
 
 end
@@ -551,7 +555,7 @@ as begin
 end
 
 go
--- Lay địa chỉ theo tên đăng nhập
+-- Lấy địa chỉ theo tên đăng nhập
 create proc sp_LayDiaChi @TenDangNhap varchar(50)
 as begin
 	select * from DIACHI where TenDangNhap = @TenDangNhap
@@ -599,13 +603,12 @@ as begin
 	update GIAOHANG set Gia = @Gia;
 end
 
-
---Them sach
-create PROC  sp_ThemSach (@MaLoaiSach int,
-	@TenSach nvarchar (50),
+--Thêm sách
+create PROC sp_ThemSach (@MaLoaiSach int,
+	@TenSach nvarchar (100),
 	@Gia money,
 	@MoTa nvarchar(max),
-	@Hinh nvarchar(200), @CurrentID int output)
+	@Hinh nvarchar(200), @GiamGia int, @CurrentID int output)
 as
 begin try
 
@@ -614,20 +617,20 @@ begin
 set @CurrentID=0
 return
 end
-insert into SACH values(@MaLoaiSach,@TenSach,@Gia,@MoTa,@Hinh);
+insert into SACH values(@MaLoaiSach,@TenSach,@Gia,@MoTa,@Hinh,@GiamGia);
 set @CurrentID=@@IDENTITY
 end try
 begin catch
 set @CurrentID=0
 end catch
-
+go
 
 --Cap nhat sach
 create PROC sp_CapNhatSach (@MaSach int ,@MaLoaiSach int,
-	@TenSach nvarchar (50),
+	@TenSach nvarchar (100),
 	@Gia money,
 	@MoTa nvarchar(max),
-	@Hinh nvarchar(200), @CurrentID int output)
+	@Hinh nvarchar(200), @GiamGia int, @CurrentID int output)
 as
 begin try
 if(not exists(select * from SACH where MaSach=@MaSach and MaLoaiSach=@MaLoaiSach))
@@ -635,14 +638,15 @@ begin
 set @CurrentID=0
 return
 end
-Update  SACH  set MaLoaiSach=@MaLoaiSach,TenSach=@TenSach,Gia=@Gia,MoTa=@MoTa,Hinh=@Hinh where MaSach=@MaSach;
+Update  SACH  set MaLoaiSach=@MaLoaiSach,TenSach=@TenSach,Gia=@Gia,MoTa=@MoTa,Hinh=@Hinh,GiamGia=@GiamGia where MaSach=@MaSach;
 set @CurrentID=1
 end try
 begin catch
 set @CurrentID=0
 end catch
---Xoa sach
+go
 
+--Xoa sach
 create PROC sp_XoaSach @MaSach int,@CurrentID int output
 as
 begin try
@@ -657,9 +661,9 @@ end try
 begin catch
 set @CurrentID=0
 end catch
+go
 
 --Xoa loai sach
-
 create PROC sp_XoaLoaiSach @MaLoaiSach int, @CurrentID int output
 as
 begin try
@@ -674,6 +678,7 @@ end try
 begin catch
 set @CurrentID=0
 end catch
+go
 
 --Them loai sach
 create PROC sp_ThemLoaiSach(@TenLoaiSach nvarchar(50), @Hinh nvarchar(200), @CurrentID int output)
@@ -691,9 +696,10 @@ end try
 begin catch
 set @CurrentID=0
 end catch
---Sua loai sach
+go
 
-create PROC sp_CapNhatLoaiSach( @MaLoaiSach int, @TenLoaiSach nvarchar(50), @Hinh nvarchar(200), @CurrentID int output)
+--Sua loai sach
+create PROC sp_CapNhatLoaiSach(@MaLoaiSach int, @TenLoaiSach nvarchar(50), @Hinh nvarchar(200), @CurrentID int output)
 as
 begin try
 if(not exists(select * from LOAISACH where MaLoaiSach=@MaLoaiSach))
