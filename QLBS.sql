@@ -604,8 +604,8 @@ end
 create PROC  sp_ThemSach (@MaLoaiSach int,
 	@TenSach nvarchar (50),
 	@Gia money,
-	@MoTa nvarchar(2000),
-	@Hinh nvarchar (200),@CurrentID int output)
+	@MoTa nvarchar(max),
+	@Hinh nvarchar(200), @CurrentID int output)
 as
 begin try
 
@@ -626,8 +626,8 @@ end catch
 create PROC sp_CapNhatSach (@MaSach int ,@MaLoaiSach int,
 	@TenSach nvarchar (50),
 	@Gia money,
-	@MoTa nvarchar(2000),
-	@Hinh nvarchar (200),@CurrentID int output)
+	@MoTa nvarchar(max),
+	@Hinh nvarchar(200), @CurrentID int output)
 as
 begin try
 if(not exists(select * from SACH where MaSach=@MaSach and MaLoaiSach=@MaLoaiSach))
@@ -660,7 +660,7 @@ end catch
 
 --Xoa loai sach
 
-create PROC sp_XoaLoaiSach @MaLoaiSach int,@CurrentID int output
+create PROC sp_XoaLoaiSach @MaLoaiSach int, @CurrentID int output
 as
 begin try
 if(not exists(select * from LOAISACH where MaLoaiSach=@MaLoaiSach) or (select COUNT(*) from SACH where MaLoaiSach=@MaLoaiSach)>0)
@@ -676,7 +676,7 @@ set @CurrentID=0
 end catch
 
 --Them loai sach
-create PROC sp_ThemLoaiSach(@TenLoaiSach nvarchar(50),@Hinh nvarchar(200),@CurrentID int output)
+create PROC sp_ThemLoaiSach(@TenLoaiSach nvarchar(50), @Hinh nvarchar(200), @CurrentID int output)
 as
 begin try
 
@@ -693,7 +693,7 @@ set @CurrentID=0
 end catch
 --Sua loai sach
 
-create PROC sp_CapNhatLoaiSach( @MaLoaiSach int,@TenLoaiSach nvarchar(50),@Hinh nvarchar(200),@CurrentID int output)
+create PROC sp_CapNhatLoaiSach( @MaLoaiSach int, @TenLoaiSach nvarchar(50), @Hinh nvarchar(200), @CurrentID int output)
 as
 begin try
 if(not exists(select * from LOAISACH where MaLoaiSach=@MaLoaiSach))
