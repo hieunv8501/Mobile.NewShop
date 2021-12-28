@@ -39,6 +39,7 @@ create table DIACHI
 	SDT varchar(10),
 	DiaChi nvarchar(100),
 	TenDangNhap varchar(50),
+	MacDinh bit,
 )
 
 create table HOADON 
@@ -47,11 +48,19 @@ create table HOADON
 	TenDangNhap varchar(50),
 	NgayHoaDon datetime,
 	TongTien money,
-	HinhThucGiao nvarchar(50),--Set cứng giao hàng tiêu chuẩn (15k)
+	HinhThucGiao nvarchar(50),--Set cứng giao hàng tiêu chuẩn
 	HinhThucThanhToan nvarchar(50),--Set cứng tiền mặt
 	MaDiaChi int,
 	TinhTrang bit,
+	PhiVanChuyen money,
 )
+
+create table GIAOHANG
+(
+	Gia money primary key,
+)
+insert into GIAOHANG values (15000)
+
 
 create table CT_HOADON
 (
@@ -193,12 +202,14 @@ go
 create procedure sp_ThemHoaDon @TenDangNhap varchar(50), @NgayHoaDon datetime, @MaDiaChi int
 as begin
 	-- Tạo hóa đơn
-	declare @TongTien money, @MaHoaDon int
-	select @TongTien = TongTien from GIOHANG where TenDangNhap = @TenDangNhap
+	declare @TongTien money, @MaHoaDon int, @Gia money, @PhiVanChuyen money
+	select top 1 @Gia = Gia from GIAOHANG
+	select @TongTien = TongTien + @Gia from GIOHANG where TenDangNhap = @TenDangNhap
+	select @PhiVanChuyen = Gia from GIAOHANG
 	set @MaHoaDon = 1
 	while @MaHoaDon in (select MaHoaDon from HOADON)
 		set @MaHoaDon = @MaHoaDon + 1
-	insert into HOADON values (@MaHoaDon, @TenDangNhap, @NgayHoaDon, @TongTien + 15000, 'Giao hàng tiêu chuẩn', 'Thanh toán khi nhận hàng', @MaDiaChi, 0)
+	insert into HOADON values (@MaHoaDon, @TenDangNhap, @NgayHoaDon, @TongTien, N'Giao hàng tiêu chuẩn', N'Thanh toán khi nhận hàng', @MaDiaChi, 0, @PhiVanChuyen)
 	
 	-- Tạo chi tiết hóa đơn
 	declare @MaGioHang int , @MaSach int, @SoLuong int, @ThanhTien money
@@ -206,55 +217,20 @@ as begin
 
 	declare CUR_GIOHANG cursor for select MaSach, SoLuong, ThanhTien from CT_GIOHANG where MaGioHang = @MaGioHang
 	open CUR_GIOHANG
-	FETCH NEXT FROM CUR_GIOHANG INTO @MaSach, @SoLuong, @SoLuong
+	FETCH NEXT FROM CUR_GIOHANG INTO @MaSach, @SoLuong, @ThanhTien
 	WHILE @@FETCH_STATUS = 0
 	BEGIN
-		insert into CT_HOADON values (@MaHoaDon, @MaSach, @SoLuong, @SoLuong)
-		FETCH NEXT FROM CUR_GIOHANG INTO @MaSach, @SoLuong, @SoLuong
+		insert into CT_HOADON values (@MaHoaDon, @MaSach, @SoLuong, @ThanhTien)
+		FETCH NEXT FROM CUR_GIOHANG INTO @MaSach, @SoLuong, @ThanhTien
 	END
 	CLOSE CUR_GIOHANG
 	DEALLOCATE CUR_GIOHANG
 
 	-- Xóa CT_GioHang
 	delete from CT_GIOHANG where MaGioHang = @MaGioHang
+	update GIOHANG set DaDungMaGiamGia = 0 where MaGioHang = @MaGioHang
 end
 
---exec sp_ThemHoaDon tinh, '17-12-2021', 1
---select * from HOADON
---select * from CT_HOADON
---select * from GIOHANG
---select * from CT_GIOHANG
---create procedure sp_ThemChiTietHoaDon @MaSach int, @TenDangNhap varchar(50), @NgayHoaDon datetime
---as begin
---	declare @MaHoaDon int, @Gia money
---	select @Gia = Gia from SACH where MaSach = @MaSach
---	if not exists (select * from HOADON where TinhTrang = 0 and TenDangNhap = @TenDangNhap)
---	begin
---		exec sp_ThemHoaDon @TenDangNhap, @NgayHoaDon
---		select @MaHoaDon = MaHoaDon from HOADON where TinhTrang = 0
---		insert into CT_HOADON values (@MaHoaDon, @MaSach, 1, @Gia )
---	end
---	else begin
---		select top 1 @MaHoaDon = MaHoaDon from HOADON where TinhTrang = 0 and TenDangNhap = @TenDangNhap
---		if exists (select * from CT_HOADON where MaSach = @MaSach and MaHoaDon = @MaHoaDon)
---		begin
---			declare @SoLuongCu int
---			select @SoLuongCu = SoLuong from CT_HOADON where MaSach = @MaSach and MaHoaDon = @MaHoaDon
---			update CT_HOADON
---			set SoLuong = @SoLuongCu + 1
---			where MaSach = @MaSach and MaHoaDon = @MaHoaDon	
---			update CT_HOADON
---			set ThanhTien = SoLuong * @Gia
---			where MaSach = @MaSach and MaHoaDon = @MaHoaDon
---			update HOADON
---			set TongTien = (select sum(ThanhTien) from CT_HOADON where MaHoaDon = @MaHoaDon)
---			where MaHoaDon = @MaHoaDon
---		end
---		else begin
---			insert into CT_HOADON values (@MaHoaDon, @MaSach, 1, @Gia)
---		end
---	end
---end
 
 --Cập nhật tình trạng hóa đơn
 go
@@ -263,6 +239,35 @@ as begin
 	update HOADON 
 	set TinhTrang = 1
 	where MaHoaDon = @MaHoaDon
+end
+
+go
+--Lấy thông tin tất cả hóa đơn
+create proc sp_LayTatCaHoaDon
+as begin
+	select * from HOADON
+end
+
+go
+--Lấy CT_HOADON theo MaHoaDon
+create proc sp_LayChiTietHoaDon  @MaHoaDon int
+as begin
+	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+end
+
+
+go
+--Lấy thông tin hóa đơn theo TenDangNhap
+alter proc sp_LayThongTinHoaDon @TenDangNhap varchar(50)
+as begin
+	select COUNT(*) as SoCTHD, HOADON.MaHoaDon, TinhTrang into Temp
+	from HOADON, CT_HOADON
+	where HOADON.MaHoaDon = CT_HOADON.MaHoaDon and TenDangNhap = @TenDangNhap
+	group by HOADON.MaHoaDon, TinhTrang 
+
+	select  SoCTHD,  Temp.MaHoaDon, TenSach, TinhTrang  from Temp, CT_HOADON, SACH where Temp.MaHoaDon = CT_HOADON.MaHoaDon and CT_HOADON.MaSach = SACH.MaSach
+
+	drop table Temp
 end
 
 --Xóa chi tiết hóa đơn
@@ -309,7 +314,7 @@ for insert
 as begin
 	declare @TongTien money, @MaGioHang int, @ThanhTien money
 	select @MaGioHang = MaGioHang, @ThanhTien = ThanhTien from inserted
-	update  GIOHANG set TongTien = TongTien + @ThanhTien where MaGioHang = @MaGioHang
+	update  GIOHANG set TongTien = TongTien + @ThanhTien, DaDungMaGiamGia = 0 where MaGioHang = @MaGioHang
 end
 go
 -- Tính tổng tiền khi sửa giỏ hàng
@@ -337,7 +342,7 @@ as begin
 	CLOSE CUR_GIOHANG
 	DEALLOCATE CUR_GIOHANG
 
-	update GIOHANG set TongTien = @TongTien where MaGioHang = @MaGioHang
+	update GIOHANG set TongTien = @TongTien,  DaDungMaGiamGia = 0 where MaGioHang = @MaGioHang
 end
 go
 -- Tính tổng tiền khi xóa giỏ hàng
@@ -360,7 +365,7 @@ as begin
 	CLOSE CUR_GIOHANG
 	DEALLOCATE CUR_GIOHANG
 
-	update GIOHANG set TongTien = @TongTien where MaGioHang = @MaGioHang
+	update GIOHANG set TongTien = @TongTien, DaDungMaGiamGia = 0  where MaGioHang = @MaGioHang
 end
 
 go
@@ -372,7 +377,6 @@ as begin
 	select @MaGioHang = MaGioHang from GIOHANG where TenDangNhap = @TenDangNhap
 	insert into CT_GIOHANG(MaGioHang, MaSach, ThanhTien) values (@MaGioHang, @MaSach, @ThanhTien);
 end
-
 --exec sp_ThemSachVaoGioHang 'tinh', 1
 
 --select * from SACH
@@ -426,6 +430,7 @@ create proc sp_XoaGioHang @MaGioHang int
 as begin
 	delete from CT_GIOHANG where MaGioHang = @MaGioHang
 end
+
 
 go
 -- Lấy thông tin giỏ hàng theo tên đăng nhập
@@ -516,10 +521,23 @@ go
 -- Thêm địa chỉ
 create proc sp_ThemDiaChi @TenNguoiNhan nvarchar(50), @SDT varchar(10), @DiaChi nvarchar(100), @TenDangNhap varchar(50)
 as begin
-	insert into DIACHI (TenNguoiNhan, SDT, DiaChi, TenDangNhap) values (@TenNguoiNhan, @SDT, @DiaChi, @TenDangNhap)
+	declare @MacDinh bit
+	set @MacDinh = 0
+	if not exists(select * from DIACHI where TenDangNhap = @TenDangNhap)
+	begin
+		set @MacDinh = 1;
+	end
+	insert into DIACHI (TenNguoiNhan, SDT, DiaChi, TenDangNhap, MacDinh) values (@TenNguoiNhan, @SDT, @DiaChi, @TenDangNhap, @MacDinh)
 end
 
 --exec sp_ThemDiaChi 'Bùi Văn Tình', 123456789, 'Hòa Đại - Cát Hiệp - Phù Cát - Bình Định', tinh
+
+--Thay đổi địa chỉ mặc định
+create proc sp_ThayDoiDiaChiMacDinh @MaDiaChi int, @TenDangNhap varchar(50)
+as begin
+	update DIACHI set MacDinh = 0 where TenDangNhap = @TenDangNhap
+	update DIACHI set MacDinh = 1 where TenDangNhap = @TenDangNhap and MaDiaChi = @MaDiaChi
+end
 
 go
 -- Lay địa chỉ theo tên đăng nhập
@@ -531,13 +549,21 @@ end
 --exec sp_LayDiaChi tinh
 go
 create trigger trigger_update_DIACHI on DIACHI
-for update, delete
+for delete
 as begin
-	declare @MaDiaChi int
-	select @MaDiaChi = MaDiaChi from deleted
+	declare @MaDiaChi int, @TenDangNhap varchar(50), @MacDinh bit
+	select @MaDiaChi = MaDiaChi, @TenDangNhap = TenDangNhap, @MacDinh = MacDinh from deleted
+
+	if(@MacDinh = 1)
+	begin
+		declare @MDC int
+		select top 1 @MDC = MaDiaChi from DIACHI where TenDangNhap = @TenDangNhap
+		update DIACHI set MacDinh = 1 where MaDiaChi = @MDC
+	end
 
 	if exists (select MaDiaChi from HOADON where MaDiaChi = @MaDiaChi)
 	begin
+		print N'Địa chỉ đang tồn tại trong hóa đơn, không thể xóa'
 		ROLLBACK TRAN
 	end
 end
@@ -547,4 +573,17 @@ go
 create proc sp_SuaDiaChi @MaDiaChi int
 as begin
 	delete from DIACHI where MaDiaChi = @MaDiaChi
+end
+
+-- Lấy giá tiền giao hàng
+create proc sp_LayGiaGiaoHang
+as begin
+	select * from GIAOHANG
+end
+
+go
+-- Sửa giá tiền giao hàng
+create proc sp_SuaGiaGiaoHang @Gia money
+as begin
+	update GIAOHANG set Gia = @Gia;
 end
