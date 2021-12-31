@@ -7,22 +7,22 @@
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="WhiteSmoke">
-            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0" HeightRequest="130">
-                <Image Aspect="Fill" Margin="60,10,60,10" Source="logo_newshop.jpg"></Image>
+            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0" HeightRequest="200">
+                <Image Aspect="AspectFill" Margin="20" Source="logo_newshop.jpg"></Image>
             </Frame>
             <StackLayout Margin="20,0,20,0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="55"></RowDefinition>
+                        <RowDefinition Height="55"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="10*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Image Source="UserIcon.png" Grid.Column="0" Grid.Row="0"></Image>
+                    <Image Source="UserIcons.png" Grid.Column="0" Grid.Row="0"></Image>
                     <Entry Placeholder="Email / Số điện thoại" Grid.Column="1" Grid.Row="0"></Entry>
-                    <Image Source="passwordicon.ico" Grid.Column="0" Grid.Row="1" WidthRequest="40" HeightRequest="40"></Image>
+                    <Image Source="passwordicon.ico" Grid.Column="0" Grid.Row="1"></Image>
                     <Entry Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1"></Entry>
                 </Grid>
             </StackLayout>

@@ -260,7 +260,7 @@ namespace NewShopAPI.Controllers
         }
         [Route("api/ServiceController/CapNhatLoaiSach")]
         [HttpGet]
-        public IHttpActionResult CapNhatLoaiSach(int MaLoaiSach,string TenLoaiSach,string Hinh)
+        public IHttpActionResult CapNhatLoaiSach(int MaLoaiSach, string TenLoaiSach, string Hinh)
         {
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("MaLoaiSach", MaLoaiSach);
@@ -276,16 +276,15 @@ namespace NewShopAPI.Controllers
         //Sach
         [Route("api/ServiceController/ThemSach")]
         [HttpGet]
-        public IHttpActionResult ThemSach(int MaLoaiSach, string TenSach,double Gia ,string MoTa, string Hinh)
+        public IHttpActionResult ThemSach(int MaLoaiSach, string TenSach, double Gia, string MoTa, string Hinh, int GiamGia)
         {
             Dictionary<string, object> param = new Dictionary<string, object>();
-
             param.Add("MaLoaiSach", MaLoaiSach);
             param.Add("TenSach", TenSach);
             param.Add("Gia", Gia);
             param.Add("MoTa",MoTa);
             param.Add("Hinh", Hinh);
-
+            param.Add("GiamGia", GiamGia);
             int kq = int.Parse(Database.Database.Exec_Command("sp_ThemSach", param).ToString());
             if (kq > 0)
                 return Ok(kq);
@@ -296,7 +295,7 @@ namespace NewShopAPI.Controllers
 	
         [Route("api/ServiceController/CapNhatSach")]
         [HttpGet]
-        public IHttpActionResult CapNhatSach(int MaSach, int MaLoaiSach, string TenSach, double Gia, string MoTa, string Hinh)
+        public IHttpActionResult CapNhatSach(int MaSach, int MaLoaiSach, string TenSach, double Gia, string MoTa, string Hinh, int GiamGia)
         {
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("MaSach", MaSach);
@@ -305,6 +304,7 @@ namespace NewShopAPI.Controllers
             param.Add("Gia", Gia);
             param.Add("MoTa", MoTa);
             param.Add("Hinh", Hinh);
+            param.Add("GiamGia", GiamGia);
             int kq = int.Parse(Database.Database.Exec_Command("sp_CapNhatSach", param).ToString());
             if (kq > 0)
                 return Ok(kq);
@@ -326,7 +326,7 @@ namespace NewShopAPI.Controllers
                 return NotFound();
         }
 
-        // Sử dụng mã giảm giá
+	// Sử dụng mã giảm giá
         [Route("api/ServiceController/ApDungMa")]
         [HttpGet]
         public IHttpActionResult ApDungMaGiamGia(string MaGiamGia, int MaGioHang)

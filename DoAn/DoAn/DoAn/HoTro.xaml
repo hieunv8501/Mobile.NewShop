@@ -1,12 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DoAn.HoTro">
+             x:Class="DoAn.HoTro"
+             Title="Hỗ trợ"
+             >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="general" TextColor="Black" BackgroundColor="White" Text="Chính sách, Quy định chung" Grid.Row="0" Grid.Column="0" Margin="0,0,0,-10"></Button>
+            <Button x:Name="security" TextColor="Black" BackgroundColor="White" Text="Chính sách bảo mật thông tin" Grid.Row="1" Grid.Column="0" Margin="0,0,0,-10"></Button>
+            <Button x:Name="recall" TextColor="Black" BackgroundColor="White" Text="Chính sách đổi/trả hàng và hoàn tiền" Grid.Row="2" Grid.Column="0" Margin="0,0,0,-10"></Button>
+            <Button x:Name="pay" TextColor="Black" BackgroundColor="White" Text="Hướng dẫn thanh toán" Grid.Row="3" Grid.Column="0" Margin="0,0,0,-10"></Button>
+            <Button x:Name="purchase" TextColor="Black" BackgroundColor="White" Text="Hướng dẫn mua hàng" Grid.Row="4" Grid.Column="0" Margin="0,0,0,-10"></Button>
+            <Button x:Name="shipping" TextColor="Black" BackgroundColor="White" Text="Chính sách vận chuyển và giao nhận" Grid.Row="5" Grid.Column="0" ></Button>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
