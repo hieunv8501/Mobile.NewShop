@@ -58,6 +58,17 @@ namespace NewShopAPI.Controllers
                 return NotFound();
         }
 
+        [Route("api/ServiceController/LayDanhSachSachTheoKhuyenMai")]
+        [HttpGet]
+        public IHttpActionResult LayDanhSachSachTheoKhuyenMai()
+        {
+            DataTable kq = Database.Database.Read_Table("sp_LayDanhSachSachTheoKhuyenMai");
+            if (kq != null && kq.Rows.Count > 0)
+                return Ok(kq);
+            else
+                return NotFound();
+
+        }
 
         [Route("api/ServiceController/LayDanhSachSachTheoLoaiSach")]
         [HttpGet]
@@ -111,25 +122,25 @@ namespace NewShopAPI.Controllers
         }
 
 
-        [Route("api/ServiceController/ThemHoaDon")]
-        [HttpGet]
-        public IHttpActionResult ThemHoaDon(int MaHoaDon, string TenDangNhap, System.DateTime NgayHoaDon, int MaDiaChi)
-        {
-            try
-            {
-                Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("MaHoaDon", MaHoaDon);
-                param.Add("TenDangNhap", TenDangNhap);
-                param.Add("NgayHoaDon", NgayHoaDon);
-                param.Add("MaDiaChi", MaDiaChi);
-                DataTable kq = Database.Database.Read_Table("sp_ThemHoaDon", param);
-                return Ok(kq);
-            }
-            catch
-            {
-                return NotFound();
-            }
-        }
+        //[Route("api/ServiceController/ThemHoaDon")]
+        //[HttpGet]
+        //public IHttpActionResult ThemHoaDon(int MaHoaDon, string TenDangNhap, System.DateTime NgayHoaDon, int MaDiaChi)
+        //{
+        //    try
+        //    {
+        //        Dictionary<string, object> param = new Dictionary<string, object>();
+        //        param.Add("MaHoaDon", MaHoaDon);
+        //        param.Add("TenDangNhap", TenDangNhap);
+        //        param.Add("NgayHoaDon", NgayHoaDon);
+        //        param.Add("MaDiaChi", MaDiaChi);
+        //        DataTable kq = Database.Database.Read_Table("sp_ThemHoaDon", param);
+        //        return Ok(kq);
+        //    }
+        //    catch
+        //    {
+        //        return NotFound();
+        //    }
+        //}
 
 
         //[Route("api/ServiceController/ThemChiTietHoaDon")]
@@ -153,6 +164,68 @@ namespace NewShopAPI.Controllers
         //}
 
 
+        [Route("api/ServiceController/LayThongTinGioHang")]
+        [HttpGet]
+        public IHttpActionResult LayThongTinGioHang(string TenDangNhap)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+
+                DataTable result = Database.Database.Read_Table("sp_LayThongTinGioHang", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/ServiceController/TangSoLuong")]
+        [HttpGet]
+        public IHttpActionResult TangSoLuong(int MaGioHang, int MaSach)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaGioHang", MaGioHang);
+                param.Add("MaSach", MaSach);
+
+                DataTable result = Database.Database.Read_Table("sp_TangSoLuong", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/GiamSoLuong")]
+        [HttpGet]
+        public IHttpActionResult GiamSoLuong(int MaGioHang, int MaSach)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaGioHang", MaGioHang);
+                param.Add("MaSach", MaSach);
+
+                DataTable result = Database.Database.Read_Table("sp_GiamSoLuong", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
         //LoaiSach
         [Route("api/ServiceController/ThemLoaiSach")]
         [HttpGet]
@@ -165,7 +238,7 @@ namespace NewShopAPI.Controllers
                 param.Add("Hinh", Hinh);
 
                 int kq = int.Parse(Database.Database.Exec_Command("sp_ThemLoaiSach", param).ToString());
-                if (kq  > 0)
+                if (kq > 0)
                     return Ok(kq);
                 else
                     return NotFound();
@@ -187,7 +260,7 @@ namespace NewShopAPI.Controllers
         }
         [Route("api/ServiceController/CapNhatLoaiSach")]
         [HttpGet]
-        public IHttpActionResult CapNhatLoaiSach(int MaLoaiSach,string TenLoaiSach,string Hinh)
+        public IHttpActionResult CapNhatLoaiSach(int MaLoaiSach, string TenLoaiSach, string Hinh)
         {
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("MaLoaiSach", MaLoaiSach);
@@ -199,29 +272,30 @@ namespace NewShopAPI.Controllers
             else
                 return NotFound();
         }
+
         //Sach
         [Route("api/ServiceController/ThemSach")]
         [HttpGet]
-        public IHttpActionResult ThemSach(int MaLoaiSach, string TenSach,double Gia ,string MoTa, string Hinh)
+        public IHttpActionResult ThemSach(int MaLoaiSach, string TenSach, double Gia, string MoTa, string Hinh, int GiamGia)
         {
             Dictionary<string, object> param = new Dictionary<string, object>();
-        
             param.Add("MaLoaiSach", MaLoaiSach);
             param.Add("TenSach", TenSach);
             param.Add("Gia", Gia);
-            param.Add("MoTa",MoTa);
+            param.Add("MoTa", MoTa);
             param.Add("Hinh", Hinh);
-
+            param.Add("GiamGia", GiamGia);
             int kq = int.Parse(Database.Database.Exec_Command("sp_ThemSach", param).ToString());
             if (kq > 0)
                 return Ok(kq);
             else
                 return NotFound();
-            
+
         }
+
         [Route("api/ServiceController/CapNhatSach")]
         [HttpGet]
-        public IHttpActionResult CapNhatSach(int MaSach, int MaLoaiSach, string TenSach, double Gia, string MoTa, string Hinh)
+        public IHttpActionResult CapNhatSach(int MaSach, int MaLoaiSach, string TenSach, double Gia, string MoTa, string Hinh, int GiamGia)
         {
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("MaSach", MaSach);
@@ -230,6 +304,7 @@ namespace NewShopAPI.Controllers
             param.Add("Gia", Gia);
             param.Add("MoTa", MoTa);
             param.Add("Hinh", Hinh);
+            param.Add("GiamGia", GiamGia);
             int kq = int.Parse(Database.Database.Exec_Command("sp_CapNhatSach", param).ToString());
             if (kq > 0)
                 return Ok(kq);
@@ -237,6 +312,7 @@ namespace NewShopAPI.Controllers
                 return NotFound();
 
         }
+
         [Route("api/ServiceController/XoaSach")]
         [HttpGet]
         public IHttpActionResult XoaSach(int MaSach)
@@ -249,5 +325,226 @@ namespace NewShopAPI.Controllers
             else
                 return NotFound();
         }
+
+        // Sử dụng mã giảm giá
+        [Route("api/ServiceController/ApDungMa")]
+        [HttpGet]
+        public IHttpActionResult ApDungMaGiamGia(string MaGiamGia, int MaGioHang)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaGiamGia", MaGiamGia);
+                param.Add("MaGioHang", MaGioHang);
+
+                DataTable result = Database.Database.Read_Table("sp_ApDungMa", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+
+        [Route("api/ServiceController/ThemHoaDon")]
+        [HttpGet]
+        public IHttpActionResult ThemHoaDon(string TenDangNhap, DateTime NgayHoaDon, int MaDiaChi)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+                param.Add("NgayHoaDon", NgayHoaDon);
+                param.Add("MaDiaChi", MaDiaChi);
+
+                DataTable result = Database.Database.Read_Table("sp_ThemHoaDon", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/LayThongTinHoaDon")]
+        [HttpGet]
+        public IHttpActionResult LayThongTinHoaDon(string TenDangNhap)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+
+                DataTable result = Database.Database.Read_Table("sp_LayThongTinHoaDon", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/LayChiTietHoaDon")]
+        [HttpGet]
+        public IHttpActionResult LayChiTietHoaDon(int MaHoaDon)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaHoaDon", MaHoaDon);
+
+                DataTable result = Database.Database.Read_Table("sp_LayChiTietHoaDon", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/ThemDiaChi")]
+        [HttpGet]
+        public IHttpActionResult ThemDiaChi(string TenNguoiNhan, string SDT, string DiaChi, string TenDangNhap)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenNguoiNhan", TenNguoiNhan);
+                param.Add("SDT", SDT);
+                param.Add("DiaChi", DiaChi);
+                param.Add("TenDangNhap", TenDangNhap);
+
+                DataTable result = Database.Database.Read_Table("sp_ThemDiaChi", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/XoaDiaChi")]
+        [HttpGet]
+        public IHttpActionResult XoaDiaChi(int MaDiaChi)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaDiaChi", MaDiaChi);
+
+
+                DataTable result = Database.Database.Read_Table("sp_XoaDiaChi", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+
+        [Route("api/ServiceController/ThayDoiDiaChiMacDinh")]
+        [HttpGet]
+        public IHttpActionResult ThayDoiDiaChiMacDinh(int MaDiaChi, string TenDangNhap)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaDiaChi", MaDiaChi);
+                param.Add("TenDangNhap", TenDangNhap);
+
+                DataTable result = Database.Database.Read_Table("sp_ThayDoiDiaChiMacDinh", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/LayDiaChi")]
+        [HttpGet]
+        public IHttpActionResult LayDiaChi(string TenDangNhap)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+
+                DataTable result = Database.Database.Read_Table("sp_LayDiaChi", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/LayGiaGiaoHang")]
+        [HttpGet]
+        public IHttpActionResult LayGiaGiaoHang()
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+
+                DataTable result = Database.Database.Read_Table("sp_LayGiaGiaoHang");
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/SuaGiaGiaoHang")]
+        [HttpGet]
+        public IHttpActionResult SuaGiaGiaoHang(double Gia)
+        {
+
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("Gia", Gia);
+
+                DataTable result = Database.Database.Read_Table("sp_SuaGiaGiaoHang", param);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
     }
 }
