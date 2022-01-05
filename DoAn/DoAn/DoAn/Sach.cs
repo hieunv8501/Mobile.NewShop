@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace DoAn
 {
     public class Sach
@@ -12,7 +11,8 @@ namespace DoAn
         public string Hinh { get; set; }
         public string MoTa { get; set; }
         public Nullable<Decimal> Gia { get; set; }
-        public string GiaDisplay => $"{Gia} vnd";
+       
+        public string GiaDisplay => $"{String.Format("{0:0.##}",Gia)} đ";
 
     }
 }

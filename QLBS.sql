@@ -102,7 +102,7 @@ insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.
 insert into LOAISACH values (N'Sách Bán Chạy', N'http://172.20.10.4/newshopwebapi/Image/BanChay.jpg'), 
 			( N'Sách Quản Lý - Kinh Doanh', N'http://172.20.10.4/newshopwebapi/Image/NgoaiNgu.jpg'), 
 			( N'Sách Ngoại Ngữ', N'http://172.20.10.4/newshopwebapi/Image/NgoaiNgu.jpg'),( N'Sách Thiếu Nhi', N'http://172.20.10.4/newshopwebapi/Image/ThieuNhi.jpg'),( N'Sách Kỹ Năng Sống', N'http://172.20.10.4/newshopwebapi/Image/YChi.jpg')
-insert into SACH values (1, 1, N'Làm quen THỐNG KÊ HỌC qua biếm họa', 89000, N'Cuốn sách sẽ đem đến cho người đọc những kiến thức căn bản về thống kê từ việc lấy mẫu dữ liệu thô đến lập biểu đồ, từ kiểm định giả thiết đến đánh giá độ tin cậy. Nhưng may mắn thay, những khái niệm này không được trình bày giống như trong cuốn giáo trình làm chúng ta phát hoảng, mà dưới những ví dụ hấp dẫn về kích cỡ của các nàng tiên cá, tốc độ bay của lũ rồng, mức độ ghét nhau của hai tộc người ngoài hành tinh,… Tất cả sẽ làm chúng ta sảng khoái đến mức "phải lòng" thống kê học (trong một chừng mực nào đó)!
+insert into SACH values (16, N'Làm quen THỐNG KÊ HỌC qua biếm họa1', 89000, N'Cuốn sách sẽ đem đến cho người đọc những kiến thức căn bản về thống kê từ việc lấy mẫu dữ liệu thô đến lập biểu đồ, từ kiểm định giả thiết đến đánh giá độ tin cậy. Nhưng may mắn thay, những khái niệm này không được trình bày giống như trong cuốn giáo trình làm chúng ta phát hoảng, mà dưới những ví dụ hấp dẫn về kích cỡ của các nàng tiên cá, tốc độ bay của lũ rồng, mức độ ghét nhau của hai tộc người ngoài hành tinh,… Tất cả sẽ làm chúng ta sảng khoái đến mức "phải lòng" thống kê học (trong một chừng mực nào đó)!
 
 "Một nhà thống kê và một nghệ sĩ đã hợp sức để làm sáng tỏ những dữ liệu khó nhằn cho số đông. Thông qua những chuyện khôi hài về đua rồng, thu thập mẫu giun và uống soda vô độ, Klein và Dabney đã minh họa cách thức các nhà thống kê thu thập dư liệu như thế nào và đưa ra các dự đoán ra sao… Và vô cùng thú vị." - Scientific American.
 
@@ -141,11 +141,11 @@ create procedure sp_LayDanhSachSachTheoLoaiSach @MaLoaiSach int
 as begin
 	if (@MaLoaiSach = 0)
 	begin
-		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh
+		select MaSach,LOAISACH.MaLoaiSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 	end
 	else begin
-		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh
+		select MaSach,LOAISACH.MaLoaiSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 		where LOAISACH.MaLoaiSach = @MaLoaiSach
 	end
@@ -606,4 +606,5 @@ begin catch
 set @CurrentID=0
 end catch
 
- 
+delete SACH
+ select * from SACH

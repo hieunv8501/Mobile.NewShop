@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoAn.App">
     <Application.Resources>
-
+        <!--<ResourceDictionary>
+            <Color x:Key="primaryColor">#3596fc</Color>
+        </ResourceDictionary>-->
+        <ResourceDictionary Source="/Styles/Light.xaml"/>
+        <!--<ResourceDictionary Source="/Styles/Global.xaml"/>-->
     </Application.Resources>
 </Application>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.SachAdmin">
+    <StackLayout>
+        <SearchBar x:Name="Search" Placeholder="" TextChanged="Search_TextChanged" CancelButtonColor="Orange"/>
+        <Button x:Name="cmdThemSach" Text="Thêm mới sách" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" TextColor="DarkBlue" Clicked="cmdThemSach_Clicked" ></Button>
+        <ScrollView Orientation="Vertical">
+            <ListView x:Name="LstSach" RowHeight="180" ItemSelected="LstSach_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="600">
+                            <Grid Padding="5" Margin="0,5,0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="2*"></RowDefinition>
+                               
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Hinh}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  >
+                            </Image>
+                            <Label Text="{Binding TenSach}" Grid.Row="0" Grid.Column="1" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" Grid.ColumnSpan="2" Grid.RowSpan="2" ></Label>
+                            <Label Text="{Binding GiaDisplay }" Grid.Row="1" Grid.Column="1" TextColor="red" Grid.ColumnSpan="2"></Label>
+                                <Button x:Name="cmdXoa" Text="Xóa" CommandParameter="{Binding .}" Clicked="cmdXoa_Clicked" Grid.Row="2" Grid.Column="2" BackgroundColor="{DynamicResource btnMuaColor}" TextColor="{DynamicResource background}" ></Button>
+                                <Button x:Name="cmdSua" Text="Sửa" CommandParameter="{Binding .}" Clicked="cmdSua_Clicked" Grid.Row="2" Grid.Column="1" BackgroundColor="{DynamicResource btnSuaColor}" TextColor="{DynamicResource background}"></Button>
+                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ScrollView>
+    </StackLayout>
+</ContentPage>
