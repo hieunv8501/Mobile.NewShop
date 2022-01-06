@@ -166,11 +166,11 @@ create procedure sp_LayDanhSachSachTheoLoaiSach @MaLoaiSach int
 as begin
 	if (@MaLoaiSach = 0)
 	begin
-		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
+		select MaSach, LOAISACH.MaLoaiSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 	end
 	else begin
-		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
+		select MaSach, LOAISACH.MaLoaiSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 		where LOAISACH.MaLoaiSach = @MaLoaiSach
 	end
