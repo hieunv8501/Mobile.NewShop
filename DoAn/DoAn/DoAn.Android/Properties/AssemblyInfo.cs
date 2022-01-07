@@ -18,6 +18,7 @@ using Android.App;
 
 // Add thiss line to solve the clear text traffic error:
 [assembly: Application(UsesCleartextTraffic = true)]
+
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version

@@ -2,30 +2,41 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoAn.ManHinhListSach">
-    <ScrollView Orientation="Vertical">
-        <ListView x:Name="LstSach" RowHeight="100" ItemSelected="LstSach_ItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell Height="600">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="2*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="2*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding ImageURL}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  >
-                            </Image>
-                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" ></Label>
-                            <Label Text="{Binding Price,StringFormat='{0:C}' }" Grid.Row="1" Grid.Column="1" TextColor="red"></Label>
-                            <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding .}" Clicked="cmdchonmua_Clicked" Grid.Row="2" Grid.Column="1"></Button>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ScrollView>
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+    <StackLayout>
+        <SearchBar x:Name="Search" Placeholder="" TextChanged="Search_TextChanged" CancelButtonColor="Orange"/>
+        <ScrollView Orientation="Vertical">
+
+            <ListView x:Name="LstSach" ItemSelected="LstSach_ItemSelected" RowHeight="130" SeparatorColor="Green"  HasUnevenRows="True" >
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+
+                        <ViewCell >
+
+                            <Grid Padding="5" Margin="0,5,0,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="2*"></RowDefinition>
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Hinh}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" MinimumHeightRequest="150"   >
+                                </Image>
+                                <Label Text="{Binding TenSach}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" ></Label>
+                                <Label Text="{Binding GiaDisplay,StringFormat='{0:0.##}'}" Grid.Row="2" Grid.Column="1" TextColor="{DynamicResource  btnMuaColor}" ></Label>
+                                <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding .}" Clicked="cmdchonmua_Clicked" Grid.Row="3" Grid.Column="1" HeightRequest="30" BackgroundColor="{DynamicResource  btnMuaColor}" TextColor="{DynamicResource background}"></Button>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </StackLayout>
 </ContentPage>

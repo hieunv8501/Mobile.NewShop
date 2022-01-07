@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,16 +18,32 @@ namespace DoAn
         {
             InitializeComponent();
             TaoCacLoaiSach();
+
         }
         List<LoaiSach> LoaiSachs = new List<LoaiSach>();
-        void TaoCacLoaiSach()
+        async void TaoCacLoaiSach()
         {
-            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "BC", TenLoaiSach = "Sách Bán Chạy", Hinh = "BanChay.jpg" });
-            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "KD", TenLoaiSach = "Sách Quản Lý - Kinh Doanh", Hinh = "KinhDoanh.jpg" });
-            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "NN", TenLoaiSach = "Sách Ngoại Ngữ", Hinh = "NgoaiNgu.jpg" });
-            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "TN", TenLoaiSach = "Sách Thiếu Nhi", Hinh = "ThieuNhi.jpg" });
-            LoaiSachs.Add(new LoaiSach { MaLoaiSach = "KNS", TenLoaiSach = "Sách Kỹ Năng Sống", Hinh = "YChi.jpg" });
-            LstLoaiSach.ItemsSource = LoaiSachs;
+            try
+            {
+                HttpClient http = new HttpClient();
+                var kq = await http.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
+                var loaisach = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
+                List<LoaiSach> ls2 = new List<LoaiSach>();
+                List<LoaiSach> ls1 = new List<LoaiSach>();
+                for (int i = 0; i < loaisach.Count; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        ls1.Add(loaisach[i]);
+                    }
+                    else
+                    { ls2.Add(loaisach[i]); }
+                }
+                LstLoaiSach.ItemsSource = ls1;
+                LstLoaiSach1.ItemsSource = ls2;
+                LoaiSachs = loaisach;
+            }
+            catch { LstLoaiSach.ItemsSource = null; }
         }
         private void search_Clicked(object sender, EventArgs e)
         {
@@ -52,6 +70,16 @@ namespace DoAn
             {
                 LoaiSach clicked_LoaiSach = (LoaiSach)LstLoaiSach.SelectedItem;
                 Navigation.PushAsync(new ManHinhListSach(clicked_LoaiSach));
+                LstLoaiSach.SelectedItem = null;
+            }
+        }
+        private void LstLoaiSach_ItemSelected1(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (LstLoaiSach1.SelectedItem != null)
+            {
+                LoaiSach clicked_LoaiSach1 = (LoaiSach)LstLoaiSach1.SelectedItem;
+                Navigation.PushAsync(new ManHinhListSach(clicked_LoaiSach1));
+                LstLoaiSach1.SelectedItem = null;
             }
         }
     }

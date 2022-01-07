@@ -31,7 +31,7 @@ namespace DoAn
             HttpClient httpClient = new HttpClient();
 
 
-            var GioHangList = await httpClient.GetStringAsync("http://192.168.0.104/newshopwebapi/api/ServiceController/LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
+            var GioHangList = await httpClient.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
 
             if (GioHangList.ToString() != "[]")
             {
@@ -54,7 +54,7 @@ namespace DoAn
             string MaSach = selected.CommandParameter.ToString();
 
             HttpClient httpClient = new HttpClient();
-            var CT_GIOHANG = await httpClient.GetStringAsync("http://192.168.0.104/newshopwebapi/api/ServiceController/GiamSoLuong?MaGioHang=" + MaGioHang + "&MaSach=" + MaSach);
+            var CT_GIOHANG = await httpClient.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/GiamSoLuong?MaGioHang=" + MaGioHang + "&MaSach=" + MaSach);
 
             base.OnAppearing();
             LayThongTinGioHang("tinh");
@@ -66,7 +66,7 @@ namespace DoAn
             string MaSach = selected.CommandParameter.ToString();
 
             HttpClient httpClient = new HttpClient();
-            var CT_GIOHANG = await httpClient.GetStringAsync("http://192.168.0.104/newshopwebapi/api/ServiceController/TangSoLuong?MaGioHang=" + MaGioHang + "&MaSach=" + MaSach);
+            var CT_GIOHANG = await httpClient.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/TangSoLuong?MaGioHang=" + MaGioHang + "&MaSach=" + MaSach);
 
             base.OnAppearing();
             LayThongTinGioHang("tinh");

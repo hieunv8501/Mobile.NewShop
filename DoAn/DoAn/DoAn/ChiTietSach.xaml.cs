@@ -24,6 +24,10 @@ namespace DoAn
             image.Source = sach.Hinh;
             tensach.Text = sach.TenSach;
             mota.Text = sach.MoTa;
+            image.MinimumHeightRequest = 300;
+            image.MinimumWidthRequest = 300;
+            image.WidthRequest = 300;
+            image.HeightRequest = 300;
             //giaban.Text = sach.Price.ToString("C");
             CultureInfo cultureInfo = new CultureInfo("vi-VN");
             giaban.Text = string.Format(cultureInfo, "{0:C}", sach.Gia);

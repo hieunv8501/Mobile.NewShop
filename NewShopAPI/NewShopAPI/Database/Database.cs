@@ -46,7 +46,7 @@ namespace NewShopAPI.Database
                     da.Fill(result);
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     transaction.Rollback();
                 }

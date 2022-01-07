@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.ThemDanhMucAdmin">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="Banner.jpg" HeightRequest="100"></Image>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition>
+
+                    </RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="2*" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Tên danh mục: " FontSize="Large" VerticalOptions="Center"   Grid.Row="0" Grid.Column="0" >
+
+                </Label>
+                <Entry x:Name="txtTenLoaiSach" Keyboard="Text" Grid.Row="0" Grid.Column="1" ></Entry>
+                <Label Text="Hình: " FontSize="Large" VerticalOptions="Center"   Grid.Row="1" Grid.Column="0" >
+                </Label>
+                <Entry x:Name="txtHinh" Keyboard="Text" Grid.Row="1" Grid.Column="1" ></Entry>
+                <Button x:Name="cmdThemDanhMuc" Text="Thêm Mới" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" Clicked="cmdThemDanhMuc_Clicked" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="0" BackgroundColor="{DynamicResource btnCapnhatColor}" TextColor="{DynamicResource mainBackground}" ></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

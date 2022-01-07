@@ -17,10 +17,12 @@ namespace DoAn
             Create_danhmuc();
         }
         void Create_danhmuc()
-        {           
-            List<DanhMuc_TK> danhmuc = new List<DanhMuc_TK>();
-            danhmuc.Add(new DanhMuc_TK { ID = "KTDH", Text = "Kiểm tra đơn hàng", Icon = "icon_KTDH.png", Icon_next = "icon_next.png" });
-            danhmuc.Add(new DanhMuc_TK { ID = "HT", Text = "Hỗ trợ", Icon = "icon_HT.png", Icon_next = "icon_next.png" });
+        {
+            List<DanhMuc_TK> danhmuc = new List<DanhMuc_TK>
+            {
+                new DanhMuc_TK { ID = "KTDH", Text = "Kiểm tra đơn hàng", Icon = "icon_KTDH.png", Icon_next = "icon_next.png" },
+                new DanhMuc_TK { ID = "HT", Text = "Hỗ trợ", Icon = "icon_HT.png", Icon_next = "icon_next.png" }
+            };
             listdn.ItemsSource = danhmuc;
         }
 

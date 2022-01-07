@@ -4,7 +4,7 @@ use QuanLyBanSach
 go
 
 create table TAIKHOAN
-(
+(	
 	TenDangNhap varchar(50) primary key,
 	MatKhau varchar(50),
 	TenKhachHang nvarchar(50),
@@ -20,6 +20,7 @@ create table LOAISACH
 	TenLoaiSach nvarchar(50),
 	Hinh nvarchar(200),
 )
+
 create table SACH
 (
 	MaSach int identity(1,1) primary key,
@@ -30,7 +31,6 @@ create table SACH
 	Hinh nvarchar(200),
 	GiamGia int
 )
-
 create table DIACHI
 (
 	MaDiaChi int IDENTITY(1,1) primary key,
@@ -58,7 +58,6 @@ create table GIAOHANG
 (
 	Gia money primary key,
 )
---insert into GIAOHANG values (15000)
 
 create table CT_HOADON
 (
@@ -102,15 +101,14 @@ alter table HOADON add constraint fk_HOADON_DIACHI foreign key (MaDiaChi) refere
 alter table GIOHANG add constraint fk_GIOHANG_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
 alter table CT_GIOHANG add constraint fk_CTGIOHANG_SACH foreign key (MaSach) references SACH(MaSach)
 alter table CT_GIOHANG add constraint fk_CTGIOHANG_GIOHANG foreign key (MaGioHang) references GIOHANG(MaGioHang)
---EXEC sp_msforeachtable "ALTER TABLE ? NOCHECK CONSTRAINT ALL";
 set dateformat dmy;
 
 -- Đổi IP trong link, với cú pháp replace(column_name, 'old_IP', 'new_IP')
 update SACH
-set Hinh = replace(Hinh,'192.168.1.5','192.168.1.4')
+set Hinh = replace(Hinh,'localhost','192.168.1.4/newshopwebapi')
 where Hinh is not null;
 update LOAISACH
-set Hinh = replace(Hinh,'192.168.1.5','192.168.1.4')
+set Hinh = replace(Hinh,'localhost','192.168.1.4/newshopwebapi')
 where Hinh is not null;
 
 --select * from SACH
@@ -123,7 +121,12 @@ insert into LOAISACH values (N'Sách Văn Học', N'http://192.168.1.4/newshopwe
 			(N'Sách Quản Lý - Kinh Doanh', N'http://192.168.1.4/newshopwebapi/Image/NgoaiNgu.jpg'), 
 			(N'Sách Ngoại Ngữ', N'http://192.168.1.4/newshopwebapi/Image/NgoaiNgu.jpg'),
 			(N'Sách Thiếu Nhi', N'http://192.168.1.4/newshopwebapi/Image/ThieuNhi.jpg'),
-			(N'Sách Kỹ Năng Sống', N'http://192.168.1.4/newshopwebapi/Image/YChi.jpg')						
+			(N'Sách Kỹ Năng Sống', N'http://192.168.1.4/newshopwebapi/Image/YChi.jpg'),
+			(N'Sách Luyện Thi THPT Quốc Gia', N'http://192.168.1.4/newshopwebapi/Image/THPTQG.jpg'),
+			(N'Sách Nghệ Thuật - Kiến Trúc', N'http://192.168.1.4/newshopwebapi/Image/NTKT.jpg'),
+			(N'Sách Chính Trị - Luật Pháp', N'http://192.168.1.4/newshopwebapi/Image/CTLP.jpg')	,
+			(N'Sách Tâm Lý - Giáo Dục Nuôi Dạy Con', N'http://192.168.1.4/newshopwebapi/Image/TamLy.jpg'),
+			(N'Sách Kiến Thức Bách Khoa', N'http://192.168.1.4/newshopwebapi/Image/KTBK.jpg')	
 --select * from LOAISACH
 
 insert into SACH values (1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Thành Phố - Tập tản văn cũng có những chiêm nghiệm khác rút ra từ cuộc sống hàng ngày, thể hiện cách nhìn đời nhẹ nhàng, vị tha của một bác sĩ đã từng chứng kiến nhiều cuộc sinh tử biệt ly và biết điều gì là đáng quý nhất trong đời.', N'http://192.168.1.4/newshopwebapi/Image/sach1.jpg', 20), 
@@ -134,7 +137,18 @@ insert into SACH values (1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Th�
 			(3, N'Làm quen THỐNG KÊ HỌC qua biếm họa', 89000, N'Cuốn sách sẽ đem đến cho người đọc những kiến thức căn bản về thống kê từ việc lấy mẫu dữ liệu thô đến lập biểu đồ, từ kiểm định giả thiết đến đánh giá độ tin cậy. Nhưng may mắn thay, những khái niệm này không được trình bày giống như trong cuốn giáo trình làm chúng ta phát hoảng, mà dưới những ví dụ hấp dẫn về kích cỡ của các nàng tiên cá, tốc độ bay của lũ rồng, mức độ ghét nhau của hai tộc người ngoài hành tinh,… Tất cả sẽ làm chúng ta sảng khoái đến mức "phải lòng" thống kê học (trong một chừng mực nào đó)!
 "Một nhà thống kê và một nghệ sĩ đã hợp sức để làm sáng tỏ những dữ liệu khó nhằn cho số đông. Thông qua những chuyện khôi hài về đua rồng, thu thập mẫu giun và uống soda vô độ, Klein và Dabney đã minh họa cách thức các nhà thống kê thu thập dư liệu như thế nào và đưa ra các dự đoán ra sao… Và vô cùng thú vị." - Scientific American.
 "Ơn Chúa là cuối cùng cũng có ai đó viết một cuốn sách về thống kê thật sự vui nhộn đáng đọc. Cẩn thận khi mua cuốn sách này, bạn sẽ chẳng thể đặt được nó xuống trước khi đọc đến dòng cuối cùng." - Sebastian Thrun, Thành viên của Google  và CEO của Udacity.', N'http://192.168.1.4/newshopwebapi/Image/BanChay.jpg', 0),
-			(4, N'Tiếng Anh Xã Giao (Tặng Kèm CD)', 150000, N'Tiếng Anh Xã Giao (Tặng Kèm CD) - Giúp bạn đọc tự học, tự rèn luyện để mạnh dạn giao tiếp trong mọi lĩnh vực, tình huống và ngữ cảnh khác nhau. Nội dung sách trình bày rõ ràng, thực tế. bao gồm những mẫu câu thường gặp nhất và các bài đàm thoại liên quan đến tình huống đó. Sách dùng trong: Sinh hoạt hàng ngày, khi đi du lịch, công tác nước ngoài.', N'http://192.168.1.4/newshopwebapi/Image/sach6.jpg', 22)
+			(4, N'Tiếng Anh Xã Giao (Tặng Kèm CD)', 150000, N'Tiếng Anh Xã Giao (Tặng Kèm CD) - Giúp bạn đọc tự học, tự rèn luyện để mạnh dạn giao tiếp trong mọi lĩnh vực, tình huống và ngữ cảnh khác nhau. Nội dung sách trình bày rõ ràng, thực tế. bao gồm những mẫu câu thường gặp nhất và các bài đàm thoại liên quan đến tình huống đó. Sách dùng trong: Sinh hoạt hàng ngày, khi đi du lịch, công tác nước ngoài.', N'http://192.168.1.4/newshopwebapi/Image/sach6.jpg', 22),
+			insert into SACH values (8, N'Luyện Đề Thi Tốt Nghiệp THPT Năm 2022 - Bài Thi Khoa Học Xã Hội', 65000, N'Luyện Đề Thi Tốt Nghiệp THPT Năm 2022 - Bài Thi Khoa Học Xã Hội - Bộ sách đảm bảo yêu cầu cơ bản cho học sinh ôn luyện thi để xét công nhận tốt nghiệp THPT và cung cấp các kiến thức phân hóa cao để xét tuyển vào Đại học, Cao đẳng năm 2022.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-khxh.jpg', 20),
+			(8, N'Luyện Đề Thi Tốt Nghiệp THPT Năm 2022 - Bài Thi Khoa Học Tự Nhiên', 65000, N'Luyện Đề Thi Tốt Nghiệp THPT Năm 2022 - Bài Thi Khoa Học Tự Nhiên - Bộ sách đảm bảo yêu cầu cơ bản cho học sinh ôn luyện thi để xét công nhận tốt nghiệp THPT và cung cấp các kiến thức phân hóa cao để xét tuyển vào Đại học, Cao đẳng năm 2022.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-khtn.jpg', 20),
+			(8, N'Luyện Đề Thi Tốt Nghiệp THPT Năm 2022 - Môn Ngữ Văn', 45000, N'Luyện Đề Thi Tốt Nghiệp THPT Năm 2022 - Môn Ngữ Văn - Bộ sách đảm bảo yêu cầu cơ bản cho học sinh ôn luyện thi để xét công nhận tốt nghiệp THPT và cung cấp các kiến thức phân hóa cao để xét tuyển vào Đại học, Cao đẳng năm 2022.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-van2022.jpg', 20),
+			(8, N'Luyện Đề Thi Tốt Nghiệp Thpt Năm 2022 - Môn Toán', 45000, N'Luyện Đề Thi Tốt Nghiệp Thpt Năm 2022 - Môn Toán - Bộ sách đảm bảo yêu cầu cơ bản cho học sinh ôn luyện thi để xét công nhận tốt nghiệp THPT và cung cấp các kiến thức phân hóa cao để xét tuyển vào Đại học, Cao đẳng năm 2022.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-toan2022.jpg', 20),
+			(8, N'Luyện Đề Thi Tốt Nghiệp Thpt Năm 2022 - Môn Tiếng Anh', 45000, N'Luyện Đề Thi Tốt Nghiệp THPT Năm 2022 - Môn Tiếng Anh - Bộ sách đảm bảo yêu cầu cơ bản cho học sinh ôn luyện thi để xét công nhận tốt nghiệp THPT và cung cấp các kiến thức phân hóa cao để xét tuyển vào Đại học, Cao đẳng năm 2022.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-anh2022.jpg', 20),
+			(8, N'Phương Pháp Trắc Nghiệm - 54 Bộ Đề Tiếng Anh Luyện Thi THPT Quốc Gia', 128000, N'Phương Pháp Trắc Nghiệm - 54 Bộ Đề Tiếng Anh Luyện Thi THPT Quốc Gia là cuốn sách được biên soạn dành cho các em học sinh lớp 12, là tài liệu bổ ích giúp các em chinh phục kì thi THPT Quốc gia.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-54bodeanh.jpg', 20),
+			(8, N'Tài Liệu Ôn Thi THPT Quốc Gia Môn Tiếng Anh (Vĩnh Bá)', 140000, N'Sách Tài Liệu Ôn Thi Tốt Nghiệp THPT Quốc Gia Môn Tiếng Anh cung cấp một nguồn tài liệu bổ ích cho tất cả các bạn ôn thi THPT môn tiếng anh.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-tailieuonthithptanh.jpg', 20),
+			(8, N'Câu Hỏi Và Bài Tập Trắc Nghiệm Lịch Sử Theo Chủ Đề 12', 95000, N'Cuốn sách Câu Hỏi Và Bài Tập Trắc Nghiệm Lịch Sử Theo Chủ Đề 12 giúp các em vận dụng kiến thức đã học và sự hiểu biết của mình để trả lời cầu hỏi trắc nghiệm theo từng bài cụ thể. Để chuẩn bị cho kỳ thi THPT Quốc Gia 2017.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-tnLS12.jpg', 20),
+			(8, N'Ôn Tập Đánh Giá Năng Lực Môn Lịch Sử', 125000, N'Ôn Tập Đánh Giá Năng Lực Môn Lịch Sử - Đây là cuốn sách của các nhà khoa học giáo dục có nhiều năm kinh nghiệm trong nghiên cứu, giảng dạy ở đại học và bậc phổ thông. Tác giả cuốn sách và giáo vien đang tham gia bồi dưỡng kiến thức trên truyền hình.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-ontapdgnlLS.jpg', 10)
+
+
 
 --select * from SACH
 go
@@ -166,16 +180,18 @@ create procedure sp_LayDanhSachSachTheoLoaiSach @MaLoaiSach int
 as begin
 	if (@MaLoaiSach = 0)
 	begin
-		select MaSach, LOAISACH.MaLoaiSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
+		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 	end
 	else begin
-		select MaSach, LOAISACH.MaLoaiSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
+		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 		where LOAISACH.MaLoaiSach = @MaLoaiSach
 	end
 end
 go
+
+--exec sp_LayDanhSachSachTheoLoaiSach 3
 
 -- Lấy danh sách sách theo mã khuyến mãi của sách
 create procedure sp_LayDanhSachSachTheoKhuyenMai

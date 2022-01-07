@@ -14,8 +14,16 @@ namespace DoAn
         public Nullable<Decimal> Gia { get; set; }
         public int GiamGia { get; set; }
         public string GiamGiaDisPlay => $"-{GiamGia}%";
-        public string GiaDisplayOld => $"{(UInt64)Gia} đ";
+
+        //public string GiamGiaDisPlay {
+        //    get { return $"-{GiamGia}%"; }
+        //    set {  }
+
+        //}
         public string GiaDisplayNew => $"{(UInt64)(Gia - Gia * GiamGia / 100)} đ";
+        public string GiaDisplayOld => $"{(UInt64)Gia} đ";
 
     }
+    
+
 }

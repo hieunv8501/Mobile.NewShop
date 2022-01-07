@@ -4,37 +4,45 @@
              x:Class="DoAn.DanhMuc"
              Title="Danh Mục">
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem x:Name="search" Text="Example Item"
                  IconImageSource="searchicon.png"
                  Order="Primary" Clicked="search_Clicked"
                  Priority="0" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
  
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <SearchBar x:Name="Search" Placeholder="" TextChanged="Search_TextChanged" CancelButtonColor="Orange"/>
-            <ListView x:Name="LstLoaiSach" RowHeight="150" ItemSelected="LstLoaiSach_ItemSelected" FlowDirection="LeftToRight">
-                <ListView.ItemTemplate >
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
 
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
-                                <Image Source="{Binding ImageURL}" Grid.Row="0" Grid.Column="0" WidthRequest="100"></Image>
-                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" ></Label>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <ListView x:Name="LstLoaiSach" RowHeight="100" ItemSelected="LstLoaiSach_ItemSelected" FlowDirection="LeftToRight" Grid.Row="0" Grid.Column="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+
+                            <ImageCell ImageSource="{Binding Hinh}" Text="{Binding TenLoaiSach}" TextColor="Black" >
+
+                            </ImageCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView x:Name="LstLoaiSach1" RowHeight="100" ItemSelected="LstLoaiSach_ItemSelected1" FlowDirection="LeftToRight" Grid.Row="0" Grid.Column="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ImageCell ImageSource="{Binding Hinh}" Text="{Binding TenLoaiSach}" TextColor="Black">
+                            </ImageCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

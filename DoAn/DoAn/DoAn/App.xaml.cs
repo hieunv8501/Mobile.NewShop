@@ -6,7 +6,7 @@ namespace DoAn
 {
     public partial class App : Application
     {
-        public static string TenDangNhapSignedIn = null;
+        //public static string TenDangNhapSignedIn = null;
         public App()
         {
             InitializeComponent();
