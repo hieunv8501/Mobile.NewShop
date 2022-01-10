@@ -15,6 +15,8 @@ namespace DoAn
     public partial class GioHang : ContentPage
     {
         int MaGioHang;
+        string TenDangNhap;
+        APIString APIString = new APIString();
         public GioHang()
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace DoAn
         {
             base.OnAppearing();
             LayThongTinGioHang("tinh");
+            TenDangNhap = "tinh";
         }
 
         async void LayThongTinGioHang(string TenDangNhap)
@@ -31,7 +34,7 @@ namespace DoAn
             HttpClient httpClient = new HttpClient();
 
 
-            var GioHangList = await httpClient.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
+            var GioHangList = await httpClient.GetStringAsync(APIString.str + "LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
 
             if (GioHangList.ToString() != "[]")
             {
@@ -42,9 +45,14 @@ namespace DoAn
 
                 lbTongTien.Text = GioHangListConvert.First().TongTien.ToString();
                 MaGioHang = GioHangListConvert.First().MaGioHang;
+                DatHang.IsEnabled = true;
             }
-
-
+            else
+            {
+                lstGioHang.ItemsSource = null;
+                lbTongTien.Text = null;
+                DatHang.IsEnabled = false;
+            }
 
         }
 
@@ -54,10 +62,10 @@ namespace DoAn
             string MaSach = selected.CommandParameter.ToString();
 
             HttpClient httpClient = new HttpClient();
-            var CT_GIOHANG = await httpClient.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/GiamSoLuong?MaGioHang=" + MaGioHang + "&MaSach=" + MaSach);
+            var CT_GIOHANG = await httpClient.GetStringAsync(APIString.str + "GiamSoLuong?MaGioHang=" + MaGioHang + "&MaSach=" + MaSach);
 
-            base.OnAppearing();
-            LayThongTinGioHang("tinh");
+            OnAppearing();
+
         }
 
         private async void TangSL_Clicked(object sender, EventArgs e)
@@ -66,10 +74,39 @@ namespace DoAn
             string MaSach = selected.CommandParameter.ToString();
 
             HttpClient httpClient = new HttpClient();
-            var CT_GIOHANG = await httpClient.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/TangSoLuong?MaGioHang=" + MaGioHang + "&MaSach=" + MaSach);
+            var CT_GIOHANG = await httpClient.GetStringAsync(APIString.str + "TangSoLuong?MaGioHang=" + MaGioHang + "&MaSach=" + MaSach);
 
-            base.OnAppearing();
-            LayThongTinGioHang("tinh");
+            OnAppearing();
+
+        }
+
+        private async void ApDung_Clicked(object sender, EventArgs e)
+        {
+            var TongTienTruoc = lbTongTien.Text;
+
+            HttpClient httpClient = new HttpClient();
+            var MaGiamGia = await httpClient.GetStringAsync(APIString.str + "ApDungMa?MaGiamGia=" + lbMaGiamGia.Text + "&MaGioHang=" + MaGioHang);
+
+            var GioHangList = await httpClient.GetStringAsync(APIString.str + "LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
+
+            if (GioHangList.ToString() != "[]")
+            {
+                var GioHangListConvert = JsonConvert.DeserializeObject<List<GioHangTheoTK>>(GioHangList);
+
+                if (GioHangListConvert.First().TongTien.ToString() == TongTienTruoc)
+                {
+                    await DisplayAlert("Thông báo", "Không hợp lệ", "Ok");
+                }
+
+            }
+
+            OnAppearing();
+
+        }
+
+        private void DatHang_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DatHang("tinh"));
         }
     }
 }

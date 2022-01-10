@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.Admin_ChiTietDonHang">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="#f4f4f4">
+                <Grid  Padding="20,10,20,10" BackgroundColor="White"   >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="MDH" FontSize="18" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label x:Name="TinhTrang" FontSize="18" TextColor="Black" Grid.Column="0" Grid.Row="1"></Label>
+                </Grid>
+
+                <Grid Padding="20,10,20,10" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Địa chỉ người nhận" FontSize="20" FontAttributes="Bold" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label x:Name="tennguoinhan"  FontSize="18" Grid.Column="0" Grid.Row="1"></Label>
+                    <Label x:Name="sdt" FontSize="18" Grid.Column="0" Grid.Row="2"></Label>
+                    <Label x:Name="diachi" Grid.Column="0"  FontSize="18" Grid.Row="3"></Label>
+                    <Label Text="Hình thức vận chuyển" FontSize="20" FontAttributes="Bold"  TextColor="Black" Grid.Column="0" Grid.Row="4"></Label>
+                    <Label x:Name="hinhthucvanchuyen" FontSize="18" Grid.Column="0" Grid.Row="5"></Label>
+                    <Label Text="Hình thức thanh toán" FontSize="20" FontAttributes="Bold" TextColor="Black" Grid.Column="0" Grid.Row="6"></Label>
+                    <Label x:Name="hinhthucthanhtoan" FontSize="18" Grid.Column="0" Grid.Row="7"></Label>
+                </Grid>
+                <ListView x:Name="lstCT_DONHANG" HeightRequest="160" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="20, 5, 20, 5" BackgroundColor="White">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <!--<RowDefinition Height="40"></RowDefinition>-->
+                                        <RowDefinition Height="30"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="130"></ColumnDefinition>
+                                        <ColumnDefinition Width="80"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image  Source="{Binding Hinh}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"></Image>
+                                    <Label  Text="{Binding TenSach}" TextColor="Black" Grid.Row="0" FontSize="18" Grid.Column="1" Grid.ColumnSpan="3"></Label>
+                                    <!--<Button Text="Viết nhận xét" Grid.Row="1" Grid.Column="1" BackgroundColor="#ffc420" FontSize="14" CornerRadius="15"></Button>-->
+                                    <!--<Button Text="Mua lại" Grid.Row="1" Grid.Column="2" BackgroundColor="#ff7b80" TextColor="White" FontSize="14"  CornerRadius="15"></Button>-->
+                                    <Label Text="{Binding Gia_SL}" FontSize="18" Grid.Row="1" Grid.Column="1" TextColor="Red" VerticalOptions="End"></Label>
+                                    <!--<Label Text="{Binding SoLuong}" Grid.Row="2" Grid.Column="2" VerticalOptions="End"></Label>-->
+                                    <Label Text="{Binding ThanhTien}" FontSize="18" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" VerticalOptions="End" HorizontalOptions="End" TextColor="Red"></Label>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <Grid Padding="20,10,20,10" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Phí vận chuyển: " FontSize="18" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label x:Name="phivanchuyen" Grid.Column="1" FontSize="18" Grid.Row="0" HorizontalOptions="End"></Label>
+
+                    <Label Text="Tổng thanh toán: "  FontSize="18" TextColor="Black"  Grid.Column="0" Grid.Row="1"></Label>
+                    <Label x:Name="tongthanhtoan" Grid.Column="1" FontSize="18" Grid.Row="1" TextColor="Red" HorizontalOptions="End"></Label>
+
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

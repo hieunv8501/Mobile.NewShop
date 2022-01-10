@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.Admin_DanhSachDonHang"
+             Title="Danh sách đơn hàng">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+
+                <Entry x:Name="lbMaDonHang" Margin="15,0,0,0" Placeholder="Tìm theo mã đơn hàng" Grid.Column="0" Grid.Row="0"></Entry>
+                <ImageButton x:Name="btnSearch" Clicked="btnSearch_Clicked" Source="iconTimKiem.png" Aspect="AspectFit" BackgroundColor="Aqua" Padding="5" Margin="10" Grid.Row="0" Grid.Column="1"></ImageButton>
+
+            </Grid>
+
+
+            <ListView x:Name="lst_donhang" HasUnevenRows="True" ItemTapped="lst_donhang_ItemSelected" Margin="10, 5,10,5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="{Binding btnDisplayForAdmin}" BackgroundColor="Red" Invoked="SwipeItem_Invoked" CommandParameter="{Binding MaHoaDon}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <!-- Content -->
+                                <Grid Padding="10, 5, 10 , 5">
+                                    <Grid.RowDefinitions>
+                                        <!--<RowDefinition Height="Auto"></RowDefinition>-->
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto" ></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Label  Text="{Binding TenSachDisplay}" FontSize="20" TextColor="Black" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0"></Label>-->
+                                    <Label  Text="Mã đơn hàng:" FontSize="24" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
+                                    <Label  Text="{Binding MaHoaDon}" FontSize="24" TextColor="Black" Grid.Column="1" Grid.Row="0"></Label>
+                                    <!--<Button x:Name="btnDaGiaoHang" Clicked="btnDaGiaoHang_Clicked" Text="{Binding btnDisplayForAdmin}" FontSize="16" BackgroundColor="Orange"  CornerRadius="10" HeightRequest="40" TextColor="Black" Grid.Row="0" Grid.Column="2" CommandParameter="{Binding MaHoaDon}"></Button>-->
+                                    <Label  Text= "{Binding TinhTrangDisplay}" FontSize="20" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3"></Label>
+                                </Grid>
+                            </SwipeView>
+
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

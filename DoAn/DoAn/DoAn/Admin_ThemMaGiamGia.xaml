@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.Admin_ThemMaGiamGia"
+             Title="Thêm mã giảm giá">
+    <ContentPage.Content>
+        <StackLayout Margin="15">
+            <Label Text="Mã giảm giá" FontSize="22" FontAttributes="Bold" TextColor="Black"></Label>
+            <Entry x:Name="lbMaGiamGia" Placeholder="Nhập mã giảm giá (ex: ANCDE)" MaxLength="5" FontSize="20"></Entry>
+
+            <Label Text="Tỉ lệ giảm" FontSize="22" FontAttributes="Bold" TextColor="Black"></Label>
+            <Entry x:Name="lbTiLeGiam" Keyboard="Numeric" MaxLength="2" Placeholder="Nhập tỉ lệ giảm (ex: 50)" FontSize="20"></Entry>
+            <Button x:Name="btnThem" Clicked="btnThem_Clicked" Text="Thêm" BackgroundColor="Red" TextColor="White" FontSize="20" Margin="0,30,0,0"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -42,7 +42,12 @@ namespace DoAn
             if (danhMuc_TK.ID == "DHCT")
             {
 
-                Navigation.PushAsync(new DonHangCuaToi());
+                Navigation.PushAsync(new DonHangCuaToi("tinh"));
+            }
+            if (danhMuc_TK.ID == "DCGH")
+            {
+
+                Navigation.PushAsync(new DiaChi("tinh"));
             }
         }
     }
