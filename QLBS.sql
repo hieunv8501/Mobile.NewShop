@@ -280,16 +280,21 @@ go
 --Lấy thông tin tất cả hóa đơn
 create proc sp_LayTatCaHoaDon
 as begin
-	select * from HOADON
+	select COUNT(*) as SoCTHD, HOADON.MaHoaDon, TinhTrang into Temp
+	from HOADON, CT_HOADON
+	where HOADON.MaHoaDon = CT_HOADON.MaHoaDon
+	group by HOADON.MaHoaDon, TinhTrang 
+
+	select  SoCTHD,  Temp.MaHoaDon, TenSach, TinhTrang  from Temp, CT_HOADON, SACH where Temp.MaHoaDon = CT_HOADON.MaHoaDon and CT_HOADON.MaSach = SACH.MaSach
+
+	drop table Temp
 end
 
 go
 --Lấy CT_HOADON theo MaHoaDon
-create proc sp_LayChiTietHoaDon @MaHoaDon int
+create proc sp_LayChiTietHoaDon  @MaHoaDon int
 as begin
-	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   
-	from CT_HOADON, HOADON, DIACHI, SACH 
-	where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, NgayHoaDon, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
 end
 
 go
@@ -308,9 +313,10 @@ end
 
 --Xóa chi tiết hóa đơn
 go
-create procedure sp_XoaChiTietHoaDon @MaHoaDon int, @MaSach int
+create procedure sp_XoaChiTietHoaDon @MaHoaDon int
 as begin
-	delete from CT_HOADON where MaHoaDon = @MaHoaDon and MaSach = @MaSach
+	delete from CT_HOADON where MaHoaDon = @MaHoaDon
+	delete from HOADON where MaHoaDon = @MaHoaDon
 end
 
 --create trigger trigger_insert_cthoadon on CT_HOADON
@@ -738,3 +744,24 @@ end try
 begin catch
 set @CurrentID=0
 end catch
+
+
+go
+create proc sp_CheckDiaChi @MaDiaChi int
+as begin
+	select DIACHI.MaDiaChi from DIACHI, HOADON where DIACHI.MaDiaChi = HoaDon.MaDiaChi and DIACHI.MaDiaChi = @MaDiaChi
+end
+
+go
+--Lấy thông tin hóa đơn theo MaHoaDon
+create proc sp_LayThongTinHoaDonTheoMa @MaHoaDon int
+as begin
+	select COUNT(*) as SoCTHD, HOADON.MaHoaDon, TinhTrang into Temp
+	from HOADON, CT_HOADON
+	where HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+	group by HOADON.MaHoaDon, TinhTrang 
+
+	select  SoCTHD,  Temp.MaHoaDon, TenSach, TinhTrang  from Temp, CT_HOADON, SACH where Temp.MaHoaDon = CT_HOADON.MaHoaDon and CT_HOADON.MaSach = SACH.MaSach
+
+	drop table Temp
+end

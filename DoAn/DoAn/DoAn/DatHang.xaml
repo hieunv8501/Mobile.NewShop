@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.DatHang"
+             Title="Xác nhận">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout >
+                <Grid  Padding="10, 0 , 10, 0" Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Thông Tin Đặt Hàng" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label  x:Name="lbTenNguoiNhan" FontSize="18" Grid.Column="0" Grid.Row="1" ></Label>
+                    <Label  x:Name="lbSDT" FontSize="18"  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"></Label>
+                    <Label  x:Name="lbDiaChi" FontSize="18" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"></Label>
+                    <Button x:Name="bntThayDoi" Clicked="bntThayDoi_Clicked" Text="Thay Đổi" HorizontalOptions="End" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"></Button>
+                </Grid>
+                <Grid Padding="10, 0 , 10, 0" Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Hình Thức Giao Hàng" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label Text="Giao hàng tiêu chuẩn" FontSize="18"  Grid.Column="0" Grid.Row="1"></Label>
+                </Grid>
+                <Grid Padding="10, 0 , 10, 0" Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Hình Thức Thanh Toán" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label Text="Thanh toán khi nhận hàng" FontSize="20"  Grid.Column="0" Grid.Row="1"></Label>
+                </Grid>
+                <Label Text="Thông Tin Đơn Hàng" TextColor="Black" FontSize="20" FontAttributes="Bold" Padding="10,0,10,0"></Label>
+                <ListView x:Name="lstCTDH" HeightRequest="200"  HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid Padding="10, 0 , 10, 0" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="75"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Hinh}" HeightRequest="100"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Image>
+                                    <Label Text="{Binding TenSach}" TextColor="Black" FontSize="18" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"></Label>
+                                    <Label Text="Số lượng:" TextColor="Black"  FontSize="18" Grid.Row="1" Grid.Column="1"></Label>
+                                    <Label Text="{Binding SoLuong}" TextColor="Black" FontSize="18" Grid.Row="1" Grid.Column="2"></Label>
+                                    <Label Text="{Binding ThanhTien}" TextColor="Red" HorizontalTextAlignment="End" FontSize="18" Grid.Row="1" Grid.Column="3"></Label>
+                                </Grid>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Grid Padding="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="20" FontAttributes="Bold" TextColor="Black" Text="Phí vận chuyển" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label x:Name="lbGia" FontSize="18" TextColor="Red" HorizontalTextAlignment="End" Grid.Column="1" Grid.Row="0"></Label>
+                </Grid>
+                <Grid Padding="10,0,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Thành tiền" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label x:Name="lbThanhTien" TextColor="Red" FontSize="18" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="1"></Label>
+                    <Button x:Name="bntDatHang" Clicked="bntDatHang_Clicked" FontSize="18" FontAttributes="Bold" TextColor="White" BackgroundColor="Red" Text="Đặt hàng" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></Button>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>
