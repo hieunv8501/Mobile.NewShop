@@ -57,8 +57,8 @@ namespace NewShopAPI.Controllers
             else
                 return NotFound();
         }
-	
-	[Route("api/ServiceController/LayDanhSachSachTheoKhuyenMai")]
+
+        [Route("api/ServiceController/LayDanhSachSachTheoKhuyenMai")]
         [HttpGet]
         public IHttpActionResult LayDanhSachSachTheoKhuyenMai()
         {
@@ -68,6 +68,17 @@ namespace NewShopAPI.Controllers
             else
                 return NotFound();
 
+        }
+
+        [Route("api/ServiceController/LayDanhSachSach")]
+        [HttpGet]
+        public IHttpActionResult LayDanhSachSach()
+        {
+            DataTable kq = Database.Database.Read_Table("sp_LayDanhSachSach");
+            if (kq != null && kq.Rows.Count > 0)
+                return Ok(kq);
+            else
+                return NotFound();
         }
 
         [Route("api/ServiceController/LayDanhSachSachTheoLoaiSach")]
@@ -226,7 +237,7 @@ namespace NewShopAPI.Controllers
             }
 
         }
-//LoaiSach
+        //LoaiSach
         [Route("api/ServiceController/ThemLoaiSach")]
         [HttpGet]
         public IHttpActionResult ThemLoaiSach(string TenLoaiSach, string Hinh)
@@ -238,7 +249,7 @@ namespace NewShopAPI.Controllers
                 param.Add("Hinh", Hinh);
 
                 int kq = int.Parse(Database.Database.Exec_Command("sp_ThemLoaiSach", param).ToString());
-                if (kq  > 0)
+                if (kq > 0)
                     return Ok(kq);
                 else
                     return NotFound();
@@ -272,7 +283,7 @@ namespace NewShopAPI.Controllers
             else
                 return NotFound();
         }
-	
+
         //Sach
         [Route("api/ServiceController/ThemSach")]
         [HttpGet]
@@ -282,7 +293,7 @@ namespace NewShopAPI.Controllers
             param.Add("MaLoaiSach", MaLoaiSach);
             param.Add("TenSach", TenSach);
             param.Add("Gia", Gia);
-            param.Add("MoTa",MoTa);
+            param.Add("MoTa", MoTa);
             param.Add("Hinh", Hinh);
             param.Add("GiamGia", GiamGia);
             int kq = int.Parse(Database.Database.Exec_Command("sp_ThemSach", param).ToString());
@@ -292,7 +303,7 @@ namespace NewShopAPI.Controllers
                 return NotFound();
 
         }
-	
+
         [Route("api/ServiceController/CapNhatSach")]
         [HttpGet]
         public IHttpActionResult CapNhatSach(int MaSach, int MaLoaiSach, string TenSach, double Gia, string MoTa, string Hinh, int GiamGia)
@@ -312,7 +323,7 @@ namespace NewShopAPI.Controllers
                 return NotFound();
 
         }
-	
+
         [Route("api/ServiceController/XoaSach")]
         [HttpGet]
         public IHttpActionResult XoaSach(int MaSach)
@@ -326,7 +337,7 @@ namespace NewShopAPI.Controllers
                 return NotFound();
         }
 
-	// Sử dụng mã giảm giá
+        // Sử dụng mã giảm giá
         [Route("api/ServiceController/ApDungMa")]
         [HttpGet]
         public IHttpActionResult ApDungMaGiamGia(string MaGiamGia, int MaGioHang)

@@ -14,6 +14,7 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SachAdmin : ContentPage
     {
+        APIString APIString = new APIString();
         public SachAdmin()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/LayDanhSachSachTheoLoaiSach?MaLoaiSach=" + Loaisach.MaLoaiSach);
+                var kq = await http.GetStringAsync(APIString.str + "LayDanhSachSachTheoLoaiSach?MaLoaiSach=" + Loaisach.MaLoaiSach);
                 var sach = JsonConvert.DeserializeObject<List<Sach>>(kq);
                 LstSach.ItemsSource = sach;
                 Sachs = sach;
@@ -77,7 +78,7 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/XoaSach?MaSach=" + item.MaSach);
+                var kq = await http.GetStringAsync(APIString.str + "XoaSach?MaSach=" + item.MaSach);
                 if (int.Parse(kq) > 0)
                 {
                     await DisplayAlert("Thông Báo", "Bạn đã xóa thành công", "OK");

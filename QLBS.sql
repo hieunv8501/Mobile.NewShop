@@ -173,6 +173,13 @@ create procedure sp_LayDanhSachLoaiSach
 as begin
 	select * from LOAISACH
 end
+go
+
+-- Lấy danh sách sách
+create procedure sp_LayDanhSachSach
+as begin
+	select * from SACH
+end
 
 go
 -- Lấy danh sách sách theo mã loại 
