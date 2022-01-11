@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoAn.DaDangNhap"
-             Title="Tài Khoản">
+             Title="Tài Khoản"
+            NavigationPage.HasBackButton="False">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#f4f4f4">
             <Grid Padding="10" BackgroundColor="White">
@@ -15,8 +16,8 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Image Source="icon_account.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></Image>
-                <Label Text="Bùi Văn Tình" HeightRequest="80" FontSize="25" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="0"></Label>
-                <Label Text="tinhbui127@gmail.com" FontSize="18" Grid.Column="1" Grid.Row="1"></Label>
+                <Label x:Name="TenNguoiDung"  HeightRequest="80" FontSize="25" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="0"></Label>
+                <Label x:Name="Mail" FontSize="18" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 
             <ListView x:Name="lst_taikhoan" BackgroundColor="White" ItemTapped="lst_taikhoan_ItemTapped">
@@ -40,8 +41,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="bnt_dangxuat" Text="Đăng xuất" Margin="10" BorderWidth="1" BackgroundColor="White" BorderColor="Blue" VerticalOptions="Start"></Button>
-            <Label Text="Phiên bản 1.10 (13)" HorizontalOptions="Center" HeightRequest="350" FontSize="18"></Label>
+            <Button x:Name="bnt_dangxuat" Clicked="bnt_dangxuat_Clicked" Text="Đăng xuất" Margin="10" BorderWidth="1" BackgroundColor="White" BorderColor="Blue" VerticalOptions="Start"></Button>
+            <Label Text="Phiên bản 1.10 (13)" HorizontalOptions="Center"  FontSize="18"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

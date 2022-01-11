@@ -89,7 +89,7 @@ namespace DoAn
             {
                 HttpClient httpClient = new HttpClient();
                 var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "ThemHoaDon?TenDangNhap=" + TENDANGNHAP + "&NgayHoaDon=" + DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss") + "&MaDiaChi=" + MADIACHI);
-                await DisplayAlert("Thông báo", "Đon hàng đã tạo thành công", "Ok");
+                await DisplayAlert("Thông báo", "Đơn hàng đã tạo thành công", "Ok");
             }
             catch
             {

@@ -741,5 +741,145 @@ namespace NewShopAPI.Controllers
 
         }
 
+        [Route("api/ServiceController/ThemSachVaoGioHang")]
+        [HttpGet]
+        public IHttpActionResult ThemSachVaoGioHang(string TenDangNhap, int MaSach)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+                param.Add("MaSach", MaSach);
+
+                DataTable result = Database.Database.Read_Table("sp_ThemSachVaoGioHang", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+
+        [Route("api/ServiceController/LayThongTinSPDaXem")]
+        [HttpGet]
+        public IHttpActionResult LayThongTinSPDaXem(string TenDangNhap)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+
+                DataTable result = Database.Database.Read_Table("sp_LayThongTinSPDaXem", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/ThemSachDaXem")]
+        [HttpGet]
+        public IHttpActionResult ThemSachDaXem(string TenDangNhap, int MaSach)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+                param.Add("MaSach", MaSach);
+
+                DataTable result = Database.Database.Read_Table("sp_ThemSachDaXem", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+
+        [Route("api/ServiceController/LayThongTinTaiKhoan")]
+        [HttpGet]
+        public IHttpActionResult LayThongTinTaiKhoan(string TenDangNhap)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("TenDangNhap", TenDangNhap);
+            DataTable kq = Database.Database.Read_Table("sp_LayThongTinTaiKhoan", param);
+            if (kq != null && kq.Rows.Count > 0)
+                return Ok(kq);
+            else
+                return NotFound();
+        }
+
+
+        [Route("api/ServiceController/SuaThongTinTaiKhoan")]
+        [HttpGet]
+        public IHttpActionResult SuaThongTinTaiKhoan(string TenDangNhap, string TenKhachHang, string SoDienThoai, string Email, DateTime NgaySinh, bool GioiTinh)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+                param.Add("TenKhachHang", TenKhachHang);
+                param.Add("SoDienThoai", SoDienThoai);
+                param.Add("Email", Email);
+                param.Add("NgaySinh", NgaySinh);
+                param.Add("GioiTinh", GioiTinh);
+
+                DataTable result = Database.Database.Read_Table("sp_SuaThongTinTaiKhoan", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/DoiMatKhau")]
+        [HttpGet]
+        public IHttpActionResult DoiMatKhau(string TenDangNhap, string MatKhau)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+                param.Add("MatKhau", MatKhau);
+
+
+                DataTable result = Database.Database.Read_Table("sp_DoiMatKhau", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/LaySachTheoMaSach")]
+        [HttpGet]
+        public IHttpActionResult LaySachTheoMaSach(string MaSach)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("MaSach", MaSach);
+
+
+                DataTable result = Database.Database.Read_Table("sp_LaySachTheoMaSach", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
     }
 }

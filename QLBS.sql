@@ -65,6 +65,7 @@ create table CT_HOADON
 	MaSach int,
 	SoLuong int,
 	ThanhTien money,
+	Gia money,
 	primary key (MaHoaDon, MaSach)
 )
 
@@ -92,6 +93,13 @@ create table MAGIAMGIA
 	TiLeGiam int,
 )
 
+create table SACHDAXEM
+(
+	TenDangNhap varchar(50),
+	MaSach int,
+	primary key (TenDangNhap, MaSach)
+)
+
 alter table HOADON add constraint fk_HOADON_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
 alter table CT_HOADON add constraint fk_CTHOADON_HOADON foreign key (MaHoaDon) references HOADON(MaHoaDon)
 alter table CT_HOADON add constraint fk_CTHOADON_SACH foreign key (MaSach) references SACH(MaSach)
@@ -101,6 +109,8 @@ alter table HOADON add constraint fk_HOADON_DIACHI foreign key (MaDiaChi) refere
 alter table GIOHANG add constraint fk_GIOHANG_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
 alter table CT_GIOHANG add constraint fk_CTGIOHANG_SACH foreign key (MaSach) references SACH(MaSach)
 alter table CT_GIOHANG add constraint fk_CTGIOHANG_GIOHANG foreign key (MaGioHang) references GIOHANG(MaGioHang)
+alter table SACHDAXEM add constraint fk_SACHDAXEM_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
+alter table SACHDAXEM add constraint fk_SACHDAXEM_SACH foreign key (MaSach) references SACH(MaSach)
 set dateformat dmy;
 
 -- Đổi IP trong link, với cú pháp replace(column_name, 'old_IP', 'new_IP')
@@ -183,7 +193,7 @@ end
 
 go
 -- Lấy danh sách sách theo mã loại 
-create procedure sp_LayDanhSachSachTheoLoaiSach @MaLoaiSach int
+alter procedure sp_LayDanhSachSachTheoLoaiSach @MaLoaiSach int
 as begin
 	if (@MaLoaiSach = 0)
 	begin
@@ -254,7 +264,7 @@ as begin
 	insert into HOADON values (@MaHoaDon, @TenDangNhap, @NgayHoaDon, @TongTien, N'Giao hàng tiêu chuẩn', N'Thanh toán khi nhận hàng', @MaDiaChi, 0, @PhiVanChuyen)
 	
 	-- Tạo chi tiết hóa đơn
-	declare @MaGioHang int , @MaSach int, @SoLuong int, @ThanhTien money
+	declare @MaGioHang int , @MaSach int, @SoLuong int, @ThanhTien money, @GiaSP money
 	select @MaGioHang = MaGioHang from GIOHANG where TenDangNhap = @TenDangNhap
 
 	declare CUR_GIOHANG cursor for select MaSach, SoLuong, ThanhTien from CT_GIOHANG where MaGioHang = @MaGioHang
@@ -262,7 +272,8 @@ as begin
 	FETCH NEXT FROM CUR_GIOHANG INTO @MaSach, @SoLuong, @ThanhTien
 	WHILE @@FETCH_STATUS = 0
 	BEGIN
-		insert into CT_HOADON values (@MaHoaDon, @MaSach, @SoLuong, @ThanhTien)
+		select @GiaSP = Gia - Gia*GiamGia/100 from SACH where MaSach = @MaSach
+		insert into CT_HOADON values (@MaHoaDon, @MaSach, @SoLuong, @ThanhTien, @GiaSP)
 		FETCH NEXT FROM CUR_GIOHANG INTO @MaSach, @SoLuong, @ThanhTien
 	END
 	CLOSE CUR_GIOHANG
@@ -301,7 +312,7 @@ go
 --Lấy CT_HOADON theo MaHoaDon
 create proc sp_LayChiTietHoaDon  @MaHoaDon int
 as begin
-	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, NgayHoaDon, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, NgayHoaDon, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, CT_HOADON.Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
 end
 
 go
@@ -422,9 +433,8 @@ go
 create procedure sp_ThemSachVaoGioHang @TenDangNhap varchar(50), @MaSach int
 as begin
 	declare @MaGioHang int, @ThanhTien money, @Gia money, @GiamGiaSach int
-	select @Gia = Gia from SACH where MaSach = @MaSach
-	select @GiamGiaSach = GiamGia from SACH where MaSach = @MaSach
-	set @ThanhTien = @Gia - @Gia*@GiamGiaSach/100;
+	select @Gia = Gia - Gia*GiamGia/100 from SACH where MaSach = @MaSach
+	set @ThanhTien = @Gia;
 	select @MaGioHang = MaGioHang from GIOHANG where TenDangNhap = @TenDangNhap
 	insert into CT_GIOHANG(MaGioHang, MaSach, ThanhTien) values (@MaGioHang, @MaSach, @ThanhTien);
 end
@@ -771,4 +781,23 @@ as begin
 	select  SoCTHD,  Temp.MaHoaDon, TenSach, TinhTrang  from Temp, CT_HOADON, SACH where Temp.MaHoaDon = CT_HOADON.MaHoaDon and CT_HOADON.MaSach = SACH.MaSach
 
 	drop table Temp
+end
+
+
+go
+create proc sp_LayThongTinSPDaXem @TenDangNhap varchar(50)
+as begin
+
+	select SACH.MaSach, MaLoaiSach, TenSach, MoTa, Gia, GiamGia, Hinh
+	from SACHDAXEM, SACH
+	where SACHDAXEM.MaSach = SACH.MaSach and TenDangNhap = @TenDangNhap
+end
+
+go
+create proc sp_ThemSachDaXem @TenDangNhap varchar(50), @MaSach int
+as begin
+	if not exists (select * from SACHDAXEM where TenDangNhap = @TenDangNhap and MaSach =  @MaSach)
+	begin
+		insert into SACHDAXEM values(@TenDangNhap, @MaSach)
+	end
 end
