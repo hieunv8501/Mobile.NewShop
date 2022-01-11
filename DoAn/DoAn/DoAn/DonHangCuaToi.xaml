@@ -5,26 +5,36 @@
              Title="Đơn hàng của tôi">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lst_donhang" HasUnevenRows="True" ItemTapped="lst_donhang_ItemSelected" Margin="10">
+            <ListView x:Name="lst_donhang" HasUnevenRows="True" ItemTapped="lst_donhang_ItemSelected" Margin="10, 5,10,5">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto" ></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="20"></ColumnDefinition>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
 
-                                </Grid.ColumnDefinitions>
-                                <Label  Text="{Binding TenSach}" FontSize="18" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
-                                <Label  Text="{Binding MaHoaDon}" FontSize="16" Grid.Column="0" Grid.Row="1"></Label>
-                                <Label  Text= "{Binding TinhTrang}" FontSize="16" Grid.Column="0" Grid.Row="2"></Label>
-                                <Image Source="{Binding Icon}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"></Image>
-                            </Grid>
+                                        <SwipeItem Text="{Binding btnDisplayForUser}" BackgroundColor="Red" Invoked="btnXoa_Clicked" CommandParameter="{Binding MaHoaDon}"/>
+
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid Padding="10, 5, 10 , 5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto" ></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+
+                                    </Grid.ColumnDefinitions>
+                                    <Label  Text="{Binding TenSachDisplay}" FontSize="20" TextColor="Black" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0"></Label>
+                                    <Label  Text="Mã đơn hàng:" FontSize="16" Grid.Column="0" Grid.Row="1"></Label>
+                                    <Label  Text="{Binding MaHoaDon}" FontSize="16" Grid.Column="1" Grid.Row="1"></Label>
+                                    <Label  Text= "{Binding TinhTrangDisplay}" FontSize="16" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"></Label>
+                                    <!--<Button x:Name="btnXoa" Clicked="btnXoa_Clicked" CornerRadius="10" Text="{Binding btnDisplayForUser}" BackgroundColor="Orange" FontSize="18"  Margin="160,8,0,8" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" CommandParameter="{Binding MaHoaDon}"></Button>-->
+                                </Grid>
+                            </SwipeView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

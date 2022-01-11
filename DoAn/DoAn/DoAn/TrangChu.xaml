@@ -4,7 +4,348 @@
              xmlns:pkView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:fRating="clr-namespace:Rating;assembly=Rating"
              x:Class="DoAn.TrangChu"
-             >
-  
+             BackgroundColor="#dfe2e2" NavigationPage.HasNavigationBar="False">
+    <StackLayout>
+        <Grid BackgroundColor="#2296f3" Margin="0,0,0,-6" Padding="5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="56"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" Source="logo_newshop_rmbg.png"></Image>
+            <ImageButton x:Name="btnSearchTK" Grid.Row="0" Grid.Column="1" BackgroundColor="#2296f3" HorizontalOptions="End" Padding="3" Source="IconTimKiem.png" Clicked="btnSearchTK_Clicked"></ImageButton>
+            <ImageButton x:Name="btnGH" Grid.Row="0" Grid.Column="2" BackgroundColor="#2296f3" HorizontalOptions="Start" Padding="3" Source="IconGioHang.png" Clicked="btnGH_Clicked"></ImageButton>
+        </Grid>
+        <ScrollView x:Name="fff">
+            <StackLayout>
+                <!--<Label x:Name="ipshow"></Label>-->
+                <!--Banner-->
+                <StackLayout BackgroundColor="White">
+                    <!--pkViewProperty: Border="{pkView:BorderMarkup Color=#FF0000, Thickness='1'}"-->
+                    <pkView:PancakeView HeightRequest="160" Margin="5" CornerRadius="10" >
+                        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <CarouselView
+                            x:Name="TheCarousel"
+                            AbsoluteLayout.LayoutBounds="1,1,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            IndicatorView="indicatorview">
+                                <CarouselView.ItemTemplate>
+                                    <DataTemplate>
+                                        <AbsoluteLayout>
+                                            <StackLayout
+                                            AbsoluteLayout.LayoutBounds="0.5,0.3,AutoSize,AutoSize"
+                                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                                             >
+                                                <Image
+                                                Source="{Binding .}"
+                                                HeightRequest="160" Aspect="AspectFill"/>
+                                            </StackLayout>
+                                        </AbsoluteLayout>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            <IndicatorView
+                    x:Name="indicatorview"
+                    AbsoluteLayout.LayoutBounds="0.5,1,100,25"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    IndicatorColor="LightGray"
+                    IndicatorSize="6"
+                    SelectedIndicatorColor="Gray"/>
+                        </AbsoluteLayout>
+                    </pkView:PancakeView>
+                </StackLayout>
+
+                <!--Chính sách-->
+                <Grid HorizontalOptions="Center" VerticalOptions="Center" Padding="5" BackgroundColor="white">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="35"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="customerpolicy" Text="CHÍNH SÁCH KHÁCH HÀNG TẠI NEWSHOP" TextColor="Black" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"></Label>
+                    <Image x:Name="img1" Grid.Row="1" Grid.Column="0" Source="freeship.jpg"></Image>
+                    <Label x:Name="label1" Text="Free Shipping trên 250.000đ" Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="Center"></Label>
+                    <Image x:Name="img2" Grid.Row="1" Grid.Column="1" Source="qualifiedicon.png" ></Image>
+                    <Label x:Name="label2" Text="Sản phẩm chính hãng" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Center"></Label>
+                    <Image x:Name="img3" Grid.Row="1" Grid.Column="2" Source="money.png"></Image>
+                    <Label x:Name="label3" Text="Nhận hàng rồi thanh toán" Grid.Row="2" Grid.Column="2" HorizontalTextAlignment="Center"></Label>
+                    <Image x:Name="img4" Grid.Row="1" Grid.Column="3" Source="exchange.png"></Image>
+                    <Label x:Name="label4" Text="Đổi trả dễ dàng 7 ngày" Grid.Row="2" Grid.Column="3" HorizontalTextAlignment="Center"></Label>
+                </Grid>
+
+                <!--Siêu khuyến mãi-->
+                <Label Padding="10, 5, 0, 10" Text="SIÊU KHUYẾN MÃI" FontAttributes="Bold" TextColor="White" BackgroundColor="Blue"/>
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" BackgroundColor="Blue" HeightRequest="230" Margin="0,-6,0,0" >
+                    <CollectionView x:Name="listKHUYENMAI"
+                        SelectionMode="Single"
+                        HeightRequest="220"
+                        Margin="8,0,0,10"   
+                        >
+                        <CollectionView.ItemsLayout >
+                            <GridItemsLayout Orientation="Horizontal" Span="2" HorizontalItemSpacing="8" VerticalItemSpacing="8"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <!--Change the SelectedItem BackgroundColor-->
+                                <!--<VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Blue" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>-->
+                                <Frame CornerRadius="10" Padding="5" WidthRequest="180">
+                                    <Grid BackgroundColor="white">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Hinh}" Aspect="AspectFill" WidthRequest="60" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
+                                        <Label Text="{Binding TenSach}" HeightRequest="40" HorizontalOptions="Start" LineBreakMode="TailTruncation" MaxLines="2"  TextColor="Black" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
+                                        <Label Text="{Binding GiaDisplayOld}" TextDecorations="Strikethrough" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+                                        <Label Text="{Binding GiaDisplayNew}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="Body" FontAttributes="Bold" TextColor="Red" Grid.Column="1" Grid.Row="2"/>
+                                        <Label Text="{Binding GiamGiaDisPlay}" HorizontalOptions="End" VerticalOptions="Center" FontSize="Caption" TextColor="white" BackgroundColor="red" Padding="1.5" Grid.Column="2" Grid.Row="2"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+
+                <!--Bán Chạy-->
+                <Grid BackgroundColor="white" Margin="0,0,0,-6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HeightRequest="40" Padding="10,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="BÁN CHẠY" TextColor="Black" FontAttributes="Bold"/>
+                    <Button Grid.Row="0" Grid.Column="1" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" Text="Xem tất cả" TextColor="#151515" FontSize="Small" BackgroundColor="white" TextTransform="None"
+                         x:Name="btnBanChayMore" Clicked="btnBanChayMore_Clicked"/>
+                </Grid>
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" BackgroundColor="White" HeightRequest="200">
+                    <CollectionView x:Name="listBANCHAY"
+                        SelectionMode="Single" 
+                        HeightRequest="190"
+                        Margin="8,0,8,0"
+                        >
+                        <CollectionView.ItemsLayout >
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <AbsoluteLayout WidthRequest="100">
+                                    <Grid BackgroundColor="white" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Source="{Binding Hinh}" WidthRequest="70" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0"/>
+                                        <Label Text="{Binding TenSach}" LineBreakMode="TailTruncation" MaxLines="2" HeightRequest="40" HorizontalOptions="StartAndExpand" TextColor="Black" Grid.Row="1" />
+                                        <Label Text="{Binding GiaDisplayNew}" HorizontalOptions="Center" VerticalOptions="Start" FontSize="14" FontAttributes="Bold" TextColor="Red" Grid.Row="2" Margin="0,-5,0,0"/>
+                                        <Label x:Name="striketext" TextDecorations="Strikethrough" Text="{Binding GiaDisplayOld}" HorizontalOptions="Center" VerticalOptions="Start" FontSize="11" TextColor="Gray" Grid.Row="3"/>
+                                    </Grid>
+                                    <Frame BackgroundColor="red" AbsoluteLayout.LayoutBounds="0,-0.1,0.32,0.2" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  CornerRadius="10">
+                                    </Frame>
+                                    <Label Text="{Binding GiamGiaDisPlay}" AbsoluteLayout.LayoutBounds="0.1,0,0.5,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="Small" TextColor="white" ></Label>
+                                </AbsoluteLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+
+                <!--Sách luyện thi quốc gia 2022-->
+                <Grid BackgroundColor="white" Margin="0,0,0,-6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HeightRequest="40" Padding="10,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="Sách Luyện Thi THPT Quốc Gia 2022" TextColor="Black" FontAttributes="Bold"/>
+                    <Button Grid.Row="0" Grid.Column="1" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" Text="Xem tất cả" TextColor="#151515" FontSize="Small" BackgroundColor="white" TextTransform="None"
+                         x:Name="btnLTQGMore" Clicked="btnLTQGMore_Clicked"/>
+                </Grid>
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" BackgroundColor="White" HeightRequest="200">
+                    <CollectionView x:Name="listLTQG"
+                        SelectionMode="Single" 
+                        HeightRequest="190"
+                        Margin="8,0,8,0"
+                        >
+                        <CollectionView.ItemsLayout >
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <AbsoluteLayout WidthRequest="100">
+                                    <Grid BackgroundColor="white" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Source="{Binding Hinh}" WidthRequest="70" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0"/>
+                                        <Label Text="{Binding TenSach}" LineBreakMode="TailTruncation" MaxLines="2" HeightRequest="40" HorizontalOptions="StartAndExpand" TextColor="Black" Grid.Row="1" />
+                                        <Label Text="{Binding GiaDisplayNew}" HorizontalOptions="Center" VerticalOptions="Start" FontSize="14" FontAttributes="Bold" TextColor="Red" Grid.Row="2" Margin="0,-5,0,0"/>
+                                        <Label x:Name="striketext" TextDecorations="Strikethrough" Text="{Binding GiaDisplayOld}" HorizontalOptions="Center" VerticalOptions="Start" FontSize="11" TextColor="Gray" Grid.Row="3"/>
+                                    </Grid>
+                                    <Frame BackgroundColor="red" AbsoluteLayout.LayoutBounds="0,-0.1,0.32,0.2" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  CornerRadius="10">
+                                    </Frame>
+                                    <Label Text="{Binding GiamGiaDisPlay}" AbsoluteLayout.LayoutBounds="0.02,0,0.5,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="Small" TextColor="white" ></Label>
+                                </AbsoluteLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+
+                <!--Sách văn học-->
+                <Grid BackgroundColor="white" Margin="0,0,0,-6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HeightRequest="40" Padding="10,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="Sách Văn Học" TextColor="Black" FontAttributes="Bold"/>
+                    <Button Grid.Row="0" Grid.Column="1" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" Text="Xem tất cả" TextColor="#151515" FontSize="Small" BackgroundColor="white" TextTransform="None"
+                         x:Name="btnVanHocMore" Clicked="btnVanHocMore_Clicked"/>
+                </Grid>
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" BackgroundColor="White" HeightRequest="200">
+                    <CollectionView x:Name="listVH"
+                        SelectionMode="Single" 
+                        HeightRequest="190"
+                        Margin="8,0,8,0"
+                        >
+                        <CollectionView.ItemsLayout >
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <AbsoluteLayout WidthRequest="100">
+                                    <Grid BackgroundColor="white" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Source="{Binding Hinh}" WidthRequest="70" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0"/>
+                                        <Label Text="{Binding TenSach}" LineBreakMode="TailTruncation" MaxLines="2" HeightRequest="40" HorizontalOptions="StartAndExpand" TextColor="Black" Grid.Row="1" />
+                                        <Label Text="{Binding GiaDisplayNew}" HorizontalOptions="Center" VerticalOptions="Start" FontSize="14" FontAttributes="Bold" TextColor="Red" Grid.Row="2" Margin="0,-5,0,0"/>
+                                        <Label x:Name="striketext" TextDecorations="Strikethrough" Text="{Binding GiaDisplayOld}" HorizontalOptions="Center" VerticalOptions="Start" FontSize="11" TextColor="Gray" Grid.Row="3"/>
+                                    </Grid>
+                                    <Frame BackgroundColor="red" AbsoluteLayout.LayoutBounds="0,-0.1,0.32,0.2" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  CornerRadius="10">
+                                    </Frame>
+                                    <Label Text="{Binding GiamGiaDisPlay}" AbsoluteLayout.LayoutBounds="0.02,0,0.5,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="Small" TextColor="white" ></Label>
+                                </AbsoluteLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+
+                <!--Sách Ngoại Ngữ-->
+                <Grid BackgroundColor="white" Margin="0,0,0,-6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HeightRequest="40" Padding="10,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="Sách Ngoại Ngữ" TextColor="Black" FontAttributes="Bold"/>
+                    <Button Grid.Row="0" Grid.Column="1" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" Text="Xem tất cả" TextColor="#151515" FontSize="Small" BackgroundColor="white" TextTransform="None"
+                         x:Name="btnNN" Clicked="btnNN_Clicked"/>
+                </Grid>
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" BackgroundColor="White" HeightRequest="200">
+                    <CollectionView x:Name="listNN"
+                        SelectionMode="Single" 
+                        HeightRequest="190"
+                        Margin="8,0,8,0"
+                        >
+                        <CollectionView.ItemsLayout >
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <AbsoluteLayout WidthRequest="100">
+                                    <Grid BackgroundColor="white" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Source="{Binding Hinh}" WidthRequest="70" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0"/>
+                                        <Label Text="{Binding TenSach}" LineBreakMode="TailTruncation" MaxLines="2" HeightRequest="40" HorizontalOptions="StartAndExpand" TextColor="Black" Grid.Row="1" />
+                                        <Label Text="{Binding GiaDisplayNew}" HorizontalOptions="Center" VerticalOptions="Start" FontSize="14" FontAttributes="Bold" TextColor="Red" Grid.Row="2" Margin="0,-5,0,0"/>
+                                        <Label x:Name="striketext" TextDecorations="Strikethrough" Text="{Binding GiaDisplayOld}" HorizontalOptions="Center" VerticalOptions="Start" FontSize="11" TextColor="Gray" Grid.Row="3"/>
+                                    </Grid>
+                                    <Frame BackgroundColor="red" AbsoluteLayout.LayoutBounds="0,-0.1,0.32,0.2" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  CornerRadius="10">
+                                    </Frame>
+                                    <Label Text="{Binding GiamGiaDisPlay}" AbsoluteLayout.LayoutBounds="0.02,0,0.5,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="Small" TextColor="white" ></Label>
+                                </AbsoluteLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+
+                <!--Footer-->
+                <Grid BackgroundColor="White" Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="75"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="35"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Black" Text="Mọi yêu cầu hỗ trợ mua hàng xin liên hệ"></Label>
+                    <Button x:Name="phone1" Grid.Row="1" Grid.Column="0" Margin="15,0,10,0" BackgroundColor="Red" TextColor="Black" HorizontalOptions="Center" FontSize="Body" Clicked="phone1_Clicked"></Button>
+                    <Button x:Name="phone2" Grid.Row="1" Grid.Column="1" Margin="10,0,15,0" BackgroundColor="Red" TextColor="Black" HorizontalOptions="Center" FontSize="Body" Clicked="phone2_Clicked"></Button>
+                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Black" HorizontalTextAlignment="Center" Text="Thời gian làm việc từ: 8h:00 đến 20h:00"></Label>
+                    <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Black" Text="Newshop.vn kênh mua sắm trực tuyến" TextTransform="Uppercase"></Label>
+                    <Label x:Name="address1" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" LineBreakMode="WordWrap">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Địa Chỉ Giao Dịch: " TextColor="Black" FontAttributes="Bold" />
+                                <Span Text="53/8 Vườn Lài - P.Phú Thọ Hoà - Quận Tân Phú - TP.Hồ Chí Minh" TextColor="Black"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
 
 </ContentPage>

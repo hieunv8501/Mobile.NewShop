@@ -2,11 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoAn.TimKiem"
-             Title="Tìm kiếm"
+             NavigationPage.HasNavigationBar="False"
 >
-    <ContentPage.Content>
-        <StackLayout BackgroundColor="WhiteSmoke">
-            
+    <StackLayout BackgroundColor="WhiteSmoke">
+        <Grid BackgroundColor="#2296f3" Margin="0,0,0,-6" Padding="5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="56"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition Width="290"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ImageButton x:Name="btnBack" Grid.Row="0" Grid.Column="0" BackgroundColor="#2296f3" HorizontalOptions="Start" Padding="3" Source="IconLeft.png" Clicked="btnBack_Clicked"></ImageButton>
+            <Frame Padding="0" CornerRadius="10" Grid.Row="0" Grid.Column="1" Margin="0,8,0,8">
+                <!--<Entry x:Name="btnEntryTK" Margin="0,-8,0,-5" Placeholder="Nhập từ khóa tìm kiếm..." BackgroundColor="White" WidthRequest="290" HorizontalOptions="Center" FontSize="Medium" TextChanged="btnEntryTK_TextChanged"></Entry>-->
+                <SearchBar x:Name="btnEntryTK" Placeholder="Tìm kiếm gì đó..." TextChanged="btnEntryTK_TextChanged" CancelButtonColor="#2296f3"/>
+            </Frame>
+            <ImageButton x:Name="btnGH" Grid.Row="0" Grid.Column="2" BackgroundColor="#2296f3" HorizontalOptions="Start" Padding="3" Source="IconGioHang.png" Clicked="btnGH_Clicked"></ImageButton>
+        </Grid>
+        <StackLayout>
+            <ListView x:Name="LstTK">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell ImageSource="{Binding Hinh}" Text="{Binding TenLoaiSach}" TextColor="Black" >
+                        </ImageCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView x:Name="LstTK1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell ImageSource="{Binding Hinh}" Text="{Binding TenSach}" TextColor="Black" >
+                        </ImageCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
-    </ContentPage.Content>
+    </StackLayout>
 </ContentPage>

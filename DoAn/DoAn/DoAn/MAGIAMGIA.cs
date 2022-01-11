@@ -7,6 +7,6 @@ namespace DoAn
     public class MAGIAMGIA
     {
         public string MaGiamGia { get; set; }
-        public Nullable<int> TiLeGiam { get; set; }
+        public int TiLeGiam { get; set; }
     }
 }

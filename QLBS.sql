@@ -69,6 +69,7 @@ create table CT_HOADON
 	MaSach int,
 	SoLuong int,
 	ThanhTien money,
+	Gia money,
 	primary key (MaHoaDon, MaSach)
 )
 
@@ -97,6 +98,13 @@ create table MAGIAMGIA
 	TiLeGiam int,
 )
 
+create table SACHDAXEM
+(
+	TenDangNhap varchar(50),
+	MaSach int,
+	primary key (TenDangNhap, MaSach)
+)
+
 alter table HOADON add constraint fk_HOADON_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
 alter table CT_HOADON add constraint fk_CTHOADON_HOADON foreign key (MaHoaDon) references HOADON(MaHoaDon)
 alter table CT_HOADON add constraint fk_CTHOADON_SACH foreign key (MaSach) references SACH(MaSach)
@@ -106,6 +114,8 @@ alter table HOADON add constraint fk_HOADON_DIACHI foreign key (MaDiaChi) refere
 alter table GIOHANG add constraint fk_GIOHANG_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
 alter table CT_GIOHANG add constraint fk_CTGIOHANG_SACH foreign key (MaSach) references SACH(MaSach)
 alter table CT_GIOHANG add constraint fk_CTGIOHANG_GIOHANG foreign key (MaGioHang) references GIOHANG(MaGioHang)
+alter table SACHDAXEM add constraint fk_SACHDAXEM_TAIKHOAN foreign key (TenDangNhap) references TAIKHOAN(TenDangNhap)
+alter table SACHDAXEM add constraint fk_SACHDAXEM_SACH foreign key (MaSach) references SACH(MaSach)
 set dateformat dmy;
 
 -- Đổi IP trong link, với cú pháp replace(column_name, 'old_IP', 'new_IP')
@@ -179,6 +189,13 @@ alter procedure sp_LayDanhSachLoaiSach
 as begin
 	select * from LOAISACH
 end
+go
+
+-- Lấy danh sách sách
+create procedure sp_LayDanhSachSach
+as begin
+	select * from SACH
+end
 
 go
 -- Lấy danh sách sách theo mã loại 
@@ -235,7 +252,44 @@ end
 
 --exec sp_ThemTaiKhoan 'tinh', '1', 'Bùi Văn Tình', '123456789', 'tinhbui@gmail.com', '07/02/2001', '1'
 --delete from TAIKHOAN
---select * fr
+
+--select * from TAIKHOAN
+--select * from GIOHANG
+
+go
+-- Khi đặt hàng sẽ gọi
+create procedure sp_ThemHoaDon @TenDangNhap varchar(50), @NgayHoaDon datetime, @MaDiaChi int
+as begin
+	-- Tạo hóa đơn
+	declare @TongTien money, @MaHoaDon int, @Gia money, @PhiVanChuyen money
+	select top 1 @Gia = Gia from GIAOHANG
+	select @TongTien = TongTien + @Gia from GIOHANG where TenDangNhap = @TenDangNhap
+	select @PhiVanChuyen = Gia from GIAOHANG
+	set @MaHoaDon = 1
+	while @MaHoaDon in (select MaHoaDon from HOADON)
+		set @MaHoaDon = @MaHoaDon + 1
+	insert into HOADON values (@MaHoaDon, @TenDangNhap, @NgayHoaDon, @TongTien, N'Giao hàng tiêu chuẩn', N'Thanh toán khi nhận hàng', @MaDiaChi, 0, @PhiVanChuyen)
+	
+	-- Tạo chi tiết hóa đơn
+	declare @MaGioHang int , @MaSach int, @SoLuong int, @ThanhTien money, @GiaSP money
+	select @MaGioHang = MaGioHang from GIOHANG where TenDangNhap = @TenDangNhap
+
+	declare CUR_GIOHANG cursor for select MaSach, SoLuong, ThanhTien from CT_GIOHANG where MaGioHang = @MaGioHang
+	open CUR_GIOHANG
+	FETCH NEXT FROM CUR_GIOHANG INTO @MaSach, @SoLuong, @ThanhTien
+	WHILE @@FETCH_STATUS = 0
+	BEGIN
+		select @GiaSP = Gia - Gia*GiamGia/100 from SACH where MaSach = @MaSach
+		insert into CT_HOADON values (@MaHoaDon, @MaSach, @SoLuong, @ThanhTien, @GiaSP)
+		FETCH NEXT FROM CUR_GIOHANG INTO @MaSach, @SoLuong, @ThanhTien
+	END
+	CLOSE CUR_GIOHANG
+	DEALLOCATE CUR_GIOHANG
+
+	-- Xóa CT_GioHang
+	delete from CT_GIOHANG where MaGioHang = @MaGioHang
+	update GIOHANG set DaDungMaGiamGia = 0 where MaGioHang = @MaGioHang
+end
 
 --Cập nhật tình trạng hóa đơn
 go
@@ -250,16 +304,21 @@ go
 --Lấy thông tin tất cả hóa đơn
 create proc sp_LayTatCaHoaDon
 as begin
-	select * from HOADON
+	select COUNT(*) as SoCTHD, HOADON.MaHoaDon, TinhTrang into Temp
+	from HOADON, CT_HOADON
+	where HOADON.MaHoaDon = CT_HOADON.MaHoaDon
+	group by HOADON.MaHoaDon, TinhTrang 
+
+	select  SoCTHD,  Temp.MaHoaDon, TenSach, TinhTrang  from Temp, CT_HOADON, SACH where Temp.MaHoaDon = CT_HOADON.MaHoaDon and CT_HOADON.MaSach = SACH.MaSach
+
+	drop table Temp
 end
 
 go
 --Lấy CT_HOADON theo MaHoaDon
-create proc sp_LayChiTietHoaDon @MaHoaDon int
+create proc sp_LayChiTietHoaDon  @MaHoaDon int
 as begin
-	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   
-	from CT_HOADON, HOADON, DIACHI, SACH 
-	where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, NgayHoaDon, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, CT_HOADON.Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
 end
 
 go
@@ -278,9 +337,11 @@ end
 
 --Xóa chi tiết hóa đơn
 go
-alter procedure sp_XoaChiTietHoaDon @MaHoaDon int, @MaSach int
+
+create procedure sp_XoaChiTietHoaDon @MaHoaDon int
 as begin
-	delete from CT_HOADON where MaHoaDon = @MaHoaDon and MaSach = @MaSach
+	delete from CT_HOADON where MaHoaDon = @MaHoaDon
+	delete from HOADON where MaHoaDon = @MaHoaDon
 end
 
 --create trigger trigger_insert_cthoadon on CT_HOADON
@@ -379,9 +440,8 @@ go
 alter procedure sp_ThemSachVaoGioHang @TenDangNhap varchar(50), @MaSach int
 as begin
 	declare @MaGioHang int, @ThanhTien money, @Gia money, @GiamGiaSach int
-	select @Gia = Gia from SACH where MaSach = @MaSach
-	select @GiamGiaSach = GiamGia from SACH where MaSach = @MaSach
-	set @ThanhTien = @Gia - @Gia*@GiamGiaSach/100;
+	select @Gia = Gia - Gia*GiamGia/100 from SACH where MaSach = @MaSach
+	set @ThanhTien = @Gia;
 	select @MaGioHang = MaGioHang from GIOHANG where TenDangNhap = @TenDangNhap
 	insert into CT_GIOHANG(MaGioHang, MaSach, ThanhTien) values (@MaGioHang, @MaSach, @ThanhTien);
 end
@@ -709,7 +769,7 @@ begin catch
 set @CurrentID=0
 end catch
 
-drop table Sach
+
 
 delete LOAISACH
 DBCC CHECKIDENT ('[LOAISACH]', RESEED, 0);
@@ -783,3 +843,42 @@ declare @id int;
 exec sp_ThemTaiKhoan 'hau1234','1234','phamphuchau','12345678','hau@gmail.com','01/01/2001',1,1,@id;
 print(@id);
 select * from TaiKhoan
+
+go
+create proc sp_CheckDiaChi @MaDiaChi int
+as begin
+	select DIACHI.MaDiaChi from DIACHI, HOADON where DIACHI.MaDiaChi = HoaDon.MaDiaChi and DIACHI.MaDiaChi = @MaDiaChi
+end
+
+go
+--Lấy thông tin hóa đơn theo MaHoaDon
+create proc sp_LayThongTinHoaDonTheoMa @MaHoaDon int
+as begin
+	select COUNT(*) as SoCTHD, HOADON.MaHoaDon, TinhTrang into Temp
+	from HOADON, CT_HOADON
+	where HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+	group by HOADON.MaHoaDon, TinhTrang 
+
+	select  SoCTHD,  Temp.MaHoaDon, TenSach, TinhTrang  from Temp, CT_HOADON, SACH where Temp.MaHoaDon = CT_HOADON.MaHoaDon and CT_HOADON.MaSach = SACH.MaSach
+
+	drop table Temp
+end
+
+
+go
+create proc sp_LayThongTinSPDaXem @TenDangNhap varchar(50)
+as begin
+
+	select SACH.MaSach, MaLoaiSach, TenSach, MoTa, Gia, GiamGia, Hinh
+	from SACHDAXEM, SACH
+	where SACHDAXEM.MaSach = SACH.MaSach and TenDangNhap = @TenDangNhap
+end
+
+go
+create proc sp_ThemSachDaXem @TenDangNhap varchar(50), @MaSach int
+as begin
+	if not exists (select * from SACHDAXEM where TenDangNhap = @TenDangNhap and MaSach =  @MaSach)
+	begin
+		insert into SACHDAXEM values(@TenDangNhap, @MaSach)
+	end
+end

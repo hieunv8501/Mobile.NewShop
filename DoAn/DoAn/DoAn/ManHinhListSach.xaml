@@ -30,7 +30,7 @@
                                 </Image>
                                 <Label Text="{Binding TenSach}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" ></Label>
                                 <Label Text="{Binding GiaDisplay,StringFormat='{0:0.##}'}" Grid.Row="2" Grid.Column="1" TextColor="{DynamicResource  btnMuaColor}" ></Label>
-                                <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding .}" Clicked="cmdchonmua_Clicked" Grid.Row="3" Grid.Column="1" HeightRequest="30" BackgroundColor="{DynamicResource  btnMuaColor}" TextColor="{DynamicResource background}"></Button>
+                                <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding MaSach}" Clicked="cmdchonmua_Clicked" Grid.Row="3" Grid.Column="1" HeightRequest="30" BackgroundColor="{DynamicResource  btnMuaColor}" TextColor="{DynamicResource background}"></Button>
                             </Grid>
 
                         </ViewCell>

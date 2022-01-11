@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,11 +14,20 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DoiMatKhau : ContentPage
     {
+        string TENDANGNHAP;
+        APIString APIString = new APIString();
         public DoiMatKhau()
         {
             InitializeComponent();
         }
-        private void save_Clicked(object sender, EventArgs e)
+        public DoiMatKhau(string TenDangNhap)
+        {
+            InitializeComponent();
+            TENDANGNHAP = TenDangNhap;
+
+        }
+
+        private async void save_Clicked(object sender, EventArgs e)
         {
             Thongbao1.Text = "";
             Thongbao2.Text = "";
@@ -24,8 +35,19 @@ namespace DoAn
             {
                 if (MKmoi.Text == XacNhan.Text)
                 {
-                    DisplayAlert("Thông báo: ", "Đổi mật khẩu thành công", "Ok");
-                    Navigation.PushAsync(new TaiKhoan());
+                    try
+                    {
+                        HttpClient httpClient = new HttpClient();
+                        var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "DoiMatKhau?TenDangNhap=" + TENDANGNHAP + "&MatKhau=" + MKmoi.Text);
+
+                        await DisplayAlert("Thông báo: ", "Đổi mật khẩu thành công", "Ok");
+                        await Navigation.PopAsync();
+                    }
+                    catch
+                    {
+                        await DisplayAlert("Thông báo: ", "Đổi mật khẩu thất bại", "Ok");
+                    }
+
                 }
                 else
                 {
