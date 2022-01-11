@@ -21,9 +21,9 @@
                         <ColumnDefinition Width="10*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Image Source="UserIcons.png" Grid.Column="0" Grid.Row="0"></Image>
-                    <Entry Placeholder="Email / Số điện thoại" Grid.Column="1" Grid.Row="0"></Entry>
+                    <Entry x:Name="lbTenDangNhap" Placeholder="Tên đăng nhập" Grid.Column="1" Grid.Row="0"></Entry>
                     <Image Source="passwordicon.ico" Grid.Column="0" Grid.Row="1"></Image>
-                    <Entry Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1"></Entry>
+                    <Entry x:Name="lbMatKhau" Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1"></Entry>
                 </Grid>
             </StackLayout>
             <StackLayout Margin="20,5,20,0">

@@ -16,5 +16,16 @@ namespace DoAn
         {
             InitializeComponent();
         }
+
+        private void general_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ChinhSachVaQuyDinhChung());
+        }
+
+        private void security_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ChinhSachBaoMatThongTin());
+        }
+
     }
 }

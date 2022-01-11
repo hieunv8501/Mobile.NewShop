@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,11 +14,50 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ThongTinTaiKhoan : ContentPage
     {
+        string TENDANGNHAP;
+        APIString APIString = new APIString();
         public ThongTinTaiKhoan()
         {
             InitializeComponent();
         }
-        private void edit_Clicked(object sender, EventArgs e)
+        public ThongTinTaiKhoan(string TenDangNhap)
+        {
+            InitializeComponent();
+            TENDANGNHAP = TenDangNhap;
+            KhoiTao();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            KhoiTao();
+        }
+
+        async void KhoiTao()
+        {
+            HttpClient httpClient = new HttpClient();
+            var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "LayThongTinTaiKhoan?TenDangNhap=" + TENDANGNHAP);
+            var ConnectAPIConvert = JsonConvert.DeserializeObject<List<TAIKHOAN>>(ConnectAPI);
+            var SelectFirst = ConnectAPIConvert.First();
+
+            hoten.Text = SelectFirst.TenKhachHang;
+            sdt.Text = SelectFirst.SoDienThoai;
+            email.Text = SelectFirst.Email;
+            ngaysinh.Date = SelectFirst.NgaySinh;
+
+            if (SelectFirst.GioiTinh == true)
+            {
+                Nam.IsChecked = true;
+            }
+            else
+            {
+                Nu.IsChecked = true;
+            }
+
+        }
+
+
+
+        private async void edit_Clicked(object sender, EventArgs e)
         {
             if (edit.Text == "Sửa")
             {
@@ -30,6 +71,21 @@ namespace DoAn
             }
             else
             {
+                bool GioiTinh;
+                if (Nam.IsChecked == true)
+                {
+                    GioiTinh = true;
+                }
+                else
+                {
+                    GioiTinh = false;
+                }
+
+                HttpClient httpClient = new HttpClient();
+                var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "SuaThongTinTaiKhoan?TenDangNhap=" + TENDANGNHAP + "&TenKhachHang=" + hoten.Text + "&SoDienThoai=" + sdt.Text + "&Email=" + email.Text + "&NgaySinh=" + ngaysinh.Date.ToString("yyyy'-'MM'-'dd") + "&GioiTinh=" + GioiTinh);
+
+
+
                 hoten.IsReadOnly = true;
                 sdt.IsReadOnly = true;
                 email.IsReadOnly = true;
@@ -37,6 +93,8 @@ namespace DoAn
                 Nam.IsEnabled = false;
                 Nu.IsEnabled = false;
                 edit.Text = "Sửa";
+
+                OnAppearing();
             }
 
         }

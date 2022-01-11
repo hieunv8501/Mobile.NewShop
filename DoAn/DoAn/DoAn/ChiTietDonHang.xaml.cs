@@ -46,5 +46,13 @@ namespace DoAn
             lstCT_DONHANG.ItemsSource = ConnectAPIConvert;
 
         }
+
+        //private void btnMuaLai_Clicked(object sender, EventArgs e)
+        //{
+        //    Button selected = (Button)sender;
+        //    string MaSach = selected.CommandParameter.ToString();
+
+        //    Navigation.PushAsync(new ChiTietSach(MaSach))
+        //}
     }
 }

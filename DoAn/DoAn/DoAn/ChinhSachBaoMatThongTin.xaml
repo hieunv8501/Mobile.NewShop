@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.ChinhSachBaoMatThongTin"
+             Title="Hỗ trợ">
+    <ScrollView>
+        <StackLayout Padding="15">
+
+            <Label TextColor="Black" FontSize="15" Text='        NEWSHOP.VN cam kết sẽ bảo mật những thông tin mang tính riêng tư của khách hàng. Quý khách vui lòng đọc bản "Chính sách bảo mật" dưới đây để hiểu hơn những cam kết mà chúng tôi thực hiện, nhằm tôn trọng và bảo vệ quyền lợi của người truy cập:'></Label>
+
+            <Label TextColor="Black" FontAttributes="Bold" FontSize="15" Text="1. Thu thập thông tin cá nhân:"></Label>
+            <Label TextColor="Black" FontAttributes="Italic" Margin="20,0,0,0" FontSize="15" Text="- Các thông tin thu thập thông qua website newshop.vn sẽ giúp chúng tôi:"></Label>
+
+            <Label TextColor="Black"  Margin="40,0,0,0" Text="• Hỗ trợ khách hàng khi mua sản phẩm "></Label>
+            <Label TextColor="Black"  Margin="40,0,0,0" Text="• Giải đáp thắc mắc khách hàng "></Label>
+            <Label TextColor="Black"  Margin="40,0,0,0" Text="• Cung cấp cho khách hàng thông tin mới nhất trên Website của chúng tôi"></Label>
+
+            <Label TextColor="Black" FontAttributes="Italic" Margin="20,0,0,0" FontSize="15" Text="- Để truy cập và sử dụng một số dịch vụ tại newshop.vn , quý khách có thể sẽ được yêu cầu đăng ký với chúng tôi thông tin cá nhân (Email, Họ tên, Số ĐT liên lạc, địa chỉ). Mọi thông tin khai báo phải đảm bảo tính chính xác và hợp pháp. Newshop.vn không chịu mọi trách nhiệm liên quan đến pháp luật của thông tin khai báo."></Label>
+            <Label TextColor="Black" FontAttributes="Italic" Margin="20,0,0,0" FontSize="15" Text="- Chúng tôi cũng có thể thu thập thông tin về số lần viếng thăm, bao gồm số trang quý khách xem, số links (liên kết) bạn click và những thông tin khác liên quan đến việc kết nối đến newshop.vn. Chúng tôi cũng thu thập các thông tin mà trình duyệt Web (Browser) quý khách sử dụng mỗi khi truy cập vào website newshop.vn , bao gồm: địa chỉ IP, loại Browser, ngôn ngữ sử dụng, thời gian và những địa chỉ mà Browser truy xuất đến."></Label>
+
+            <Label TextColor="Black"  FontAttributes="Bold" FontSize="15" Text="2. Sử dụng thông tin cá nhân:"></Label>
+
+            <Label TextColor="Black" FontAttributes="Italic" Margin="20,0,0,0" FontSize="15" Text='- Newshop.vn thu thập và sử dụng thông tin cá nhân quý khách với mục đích phù hợp và hoàn toàn tuân thủ nội dung của "Chính sách bảo mật" này.'></Label>
+            <Label TextColor="Black" FontAttributes="Italic" Margin="20,0,0,0" FontSize="15" Text="- Khi cần thiết, chúng tôi có thể sử dụng những thông tin này để liên hệ trực tiếp với bạn dưới các hình thức như: gởi thư ngỏ, đơn đặt hàng, thư cảm ơn, thông tin về kỹ thuật và bảo mật, quý khách có thể nhận được thư định kỳ cung cấp thông tin sản phẩm, dịch vụ mới, thông tin về các sự kiện sắp tới hoặc thông tin tuyển dụng nếu quý khách đăng kí nhận email thông báo"></Label>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -59,8 +59,8 @@
                                     </Grid.ColumnDefinitions>
                                     <Image  Source="{Binding Hinh}" Margin="0,0,5,0" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"></Image>
                                     <Label  Text="{Binding TenSach}" TextColor="Black" Grid.Row="0" FontSize="18" Grid.Column="1" Grid.ColumnSpan="3"></Label>
-                                    <Button Text="Viết nhận xét" Grid.Row="1" Grid.Column="1" BackgroundColor="#ffc420" FontSize="14" CornerRadius="15"></Button>
-                                    <Button Text="Mua lại" Grid.Row="1" Grid.Column="2" BackgroundColor="#ff7b80" TextColor="White" FontSize="14"  CornerRadius="15"></Button>
+                                    <!--<Button Text="Viết nhận xét" Grid.Row="1" Grid.Column="1" BackgroundColor="#ffc420" FontSize="14" CornerRadius="15"></Button>-->
+                                    <!--<Button x:Name="btnMuaLai" Clicked="btnMuaLai_Clicked" CommandParameter="{Binding MaSach}" Text="Mua lại" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" BackgroundColor="#ff7b80" TextColor="White" FontSize="14"  CornerRadius="15"></Button>-->
                                     <Label Text="{Binding Gia_SL}" FontSize="18" Grid.Row="2" Grid.Column="1" TextColor="Red" VerticalOptions="End"></Label>
                                     <!--<Label Text="{Binding SoLuong}" Grid.Row="2" Grid.Column="2" VerticalOptions="End"></Label>-->
                                     <Label Text="{Binding ThanhTien}" FontSize="18" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" VerticalOptions="End" HorizontalOptions="End" TextColor="Red"></Label>

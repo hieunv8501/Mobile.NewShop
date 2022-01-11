@@ -25,8 +25,17 @@ namespace DoAn
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            LayThongTinGioHang("tinh");
-            TenDangNhap = "tinh";
+            TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
+            if (tENDANGNHAP.Get_TenDangNhap() != null)
+            {
+                LayThongTinGioHang(tENDANGNHAP.Get_TenDangNhap());
+                TenDangNhap = tENDANGNHAP.Get_TenDangNhap();
+            }
+            else
+            {
+                DatHang.IsEnabled = false;
+            }
+
         }
 
         async void LayThongTinGioHang(string TenDangNhap)
@@ -106,7 +115,7 @@ namespace DoAn
 
         private void DatHang_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DatHang("tinh"));
+            Navigation.PushAsync(new DatHang(TenDangNhap));
         }
     }
 }
