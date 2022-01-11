@@ -11,7 +11,8 @@ create table TAIKHOAN
 	SoDienThoai varchar(10),
 	Email varchar(50),
 	NgaySinh datetime,
-	GioiTinh bit
+	GioiTinh bit,
+	IsAdmin bit
 )
 
 create table LOAISACH
@@ -114,7 +115,7 @@ where Hinh is not null;
 --select * from SACH
 --select * from LOAISACH
 
-insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1)
+insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1, 1), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1, 1), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1, 1)
 insert into LOAISACH values (N'Sách Văn Học', N'http://192.168.1.4/newshopwebapi/Image/vanhoc.jpg'), 
 			(N'Sách Tham Khảo', N'http://192.168.1.4/newshopwebapi/Image/thamkhao.jpg'), 
 			(N'Sách Bán Chạy', N'http://192.168.1.4/newshopwebapi/Image/BanChay.jpg'), 
