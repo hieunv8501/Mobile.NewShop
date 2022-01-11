@@ -25,7 +25,7 @@ namespace NewShopAPI.Controllers
 
         [Route("api/ServiceController/ThemTaiKhoan")]
         [HttpGet]
-        public IHttpActionResult ThemTaiKhoan(string TenDangNhap, string MatKhau, string TenKhachHang, string SoDienThoai, string Email, DateTime NgaySinh, bool GioiTinh)
+        public IHttpActionResult ThemTaiKhoan(string TenDangNhap, string MatKhau, string TenKhachHang, string SoDienThoai, string Email, DateTime NgaySinh, int GioiTinh,int IsAdmin)
         {
             try
             {
@@ -37,8 +37,12 @@ namespace NewShopAPI.Controllers
                 param.Add("Email", Email);
                 param.Add("NgaySinh", NgaySinh);
                 param.Add("GioiTinh", GioiTinh);
-                DataTable kq = Database.Database.Read_Table("sp_ThemTaiKhoan", param);
-                return Ok(kq);
+                param.Add("IsAdmin", IsAdmin);
+                int kq = int.Parse(Database.Database.Exec_Command("sp_ThemTaiKhoan", param).ToString());
+                if (kq > 0)
+                    return Ok(kq);
+                else
+                    return NotFound();
             }
             catch
             {
@@ -555,6 +559,40 @@ namespace NewShopAPI.Controllers
                 return NotFound();
             }
 
+        }
+
+        //phan Tai Khoan
+        [Route("api/ServiceController/CapNhatTaiKhoan")]
+        [HttpGet]
+        public IHttpActionResult CapNhatTaiKhoan(string TenDangNhap, string MatKhau, string TenKhachHang, string SoDienThoai, string Email, DateTime NgaySinh, int GioiTinh, int IsAdmin)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("TenDangNhap", TenDangNhap);
+            param.Add("MatKhau", MatKhau);
+            param.Add("TenKhachHang", TenKhachHang);
+            param.Add("SoDienThoai", SoDienThoai);
+            param.Add("Email", Email);
+            param.Add("NgaySinh", NgaySinh);
+            param.Add("GioiTinh", GioiTinh);
+            param.Add("IsAdmin", IsAdmin);
+            int kq = int.Parse(Database.Database.Exec_Command("sp_CapNhatTaiKhoan", param).ToString());
+            if (kq > 0)
+                return Ok(kq);
+            else
+                return NotFound();
+        }
+
+        [Route("api/ServiceController/XoaTaiKhoan")]
+        [HttpGet]
+        public IHttpActionResult XoaTaiKhoan(string TenDangNhap)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("TenDangNhap", TenDangNhap);
+            int kq = int.Parse(Database.Database.Exec_Command("sp_XoaTaiKhoan", param).ToString());
+            if (kq > 0)
+                return Ok(kq);
+            else
+                return NotFound();
         }
 
         [Route("api/ServiceController/LayTatCaHoaDon")]

@@ -3,7 +3,7 @@ go
 use QuanLyBanSach
 go
 
-create table TAIKHOAN
+create table  TAIKHOAN
 (	
 	TenDangNhap varchar(50) primary key,
 	MatKhau varchar(50),
@@ -11,9 +11,12 @@ create table TAIKHOAN
 	SoDienThoai varchar(10),
 	Email varchar(50),
 	NgaySinh datetime,
-	GioiTinh bit
+	GioiTinh bit, 
+	IsAdmin bit default 0
 )
-
+select* from TAIKHOAN
+DROP TABLE TAIKHOAN
+DELETE TAIKHOAN
 create table LOAISACH
 (
 	MaLoaiSach int identity(1,1) primary key,
@@ -54,6 +57,7 @@ create table HOADON
 	PhiVanChuyen money,
 )
 
+DROP TABLE HOADON
 create table GIAOHANG
 (
 	Gia money primary key,
@@ -69,6 +73,7 @@ create table CT_HOADON
 	primary key (MaHoaDon, MaSach)
 )
 
+drop table CT_HOADON
 -- Giỏ hàng sẽ được tạo khi thêm tài khoản
 create table GIOHANG 
 (
@@ -123,8 +128,9 @@ where Hinh is not null;
 
 --select * from SACH
 --select * from LOAISACH
-
-insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1)
+select * from taikhoan
+insert into TAIKHOAN values ('hieu123', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1,'')
+insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1,), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1,0), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1,0)
 insert into LOAISACH values (N'Sách Văn Học', N'http://192.168.1.4/newshopwebapi/Image/vanhoc.jpg'), 
 			(N'Sách Tham Khảo', N'http://192.168.1.4/newshopwebapi/Image/thamkhao.jpg'), 
 			(N'Sách Bán Chạy', N'http://192.168.1.4/newshopwebapi/Image/BanChay.jpg'), 
@@ -164,14 +170,14 @@ insert into SACH values (1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Th�
 go
 
 -- Lấy thông tin tài khoản theo tên đăng nhâp
-create procedure sp_LayDanhSachTaiKhoan
+alter procedure sp_LayDanhSachTaiKhoan
 as begin
 	select * from TAIKHOAN
 end
 
 go
 -- Lấy thông tin tài khoản theo tên đăng nhâp
-create procedure sp_LayThongTinTaiKhoan @TenDangNhap nvarchar(50)
+alter procedure sp_LayThongTinTaiKhoan @TenDangNhap nvarchar(50)
 as begin
 	select * from TAIKHOAN where TenDangNhap = @TenDangNhap
 end
@@ -179,7 +185,7 @@ end
 go
 
 -- Lấy danh sách loại sách
-create procedure sp_LayDanhSachLoaiSach
+alter procedure sp_LayDanhSachLoaiSach
 as begin
 	select * from LOAISACH
 end
@@ -197,11 +203,11 @@ alter procedure sp_LayDanhSachSachTheoLoaiSach @MaLoaiSach int
 as begin
 	if (@MaLoaiSach = 0)
 	begin
-		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
+		select MaSach,LOAISACH.MaLoaiSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 	end
 	else begin
-		select MaSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
+		select MaSach,LOAISACH.MaLoaiSach, LOAISACH.TenLoaiSach, TenSach, Gia, MoTa, SACH.Hinh, SACH.GiamGia
 		from SACH join LOAISACH on SACH.MaLoaiSach = LOAISACH.MaLoaiSach
 		where LOAISACH.MaLoaiSach = @MaLoaiSach
 	end
@@ -211,7 +217,7 @@ go
 --exec sp_LayDanhSachSachTheoLoaiSach 3
 
 -- Lấy danh sách sách theo mã khuyến mãi của sách
-create procedure sp_LayDanhSachSachTheoKhuyenMai
+alter procedure sp_LayDanhSachSachTheoKhuyenMai
 as begin
 	select top 5 *
 	from SACH
@@ -220,7 +226,7 @@ end
 go
 
 -- Lấy hóa đơn theo tên đăng nhâp
-create procedure sp_LayHoaDonTheoTenDangNhap @TenDangNhap varchar(50)
+alter procedure sp_LayHoaDonTheoTenDangNhap @TenDangNhap varchar(50)
 as begin
 	select *
 	from HOADON 
@@ -229,7 +235,7 @@ end
 
 go
 -- Lấy CTHD theo mã hóa đơn
-create procedure sp_LayCTHDTheoMaHoaDon @MaHoaDon int
+alter procedure sp_LayCTHDTheoMaHoaDon @MaHoaDon int
 as begin
 	select MaHoaDon, SACH.TenSach, SoLuong, SACH.Gia, SACH.GiamGia, ThanhTien, SACH.Hinh
 	from CT_HOADON join SACH on CT_HOADON.MaSach = SACH.MaSach
@@ -238,7 +244,7 @@ end
 
 go
 --Thêm tài khoản
-create procedure sp_ThemTaiKhoan @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit
+alter procedure sp_ThemTaiKhoan @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit
 as begin
 	insert into TAIKHOAN values(@TenDangNhap, @MatKhau, @TenKhachHang, @SoDienThoai, @Email, @NgaySinh, @GioiTinh)
 	insert into GIOHANG(TenDangNhap) values(@TenDangNhap) -- Tạo giỏ hàng cho tải khoản
@@ -246,6 +252,7 @@ end
 
 --exec sp_ThemTaiKhoan 'tinh', '1', 'Bùi Văn Tình', '123456789', 'tinhbui@gmail.com', '07/02/2001', '1'
 --delete from TAIKHOAN
+
 --select * from TAIKHOAN
 --select * from GIOHANG
 
@@ -284,10 +291,9 @@ as begin
 	update GIOHANG set DaDungMaGiamGia = 0 where MaGioHang = @MaGioHang
 end
 
-
 --Cập nhật tình trạng hóa đơn
 go
-create procedure sp_CapNhapTinhTrangHoaDon @MaHoaDon int
+alter procedure sp_CapNhapTinhTrangHoaDon @MaHoaDon int
 as begin
 	update HOADON 
 	set TinhTrang = 1
@@ -331,6 +337,7 @@ end
 
 --Xóa chi tiết hóa đơn
 go
+
 create procedure sp_XoaChiTietHoaDon @MaHoaDon int
 as begin
 	delete from CT_HOADON where MaHoaDon = @MaHoaDon
@@ -430,7 +437,7 @@ end
 
 go
 -- Thêm sách vào giỏ hàng 
-create procedure sp_ThemSachVaoGioHang @TenDangNhap varchar(50), @MaSach int
+alter procedure sp_ThemSachVaoGioHang @TenDangNhap varchar(50), @MaSach int
 as begin
 	declare @MaGioHang int, @ThanhTien money, @Gia money, @GiamGiaSach int
 	select @Gia = Gia - Gia*GiamGia/100 from SACH where MaSach = @MaSach
@@ -448,7 +455,7 @@ end
 
 go
 -- Giảm số lượng
-create procedure sp_GiamSoLuong @MaGioHang int, @MaSach int
+alter procedure sp_GiamSoLuong @MaGioHang int, @MaSach int
 as begin
 	declare @SoLuongHienTai int
 	select @SoLuongHienTai = SoLuong from CT_GIOHANG where MaGioHang = @MaGioHang and MaSach = @MaSach
@@ -468,7 +475,7 @@ as begin
 end
 go
 -- Tăng số lượng
-create procedure sp_TangSoLuong @MaGioHang nvarchar(50), @MaSach int
+alter procedure sp_TangSoLuong @MaGioHang nvarchar(50), @MaSach int
 as begin
 	declare @SoLuongHienTai int
 	select @SoLuongHienTai = SoLuong from CT_GIOHANG where MaGioHang = @MaGioHang and MaSach = @MaSach
@@ -497,7 +504,7 @@ end
 
 go
 -- Lấy thông tin giỏ hàng theo tên đăng nhập
-create procedure sp_LayThongTinGioHang @TenDangNhap varchar(50)
+alter procedure sp_LayThongTinGioHang @TenDangNhap varchar(50)
 as begin
 
 	select TenSach, ThanhTien, SoLuong, Hinh, TongTien, GIOHANG.MaGioHang, CT_GIOHANG.MaSach
@@ -510,7 +517,7 @@ end
 
 go
 -- Thêm mã giảm giá
-create procedure sp_ThemMaGiamGia @MaGiamGia varchar(5), @TiLeGiam int
+alter procedure sp_ThemMaGiamGia @MaGiamGia varchar(5), @TiLeGiam int
 as begin
 	if not exists (select * from MAGIAMGIA where  MaGiamGia = @MaGiamGia)
 	begin
@@ -527,7 +534,7 @@ end
 
 go
 -- Sửa mã giảm giá
-create procedure sp_SuaMaGiamGia @MaGiamGia varchar(5), @TiLeGiam int
+alter procedure sp_SuaMaGiamGia @MaGiamGia varchar(5), @TiLeGiam int
 as begin
 	if @TiLeGiam > 0 and @TiLeGiam < 100
 	begin 
@@ -539,21 +546,21 @@ end
 
 go
 -- Xóa mã giảm giá
-create procedure sp_XoaMaGiamGia @MaGiamGia varchar(5)
+alter procedure sp_XoaMaGiamGia @MaGiamGia varchar(5)
 as begin
 	Delete from MAGIAMGIA where MaGiamGia = @MaGiamGia
 end
 
 go
 -- Lây danh sách mã giảm giá
-create procedure sp_LayDanhSachMaGiamGia 
+alter procedure sp_LayDanhSachMaGiamGia 
 as begin
 	select * from MAGIAMGIA
 end
 
 go
 -- Lấy mã giảm giá
-create procedure sp_LayMaGiamGia @MaGiamGia varchar(5)
+alter procedure sp_LayMaGiamGia @MaGiamGia varchar(5)
 as begin
 	Select * from MAGIAMGIA where MaGiamGia = @MaGiamGia
 end
@@ -652,7 +659,7 @@ as begin
 end
 
 --Thêm sách
-create PROC sp_ThemSach (@MaLoaiSach int,
+alter PROC sp_ThemSach (@MaLoaiSach int,
 	@TenSach nvarchar (100),
 	@Gia money,
 	@MoTa nvarchar(max),
@@ -674,7 +681,7 @@ end catch
 go
 
 --Cap nhat sach
-create PROC sp_CapNhatSach (@MaSach int ,@MaLoaiSach int,
+alter PROC sp_CapNhatSach (@MaSach int ,@MaLoaiSach int,
 	@TenSach nvarchar (100),
 	@Gia money,
 	@MoTa nvarchar(max),
@@ -762,6 +769,80 @@ begin catch
 set @CurrentID=0
 end catch
 
+
+
+delete LOAISACH
+DBCC CHECKIDENT ('[LOAISACH]', RESEED, 0);
+GO
+
+select * from SACH
+select * from LOAISACH
+
+--Tai Khoan
+--Thêm tài khoản
+alter procedure sp_ThemTaiKhoan @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit,@IsAdmin bit,@CurrentID int output
+as 
+begin try
+if(exists(select * from TAIKHOAN where TenDangNhap=@TenDangNhap))
+begin
+set @CurrentID=0
+return
+end
+	insert into TAIKHOAN values(@TenDangNhap, @MatKhau, @TenKhachHang, @SoDienThoai, @Email, @NgaySinh, @GioiTinh,@IsAdmin)
+	insert into GIOHANG(TenDangNhap) values(@TenDangNhap) -- Tạo giỏ hàng cho tải khoản
+	set @CurrentID=1
+end try
+begin catch
+set @CurrentID=0
+end catch
+go
+
+ xóa
+create procedure sp_XoaTaiKhoan @TenDangNhap varchar(50),@CurrentID int output
+as
+begin try
+if(not exists(select * from TAIKHOAN where TenDangNhap=@TenDangNhap))
+begin
+set @CurrentID=0
+return
+end
+Delete From TAIKHOAN where TenDangNhap=@TenDangNhap;
+set @CurrentID=1
+end try
+begin catch
+set @CurrentID=0
+end catch
+go
+select * from TAIKHOAN
+declare @id int;
+exec sp_XoaTaiKhoan hau,@id;
+print @id
+--sua user
+create procedure sp_CapNhatTaiKhoan  @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit,@IsAdmin bit,@CurrentID int output
+as
+begin try
+if(not exists(select * from TAIKHOAN where TenDangNhap=@TenDangNhap))
+begin
+set @CurrentID=0
+return
+end
+Update  TAIKHOAN  set MatKhau=@MatKhau,TenKhachHang=@TenKhachHang,SoDienThoai=@SoDienThoai,Email=@Email,NgaySinh=@NgaySinh,GioiTinh=@GioiTinh,IsAdmin=@IsAdmin where TenDangNhap=@TenDangNhap;
+set @CurrentID=1
+end try
+begin catch
+set @CurrentID=0
+end catch
+go
+
+
+select * from TAIKHOAN
+declare @id int;
+exec sp_CapNhatTaiKhoan 'tinh','2',N'Tinh Bui','0123','tinh@gmail.com','03/01/2001',1,1,@id;
+print @id
+declare @id int;
+exec sp_ThemTaiKhoan 'hau1234','1234','phamphuchau','12345678','hau@gmail.com','01/01/2001',1,1,@id;
+print(@id);
+select * from TaiKhoan
 
 go
 create proc sp_CheckDiaChi @MaDiaChi int
