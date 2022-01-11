@@ -15,7 +15,7 @@
             <Label Text="Email" FontSize="18"></Label>
             <Entry x:Name="email" Keyboard="Email" Placeholder="Email" HeightRequest="50" IsReadOnly="True"></Entry>
             <Label Text="Ngày sinh" FontSize="18"></Label>
-            <DatePicker x:Name="ngaysinh" Format="yyyy-MM-dd" Date="2001/07/02" HeightRequest="50" IsEnabled="False"></DatePicker>
+            <DatePicker x:Name="ngaysinh" Format="yyyy-MM-dd" DateSelected="ngaysinh_DateSelected" Date="2001/07/02" HeightRequest="50" IsEnabled="False"></DatePicker>
             <Label Text="Giới tính" FontSize="18"></Label>
             <Grid>
                 <Grid.RowDefinitions>

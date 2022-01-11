@@ -49,7 +49,7 @@ namespace DoAn
                     }
                 }
                 if (check == false)
-                    await DisplayAlert("Thông báo", "Tên đăng nhập hoặc mật khẩu không đúng", "ok");
+                    await DisplayAlert("Thông báo", "Tên đăng nhập hoặc mật khẩu không đúng", "OK");
             }
 
 

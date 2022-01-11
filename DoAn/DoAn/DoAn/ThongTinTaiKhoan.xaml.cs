@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -55,8 +56,6 @@ namespace DoAn
 
         }
 
-
-
         private async void edit_Clicked(object sender, EventArgs e)
         {
             if (edit.Text == "Sửa")
@@ -82,9 +81,8 @@ namespace DoAn
                 }
 
                 HttpClient httpClient = new HttpClient();
-                var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "SuaThongTinTaiKhoan?TenDangNhap=" + TENDANGNHAP + "&TenKhachHang=" + hoten.Text + "&SoDienThoai=" + sdt.Text + "&Email=" + email.Text + "&NgaySinh=" + ngaysinh.Date.ToString("yyyy'-'MM'-'dd") + "&GioiTinh=" + GioiTinh);
-
-
+                int temp_GT = (GioiTinh == true) ? 1 : 0;
+                var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "CapNhatTaiKhoan?TenDangNhap=" + TENDANGNHAP + "&TenKhachHang=" + hoten.Text + "&SoDienThoai=" + sdt.Text + "&Email=" + email.Text + "&NgaySinh=" + dd + "&GioiTinh=" + temp_GT.ToString());
 
                 hoten.IsReadOnly = true;
                 sdt.IsReadOnly = true;
@@ -121,6 +119,14 @@ namespace DoAn
             {
                 Nam.IsChecked = true;
             }
+        }
+
+        private string dd;
+        private void ngaysinh_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            CultureInfo englishUSCulture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = englishUSCulture;
+            dd = e.NewDate.ToString("dd/MM/yyyy");
         }
     }
 }

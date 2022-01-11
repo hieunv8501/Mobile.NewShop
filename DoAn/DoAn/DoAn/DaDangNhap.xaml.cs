@@ -49,14 +49,12 @@ namespace DoAn
             DanhMuc.Add(new DanhMuc_TK { ID = "HT", Text = "Hỗ trợ", Icon = "icon_HT.png", Icon_next = "icon_next.png" });
 
             TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
-            if (tENDANGNHAP.Get_TenDangNhap() == "Admin")
+            if (tENDANGNHAP.Get_TenDangNhap() == "admin")
             {
                 DanhMuc.Add(new DanhMuc_TK { ID = "QLDH", Text = "Quản lý đơn hàng", Icon = "", Icon_next = "icon_next.png" });
                 DanhMuc.Add(new DanhMuc_TK { ID = "QLMGG", Text = "Quản lý mã giảm giá", Icon = "", Icon_next = "icon_next.png" });
                 DanhMuc.Add(new DanhMuc_TK { ID = "QLPGH", Text = "Quản lý phí giao hàng", Icon = "", Icon_next = "icon_next.png" });
             }
-
-
 
             lst_taikhoan.ItemsSource = DanhMuc;
         }

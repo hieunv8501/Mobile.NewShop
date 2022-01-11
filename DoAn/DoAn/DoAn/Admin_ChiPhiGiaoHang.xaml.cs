@@ -52,7 +52,7 @@ namespace DoAn
                 }
                 catch
                 {
-                    await DisplayAlert("Thông báo", "Sửa giá giao hàng thất bại?", "Ok");
+                    await DisplayAlert("Thông báo", "Sửa giá giao hàng thất bại?", "OK");
                 }
 
             }
