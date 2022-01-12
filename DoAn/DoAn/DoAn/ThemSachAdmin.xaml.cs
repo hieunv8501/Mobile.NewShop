@@ -35,7 +35,7 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
+                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
                 loaisachs = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 ChonLoaiSach.ItemsSource = loaisachs;
 
@@ -65,28 +65,47 @@ namespace DoAn
             }
             else
             {
-                string link = "http://192.168.1.4/newshopwebapi/Image/";
-                HttpClient http = new HttpClient();
-                try
+                int giamgia = new int();
+                bool check1 = int.TryParse(GiamGia.Text, out giamgia);
+                if (check1)
                 {
-                    var kq = await http.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + link + txtHinh.Text); ;
-                    if (int.Parse(kq) > 0)
+                    await DisplayAlert("Thông Báo", "Phần trăm giảm giá không đúng kiểu", "OK");
+                }
+                else
+                {
+                    if(giamgia<0||giamgia>100)
                     {
-                        await DisplayAlert("Thông Báo", "Bạn đã thêm sách thành công", "OK");
-                        await Navigation.PushAsync(new DanhMucAdmin());
+                        await DisplayAlert("Thông Báo", "Phần trăm giảm giá không hợp lệ", "OK");
                     }
                     else
                     {
-                        await DisplayAlert("Thông Báo", "Thêm sách thất bại ", "OK");
-                    }
+                        string link = "http://172.20.10.4/newshopwebapi/Image/";
+                        HttpClient http = new HttpClient();
+                        try
+                        {
+                            var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + link + txtHinh.Text + "&GiamGia=" + GiamGia.Text); ;
+                            if (int.Parse(kq) > 0)
+                            {
+                                await DisplayAlert("Thông Báo", "Bạn đã thêm sách thành công", "OK");
+                                await Navigation.PushAsync(new DanhMucAdmin());
+                            }
+                            else
+                            {
+                                await DisplayAlert("Thông Báo", "Thêm sách thất bại ", "OK");
+                            }
 
-                }
-                catch
-                {
-                    {
-                        await DisplayAlert("Thông Báo", "Thêm sách thất bại", "OK");
+                        }
+                        catch
+                        {
+                            {
+                                await DisplayAlert("Thông Báo", "Thêm sách thất bại", "OK");
+                            }
+                        }
                     }
                 }
+                    
+                    
+                
             }
         }
     }

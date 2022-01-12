@@ -3,7 +3,7 @@ go
 use QuanLyBanSach
 go
 
-create table  TAIKHOAN
+create table TAIKHOAN
 (	
 	TenDangNhap varchar(50) primary key,
 	MatKhau varchar(50),
@@ -11,8 +11,8 @@ create table  TAIKHOAN
 	SoDienThoai varchar(10),
 	Email varchar(50),
 	NgaySinh datetime,
-	GioiTinh bit, 
-	IsAdmin bit default 0
+	GioiTinh int, 
+	IsAdmin int default 0
 )
 select* from TAIKHOAN
 DROP TABLE TAIKHOAN
@@ -120,7 +120,7 @@ where Hinh is not null;
 --select * from LOAISACH
 select * from taikhoan
 insert into TAIKHOAN values ('hieu123', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1,'')
-insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1,), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1,0), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1,0)
+insert into TAIKHOAN values ('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', 01/01/2001, 1,''),('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', 01/01/2001, 1,0), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', 01/01/2001, 1,0)
 insert into LOAISACH values (N'Sách Văn Học', N'http://192.168.1.4/newshopwebapi/Image/vanhoc.jpg'), 
 			(N'Sách Tham Khảo', N'http://192.168.1.4/newshopwebapi/Image/thamkhao.jpg'), 
 			(N'Sách Bán Chạy', N'http://192.168.1.4/newshopwebapi/Image/BanChay.jpg'), 

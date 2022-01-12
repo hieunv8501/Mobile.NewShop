@@ -22,11 +22,11 @@ namespace DoAn
 
         async private void cmdThemDanhMuc_Clicked(object sender, EventArgs e)
         {
-            string link = "http://192.168.1.4/newshopwebapi/Image/";
+            string link = "http://172.20.10.4/newshopwebapi/Image/";
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/ThemLoaiSach?TenLoaiSach=" + txtTenLoaiSach.Text + "&Hinh=" + link + txtHinh.Text);
+                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/ThemLoaiSach?TenLoaiSach=" + txtTenLoaiSach.Text + "&Hinh=" + link + txtHinh.Text);
                 if (int.Parse(kq) > 0)
                 {
                     await DisplayAlert("Thông Báo", "Bạn đã thêm thành công", "OK");

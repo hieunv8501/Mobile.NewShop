@@ -31,7 +31,7 @@ namespace DoAn
             HttpClient httpClient = new HttpClient();
 
 
-            var GioHangList = await httpClient.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
+            var GioHangList = await httpClient.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
 
             if (GioHangList.ToString() != "[]")
             {

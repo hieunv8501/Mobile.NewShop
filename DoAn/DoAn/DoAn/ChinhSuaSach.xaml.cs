@@ -33,7 +33,8 @@ namespace DoAn
 
             txtMoTa.Text = sach.MoTa;
             txtNameSach.Text = sach.TenSach;
-            GiaTien.Text = String.Format("{0:0.##}", sach.Gia.ToString());
+            GiaTien.Text =sach.Gia.ToString();
+            GiamGia.Text = sach.GiamGia.ToString();
 
         }
         public async void pickerLoaiSach()
@@ -41,7 +42,7 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
+                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
                 loaisachs = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 ChonLoaiSach.ItemsSource = loaisachs;
 
@@ -71,15 +72,15 @@ namespace DoAn
             }
             else
             {
-                string link = "http://192.168.1.4/newshopwebapi/Image/";
+                string link = "http://172.20.10.4/newshopwebapi/Image/";
                 HttpClient http = new HttpClient();
                 try
                 {
-                    var kq = await http.GetStringAsync("http://192.168.1.4/newshopwebapi/api/ServiceController/CapNhatSach?MaSach=" + globalSach.MaSach + "&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + link + txtHinh.Text);
+                    var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/CapNhatSach?MaSach=" + globalSach.MaSach + "&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + link + txtHinh.Text+"&GiamGia="+GiamGia.Text);
                     if (int.Parse(kq) > 0)
                     {
                         await DisplayAlert("Thông Báo", "Bạn đã chỉnh sửa thành công", "OK");
-                        await Navigation.PushAsync(new DanhMucAdmin());
+                        await Navigation.PushAsync(new SachAdmin(loaisachs[ChonLoaiSach.SelectedIndex]));
                     }
                     else
                     {
