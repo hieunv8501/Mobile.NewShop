@@ -8,7 +8,12 @@
                 <Image x:Name="image" WidthRequest="300" HeightRequest="300" MinimumHeightRequest="300" MinimumWidthRequest="300" Margin="10"></Image>
                 <Label x:Name="tensach" TextColor="Black" FontSize="30"></Label>
                 <Label x:Name="giaban" TextColor="red" FontSize="20" FontAttributes="Bold"></Label>
-
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="giacu"  FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource secondaryLabel }" TextDecorations="Strikethrough"></Label>
+                    <Frame BackgroundColor="#fff1f2" Padding="1" HorizontalOptions="Start" WidthRequest="40" HeightRequest="20" >
+                        <Label x:Name="phantramgiam" TextColor="#ff4c57"></Label>
+                    </Frame>
+                </StackLayout>
                 <Label Text="Thông tin chi tiết" FontSize="30"></Label>
                 <Label x:Name="mota"></Label>
             </StackLayout>

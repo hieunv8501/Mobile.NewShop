@@ -13,6 +13,7 @@
     <Color x:Key="btnMuaColor">#ff0f1e</Color>
     <Color x:Key="btnSuaColor">Orange</Color>
     <Color x:Key="btnCapnhatColor">#007bff</Color>
+    <Color x:Key="giagiamColor">#ff1524</Color>
     <!--<ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Styles/Global.xaml"/>
     </ResourceDictionary.MergedDictionaries>-->

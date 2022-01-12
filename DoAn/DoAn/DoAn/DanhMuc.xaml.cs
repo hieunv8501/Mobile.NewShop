@@ -29,19 +29,9 @@ namespace DoAn
                 HttpClient http = new HttpClient();
                 var kq = await http.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
                 var loaisach = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
-                List<LoaiSach> ls2 = new List<LoaiSach>();
-                List<LoaiSach> ls1 = new List<LoaiSach>();
-                for (int i = 0; i < loaisach.Count; i++)
-                {
-                    if (i % 2 == 0)
-                    {
-                        ls1.Add(loaisach[i]);
-                    }
-                    else
-                    { ls2.Add(loaisach[i]); }
-                }
-                LstLoaiSach.ItemsSource = ls1;
-                LstLoaiSach1.ItemsSource = ls2;
+                
+                LstLoaiSach.ItemsSource = loaisach;
+                
                 LoaiSachs = loaisach;
             }
             catch { LstLoaiSach.ItemsSource = null; }
@@ -65,22 +55,15 @@ namespace DoAn
 
         }
 
-        private void LstLoaiSach_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        
+        
+        private void LstLoaiSach_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (LstLoaiSach.SelectedItem != null)
             {
                 LoaiSach clicked_LoaiSach = (LoaiSach)LstLoaiSach.SelectedItem;
                 Navigation.PushAsync(new ManHinhListSach(clicked_LoaiSach));
                 LstLoaiSach.SelectedItem = null;
-            }
-        }
-        private void LstLoaiSach_ItemSelected1(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (LstLoaiSach1.SelectedItem != null)
-            {
-                LoaiSach clicked_LoaiSach1 = (LoaiSach)LstLoaiSach1.SelectedItem;
-                Navigation.PushAsync(new ManHinhListSach(clicked_LoaiSach1));
-                LstLoaiSach1.SelectedItem = null;
             }
         }
     }

@@ -24,7 +24,17 @@
                     <Entry x:Name="lbTenDangNhap" Placeholder="Tên đăng nhập" Grid.Column="1" Grid.Row="0" FontSize="Medium"></Entry>
 
                     <Image Source="passwordicon.ico" Grid.Column="0" Grid.Row="1" ></Image>
-                    <Entry x:Name="lbMatKhau" Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1" FontSize="Medium"></Entry>
+                    <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <Entry x:Name="lbMatKhau" Placeholder="Mật khẩu" IsPassword="True"  FontSize="Medium" WidthRequest="300"></Entry>
+                        <Image x:Name="show_pass_eye"  Source="showpass.png"  VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" WidthRequest="30" HeightRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="TapGestureRecognizer_Tapped"
+                NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    
                 </Grid>
             </StackLayout>
             <StackLayout Margin="20,5,20,0">
