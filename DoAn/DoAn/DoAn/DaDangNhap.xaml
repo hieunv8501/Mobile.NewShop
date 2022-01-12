@@ -41,7 +41,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="bnt_dangxuat" Clicked="bnt_dangxuat_Clicked" Text="Đăng xuất" Margin="10" BorderWidth="1" BackgroundColor="White" BorderColor="Blue" VerticalOptions="Start"></Button>
+            <Button x:Name="bnt_dangxuat" TextTransform="None" FontSize="20" Clicked="bnt_dangxuat_Clicked" Text="Đăng xuất" Margin="10" BorderWidth="1" BackgroundColor="White" BorderColor="Blue" VerticalOptions="Start"></Button>
             <Label Text="Phiên bản 1.10 (13)" HorizontalOptions="Center" FontSize="18"></Label>
         </StackLayout>
     </ContentPage.Content>

@@ -161,6 +161,29 @@ insert into SACH values (1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Th�
 			(8, N'Câu Hỏi Và Bài Tập Trắc Nghiệm Lịch Sử Theo Chủ Đề 12', 95000, N'Cuốn sách Câu Hỏi Và Bài Tập Trắc Nghiệm Lịch Sử Theo Chủ Đề 12 giúp các em vận dụng kiến thức đã học và sự hiểu biết của mình để trả lời cầu hỏi trắc nghiệm theo từng bài cụ thể. Để chuẩn bị cho kỳ thi THPT Quốc Gia 2017.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-tnLS12.jpg', 20),
 			(8, N'Ôn Tập Đánh Giá Năng Lực Môn Lịch Sử', 125000, N'Ôn Tập Đánh Giá Năng Lực Môn Lịch Sử - Đây là cuốn sách của các nhà khoa học giáo dục có nhiều năm kinh nghiệm trong nghiên cứu, giảng dạy ở đại học và bậc phổ thông. Tác giả cuốn sách và giáo vien đang tham gia bồi dưỡng kiến thức trên truyền hình.', N'http://192.168.1.4/newshopwebapi/Image/ltqg-ontapdgnlLS.jpg', 10)
 
+insert into SACH values (3, N'Bộ Đề Bồi Dưỡng Học Sinh Giỏi', 99000, N'Bộ Đề Bồi Dưỡng Học Sinh Giỏi Qua Các Kì Thi Chuyên Đề Lí Luận Văn Học cung cấp đa dạng các đề, những bài làm văn hay, nâng cao, mở rộng kiến thức.', N'http://192.168.1.4/newshopwebapi/Image/banchay1.gif', 20),
+			(3, N'Tinh Tuyển Những Bài Văn Nghị Luận', 178000, N'Tinh Tuyển Những Bài Văn Nghị Luận - Là một trong những cuốn sách luyện thi mới nhất của tác giả Nguyễn Thành Huân. Cuốn sách sẽ là nguồn tài liệu bổ ích dành cho các em học sinh đang ôn luyện cho kì thi THPT Quốc gia.', N'http://192.168.1.4/newshopwebapi/Image/banchay2.jpg', 20),
+			(1, N'Ra Bờ Suối Ngắm Hoa Kèn Hồng', 225000, N'Bản Đặc Biệt (Bìa Cứng) - Là tác phẩm trong trẻo, tràn đầy tình yêu thương mát lành, trải ra trước mắt người đọc khu vườn trại rực rỡ cỏ hoa của vùng quê thanh bình, kèm theo đó là những “nhân vật” đáng yêu, làm nên một “thế giới giàu có, rộng lớn và vô cùng hấp dẫn” mà dường như người lớn đã bỏ quên đâu đó từ lâu.', N'http://192.168.1.4/newshopwebapi/Image/nguvan1.jpg', 20),
+			(1, N'Hoa Hồng Xứ Khác', 68000 , N'Hoa Hồng Xứ Khác - Trong truyện, Ngữ, Khoa và Hòa lé đều say mê cô bạn cùng lớp Gia Khanh. Cái cô gái bị ba người cùng theo đó sẽ phải làm sao.', N'http://192.168.1.4/newshopwebapi/Image/nguvan2.png', 20),
+			(1, N'Tôi là BêTô', 72000 , N'Tôi là BêTô được Nguyễn Nhật Ánh viết theo phong cách hoàn toàn khác so với những tác phẩm trước đây của ông.', N'http://192.168.1.4/newshopwebapi/Image/nguvan3.jpg', 20),
+			(1, N'Bàn có 5 chỗ ngồi', 44000 , N'Tác giả quen thuộc của thiếu nhi, của tuổi ô mai. Những tập truyện của anh luôn dí dỏm, hài hước, đem lại nhiều cảm xúc, nhiều bài học nhẹ nhàng cho lứa tuổi học trò.', N'http://192.168.1.4/newshopwebapi/Image/nguvan4.jpg', 20),
+			(1, N'Ôn Luyện Thi Tốt Nghiệp THPT Năm 2021 Môn Ngữ Văn ', 42000 , N'', N'http://192.168.1.4/newshopwebapi/Image/nguvan5.jpg', 20)
+			
+insert into SACH values (5, N'IELTS Key Writing - Công Thức Học Nhanh Ielts Writing Task 1', 95000 , N'IELTS Key Writing - Công Thức Học Nhanh Ielts Writing Task 1 - Cuốn sách chắc chắn sẽ là trợ thủ đắc lực giúp người học ôn tập luyện thi IELTS hiệu quả, khởi đầu vững chắc, làm chủ kiến thức và bứt phá được mức điểm thi như mong muốn!', N'http://192.168.1.4/newshopwebapi/Image/ngoaingu1.jpg', 20),
+						(5, N'Barron IELTS Practice Exams', 200000 , N'Barron IELTS Practice Exams của tiến sĩ DR. LIN LOUGHEED là cuốn sách luyện thi cho kì thi quốc tế Ielts giúp bạn hoàn chỉnh các đề thi và luyện tập kĩ trước khi thi.', N'http://192.168.1.4/newshopwebapi/Image/ngoaingu2.jpg', 20),
+						(5, N'Baron TOEIC Practice Exams - Kèm Đĩa CD', 180000 , N'Baron TOEIC Practice Exams - Kèm Đĩa CD của tác giả Dr. Lin Lougheed với đầy đủ các dạng đề có thể ra trong kì thi quốc tế toeic, mang đén cho bạn một tài liệu đầy đủ để nâng cao trình độ trước kì thi Toeic.', N'http://192.168.1.4/newshopwebapi/Image/ngoaingu3.jpg', 20),
+						(5, N'Barron IELTS International English', 124000 , N'Barron IELTS International English (Tái Bản 2019) giúp bạn chuẩn bị cho kỳ thi IELTS bằng cách giới thiệu các bài thi IELTS mẫu hoàn chỉnh giúp bạn làm quen với cách thức thực hành một bài thi.', N'http://192.168.1.4/newshopwebapi/Image/ngoaingu4.gif', 20),
+						(5, N'Ielts Key Grammar ', 127000 , N'Ielts Key Grammar – Trọng Tâm Ngữ Pháp Trong Bài Thi Ielts - Chiếc “chìa khóa” giúp các bạn ôn luyện hiệu quả và đạt được điểm cao trong kỳ thi IELTS.', N'http://192.168.1.4/newshopwebapi/Image/ngoaingu5.jpg', 20),
+						(5, N'The Key To Your Ielts Writing Target', 134000 , N'The Key To Your Ielts Writing Target phân tích hướng dẫn chấm điểm theo từng tiêu chí cụ thể cho cả Task 1 và Task 2. Dựa trên sự kỳ vọng đối với từng band điểm, cuốn sách cung cấp cho người đọc chiến lược làm bài...', N'http://192.168.1.4/newshopwebapi/Image/ngoaingu6.jpg', 20)
+
+			
+insert into GIAOHANG values (15000)
+
+
+declare @CurrentID int
+exec sp_ThemTaiKhoan admin,1,Admin,0254633254,'admin@gmail.com','2001/07/05',1,1, @CurrentID
+exec sp_ThemTaiKhoan 'hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', '01/01/2001', 1,0, @CurrentID
+exec sp_ThemTaiKhoan 'tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', '01/01/2001', 1,0, @CurrentID
 
 
 --select * from SACH
@@ -869,3 +892,9 @@ as begin
 	select MaHoaDon from HOADON where TenDangNhap = @TenDangNhap and MaHoaDon = @MaHoaDon
 end
 go
+
+
+create proc sp_UpdateMatKhauQuaEmail @Email varchar(50), @MatKhau varchar(50)
+as begin
+	update TAIKHOAN set MatKhau = @MatKhau where Email = @Email
+end

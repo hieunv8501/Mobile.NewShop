@@ -16,7 +16,7 @@
                 </Grid.ColumnDefinitions>
                 <Label Text="Giá tiền giao hàng" FontSize="24" TextColor="Black" VerticalOptions="Center" FontAttributes="Bold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"></Label>
                 <Entry x:Name="lbGia" FontSize="24" VerticalOptions="Center" TextColor="Red" Grid.Column="0" Grid.Row="1"></Entry>
-                <Button x:Name="btnSuaChiPhiGiao" Clicked="btnSuaChiPhiGiao_Clicked" Text="Sửa" BackgroundColor="Orange" CornerRadius="10" FontSize="20" Margin="90,4,0,4" Grid.Row="1" Grid.Column="1"></Button>
+                <Button x:Name="btnSuaChiPhiGiao" Clicked="btnSuaChiPhiGiao_Clicked" TextTransform="None" Text="Sửa" BackgroundColor="Orange" CornerRadius="10" FontSize="20" Margin="90,4,0,4" Grid.Row="1" Grid.Column="1"></Button>
             </Grid>
 
         </StackLayout>

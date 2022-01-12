@@ -48,9 +48,9 @@ namespace DoAn
             TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
             if (tENDANGNHAP.Get_TenDangNhap() == "admin")
             {
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLDH", Text = "Quản lý đơn hàng", Icon = "", Icon_next = "icon_next.png" });
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLMGG", Text = "Quản lý mã giảm giá", Icon = "", Icon_next = "icon_next.png" });
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLPGH", Text = "Quản lý phí giao hàng", Icon = "", Icon_next = "icon_next.png" });
+                DanhMuc.Add(new DanhMuc_TK { ID = "QLDH", Text = "Quản lý đơn hàng", Icon = "icon_bill.png", Icon_next = "icon_next.png" });
+                DanhMuc.Add(new DanhMuc_TK { ID = "QLMGG", Text = "Quản lý mã giảm giá", Icon = "icon_discount.png", Icon_next = "icon_next.png" });
+                DanhMuc.Add(new DanhMuc_TK { ID = "QLPGH", Text = "Quản lý phí giao hàng", Icon = "icon_delivery.png", Icon_next = "icon_next.png" });
             }
 
             lst_taikhoan.ItemsSource = DanhMuc;

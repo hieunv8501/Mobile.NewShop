@@ -42,7 +42,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="btnThemMaGiamGia" Clicked="btnThemMaGiamGia_Clicked" Text="Thêm mã giảm giá" BackgroundColor="Red" TextColor="White" Margin="10" HeightRequest="55" FontSize="20"></Button>
+            <Button x:Name="btnThemMaGiamGia" Clicked="btnThemMaGiamGia_Clicked" TextTransform="None" Text="Thêm mã giảm giá" BackgroundColor="Red" TextColor="White" Margin="10" HeightRequest="55" FontSize="20"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

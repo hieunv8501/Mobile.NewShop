@@ -21,7 +21,7 @@
                     <Label  x:Name="lbTenNguoiNhan" FontSize="18" Grid.Column="0" Grid.Row="1" ></Label>
                     <Label  x:Name="lbSDT" FontSize="18"  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"></Label>
                     <Label  x:Name="lbDiaChi" FontSize="18" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"></Label>
-                    <Button x:Name="bntThayDoi" Clicked="bntThayDoi_Clicked" Text="Thay Đổi" HorizontalOptions="End" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"></Button>
+                    <Button x:Name="bntThayDoi" Clicked="bntThayDoi_Clicked" Text="Thay Đổi" FontSize="20" TextTransform="None" HorizontalOptions="End" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"></Button>
                 </Grid>
                 <Grid Padding="10, 0 , 10, 0" Margin="0,0,0,10">
                     <Grid.RowDefinitions>
@@ -94,7 +94,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Text="Thành tiền" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Column="0" Grid.Row="0"></Label>
                     <Label x:Name="lbThanhTien" TextColor="Red" FontSize="18" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="1"></Label>
-                    <Button x:Name="bntDatHang" Clicked="bntDatHang_Clicked" FontSize="18" FontAttributes="Bold" TextColor="White" BackgroundColor="Red" Text="Đặt hàng" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></Button>
+                    <Button x:Name="bntDatHang" Clicked="bntDatHang_Clicked" FontSize="20" TextTransform="None" FontAttributes="Bold" TextColor="White" BackgroundColor="Red" Text="Đặt hàng" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></Button>
                 </Grid>
             </StackLayout>
         </ScrollView>

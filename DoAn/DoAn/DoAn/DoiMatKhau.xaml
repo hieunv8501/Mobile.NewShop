@@ -20,10 +20,10 @@
                     <ColumnDefinition Width="80"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Entry x:Name="MKmoi" Keyboard="Text" IsPassword="True" Placeholder="Mật khẩu mới" Grid.Column="0" Grid.Row="0" ></Entry>
-                <Button x:Name="show_MKmoi" Text="Hiện" TextColor="Blue" Clicked="show_MKmoi_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="#fafafa"></Button>
+                <Button x:Name="show_MKmoi" TextTransform="None" Text="Hiện" TextColor="Blue" Clicked="show_MKmoi_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="#fafafa"></Button>
                 <Label x:Name="Thongbao1" TextColor="Red" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"></Label>
                 <Entry x:Name="XacNhan" Keyboard="Text" IsPassword="True" Placeholder="Nhập lại mật khẩu mới" Grid.Column="0" Grid.Row="2"></Entry>
-                <Button x:Name="show_XacNhan" Text="Hiện" TextColor="Blue" Clicked="show_XacNhan_Clicked" Grid.Column="1" Grid.Row="2" BackgroundColor="#fafafa"></Button>
+                <Button x:Name="show_XacNhan" TextTransform="None" Text="Hiện" TextColor="Blue" Clicked="show_XacNhan_Clicked" Grid.Column="1" Grid.Row="2" BackgroundColor="#fafafa"></Button>
                 <Label x:Name="Thongbao2" TextColor="Red" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"></Label>
             </Grid>
 
