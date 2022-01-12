@@ -24,6 +24,7 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Admin_ThemTaiKhoan.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      </EmbeddedResource>
     <EmbeddedResource Update="Admin_ChiPhiGiaoHang.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
