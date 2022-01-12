@@ -14,6 +14,7 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ThemDanhMucAdmin : ContentPage
     {
+        APIString APIString = new APIString();
         public ThemDanhMucAdmin()
         {
             InitializeComponent();
@@ -22,11 +23,11 @@ namespace DoAn
 
         async private void cmdThemDanhMuc_Clicked(object sender, EventArgs e)
         {
-            string link = "http://172.20.10.4/newshopwebapi/Image/";
+
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/ThemLoaiSach?TenLoaiSach=" + txtTenLoaiSach.Text + "&Hinh=" + link + txtHinh.Text);
+                var kq = await http.GetStringAsync(APIString.str + "ThemLoaiSach?TenLoaiSach=" + txtTenLoaiSach.Text + "&Hinh=" + APIString.str_img + txtHinh.Text);
                 if (int.Parse(kq) > 0)
                 {
                     await DisplayAlert("Thông Báo", "Bạn đã thêm thành công", "OK");

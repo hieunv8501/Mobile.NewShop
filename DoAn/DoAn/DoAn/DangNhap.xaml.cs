@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +14,7 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DangNhap : ContentPage
     {
+        APIString APIString = new APIString();
         public DangNhap()
         {
             InitializeComponent();
@@ -26,9 +29,31 @@ namespace DoAn
         }
 
 
-        private void dnbtn_Clicked(object sender, EventArgs e)
+        private async void dnbtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DaDangNhap());
+            if (lbTenDangNhap.Text != null && lbMatKhau.Text != null)
+            {
+                HttpClient httpClient = new HttpClient();
+                bool check = false;
+                var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "LayDanhSachTaiKhoan");
+                var ConnectAPIConvert = JsonConvert.DeserializeObject<List<TAIKHOAN>>(ConnectAPI);
+
+                for (int i = 0; i < ConnectAPIConvert.Count(); i++)
+                {
+                    if (ConnectAPIConvert[i].TenDangNhap == lbTenDangNhap.Text && ConnectAPIConvert[i].MatKhau == lbMatKhau.Text)
+                    {
+                        check = true;
+                        TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
+                        tENDANGNHAP.Set_TenDangNhap(lbTenDangNhap.Text);
+                        await Navigation.PushAsync(new DaDangNhap(lbTenDangNhap.Text));
+                    }
+                }
+                if (check == false)
+                    await DisplayAlert("Thông báo", "Tên đăng nhập hoặc mật khẩu không đúng", "OK");
+            }
+
+
+
         }
 
         private void dkbtn_Clicked(object sender, EventArgs e)

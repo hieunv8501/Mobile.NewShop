@@ -38,6 +38,7 @@
                                     </Frame>
                                 </StackLayout>
                                 <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding .}" Clicked="cmdchonmua_Clicked" Grid.Row="4" Grid.Column="1" HeightRequest="30" BackgroundColor="{DynamicResource  btnMuaColor}" TextColor="{DynamicResource background}"></Button>
+
                             </Grid>
 
                         </ViewCell>

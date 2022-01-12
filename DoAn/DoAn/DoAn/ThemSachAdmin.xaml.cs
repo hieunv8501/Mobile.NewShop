@@ -1,3 +1,4 @@
+
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ThemSachAdmin : ContentPage
     {
+    APIString APIString = new APIString();
         public ThemSachAdmin()
         {
             InitializeComponent();
@@ -35,7 +37,7 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
+                var kq = await http.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
                 loaisachs = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 ChonLoaiSach.ItemsSource = loaisachs;
 
@@ -83,7 +85,7 @@ namespace DoAn
                         HttpClient http = new HttpClient();
                         try
                         {
-                            var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + link + txtHinh.Text + "&GiamGia=" + GiamGia.Text); ;
+                            var kq = await http.GetStringAsync("APIString.str + "ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img+ txtHinh.Text + "&GiamGia=" + GiamGia.Text); ;
                             if (int.Parse(kq) > 0)
                             {
                                 await DisplayAlert("Thông Báo", "Bạn đã thêm sách thành công", "OK");
@@ -109,4 +111,5 @@ namespace DoAn
             }
         }
     }
+
 }

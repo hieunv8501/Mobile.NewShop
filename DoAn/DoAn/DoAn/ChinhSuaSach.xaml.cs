@@ -14,6 +14,7 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChinhSuaSach : ContentPage
     {
+        APIString APIString = new APIString();
         public ChinhSuaSach()
         {
             InitializeComponent();
@@ -42,7 +43,8 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
+
+                var kq = await http.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
                 loaisachs = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 ChonLoaiSach.ItemsSource = loaisachs;
 
@@ -72,11 +74,11 @@ namespace DoAn
             }
             else
             {
-                string link = "http://172.20.10.4/newshopwebapi/Image/";
+
                 HttpClient http = new HttpClient();
                 try
                 {
-                    var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/CapNhatSach?MaSach=" + globalSach.MaSach + "&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + link + txtHinh.Text+"&GiamGia="+GiamGia.Text);
+                    var kq = await http.GetStringAsync(APIString.str + "CapNhatSach?MaSach=" + globalSach.MaSach + "&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img + txtHinh.Text);
                     if (int.Parse(kq) > 0)
                     {
                         await DisplayAlert("Thông Báo", "Bạn đã chỉnh sửa thành công", "OK");

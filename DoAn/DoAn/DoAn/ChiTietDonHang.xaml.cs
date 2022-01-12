@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,29 +14,45 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChiTietDonHang : ContentPage
     {
+        APIString APIString = new APIString();
         public ChiTietDonHang()
         {
             InitializeComponent();
         }
-        public ChiTietDonHang(HOADON hoadon)
+        public ChiTietDonHang(int MaHoaDon)
         {
             InitializeComponent();
+            KhoiTao(MaHoaDon);
+        }
+        async void KhoiTao(int MaHoaDon)
+        {
+            HttpClient httpClient = new HttpClient();
 
-            //MDH.Text = "Mã đơn hàng: " + hoadon.MaHoaDon;
-            //TinhTrang.Text = "Trang thái: " + hoadon.TinhTrangDisplay;
-            //tennguoinhan.Text = hoadon.Tennguoinhan;
-            //sdt.Text = hoadon.Sdt;
-            //diachi.Text = "Địa chỉ: " + hoadon.Diachi;
-            //hinhthucvanchuyen.Text = hoadon.Hinhthucvanchuyen;
-            //hinhthucthanhtoan.Text = hoadon.Hinhthucthanhtoan;
-            //image.Source = hoadon.Image;
-            //tensach.Text = hoadon.Tensach;
-            //Gia.Text = hoadon.Gia.ToString() + "đ x " + hoadon.Soluong.ToString();
-            //giamgia.Text = "Giảm:" + hoadon.Giamgia.ToString() + "%";
-            //Thanhtien.Text = ((hoadon.Gia - (hoadon.Gia * hoadon.Giamgia / 100)) * hoadon.Soluong).ToString() + "đ";
-            //phivanchuyen.Text = hoadon.Phivanchuyen.ToString() + "đ";
-            //tongthanhtoan.Text = ((hoadon.Gia - (hoadon.Gia * hoadon.Giamgia / 100)) + hoadon.Phivanchuyen).ToString() + "đ";
+            var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "LayChiTietHoaDon?MaHoaDon=" + MaHoaDon);
+            var ConnectAPIConvert = JsonConvert.DeserializeObject<List<CT_DONHANG>>(ConnectAPI);
+            var SelectOne = ConnectAPIConvert.First();
+
+            MDH.Text = "Mã đơn hàng: " + SelectOne.MaHoaDon.ToString();
+            TinhTrang.Text = SelectOne.TinhTrangDisplay;
+            tennguoinhan.Text = SelectOne.TenNguoiNhan;
+            sdt.Text = SelectOne.SDT;
+            diachi.Text = "Địa chỉ:" + SelectOne.DiaChi;
+            hinhthucvanchuyen.Text = SelectOne.HinhThucGiao;
+            hinhthucthanhtoan.Text = SelectOne.HinhThucThanhToan;
+
+            phivanchuyen.Text = SelectOne.PhiVanChuyen.ToString();
+            tongthanhtoan.Text = SelectOne.TongTien.ToString();
+
+            lstCT_DONHANG.ItemsSource = ConnectAPIConvert;
 
         }
+
+        //private void btnMuaLai_Clicked(object sender, EventArgs e)
+        //{
+        //    Button selected = (Button)sender;
+        //    string MaSach = selected.CommandParameter.ToString();
+
+        //    Navigation.PushAsync(new ChiTietSach(MaSach))
+        //}
     }
 }

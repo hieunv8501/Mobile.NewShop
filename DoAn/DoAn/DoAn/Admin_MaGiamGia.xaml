@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.Admin_MaGiamGia"
+             Title="Danh sách mã giảm giá">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="lst_MaGiamGia" HasUnevenRows="True"  Margin="10, 5,10,5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+
+                                        <SwipeItem Text="Xóa" BackgroundColor="Red" Invoked="btnXoa_Clicked" CommandParameter="{Binding MaGiamGia}"/>
+                                        <SwipeItem Text="Sửa" BackgroundColor="LightGreen" Invoked="btnSua_Clicked" CommandParameter="{Binding MaGiamGia}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid Padding="10, 20, 10 , 20">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40" ></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+
+                                    </Grid.ColumnDefinitions>
+                                    <Label  Text="Mã giảm giá:" FontAttributes="Bold" FontSize="24" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
+                                    <Label  Text="{Binding MaGiamGia}" FontSize="24" TextColor="Black" Grid.Column="1" Grid.Row="0"></Label>
+                                    <!--<Button x:Name="btnSua" Clicked="btnSua_Clicked"  Text="Sửa" BackgroundColor="Aqua" FontAttributes="Bold" CornerRadius="10"  Grid.Row="0" Grid.Column="2"  CommandParameter="{Binding MaGiamGia}"></Button>-->
+
+                                    <Label  Text="Tỉ lệ giảm (%):"  FontAttributes="Bold" FontSize="24" TextColor="Black" Grid.Column="0" Grid.Row="1"></Label>
+                                    <Label  Text= "{Binding TiLeGiam}"  FontSize="24" TextColor="Black" Grid.Column="1" Grid.Row="1" ></Label>
+                                    <!--<Button x:Name="btnXoa" Clicked="btnXoa_Clicked" Text="Xóa" BackgroundColor="Red" FontAttributes="Bold" CornerRadius="10" Grid.Row="1" Grid.Column="2"  CommandParameter="{Binding MaGiamGia}"></Button>-->
+                                </Grid>
+                            </SwipeView>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnThemMaGiamGia" Clicked="btnThemMaGiamGia_Clicked" Text="Thêm mã giảm giá" BackgroundColor="Red" TextColor="White" Margin="10" HeightRequest="55" FontSize="20"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

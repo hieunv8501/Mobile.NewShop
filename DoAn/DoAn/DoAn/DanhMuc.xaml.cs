@@ -14,6 +14,7 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DanhMuc : ContentPage
     {
+        APIString APIString = new APIString();
         public DanhMuc()
         {
             InitializeComponent();
@@ -26,7 +27,8 @@ namespace DoAn
             try
             {
                 HttpClient http = new HttpClient();
-                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
+
+                var kq = await http.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
                 var loaisach = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 List<LoaiSach> ls2 = new List<LoaiSach>();
                 List<LoaiSach> ls1 = new List<LoaiSach>();

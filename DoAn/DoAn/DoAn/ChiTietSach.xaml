@@ -5,6 +5,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout x:Name="chitietsach">
+                <Label x:Name="MaSach" IsEnabled="False" ></Label>
                 <Image x:Name="image" WidthRequest="300" HeightRequest="300" MinimumHeightRequest="300" MinimumWidthRequest="300" Margin="10"></Image>
                 <Label x:Name="tensach" TextColor="Black" FontSize="30"></Label>
                 <Label x:Name="giaban" TextColor="red" FontSize="25" FontAttributes="Bold"></Label>
@@ -15,6 +16,7 @@
                     </Frame>
                 </StackLayout>
                 <Button x:Name="cmdChonMua" Text="Chọn mua" Clicked="cmdChonMua_Clicked" CommandParameter="{Binding .}" BackgroundColor="red" FontSize="18" FontAttributes="Bold"></Button>
+
                 <Label Text="Thông tin chi tiết" FontSize="30"></Label>
                 <Label x:Name="mota"></Label>
             </StackLayout>

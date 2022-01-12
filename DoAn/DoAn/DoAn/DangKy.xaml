@@ -3,41 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoAn.DangKy"
              Title="Đăng ký">
-    <ContentPage.Content>
-        <StackLayout BackgroundColor="WhiteSmoke">
-            <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="0" HeightRequest="160">
-                <Image Aspect="Fill" Margin="20,0,20,0" Source="logo_newshop.jpg"></Image>
-            </Frame>
-            <StackLayout Margin="20,0,20,0">
+    <StackLayout BackgroundColor="WhiteSmoke">
+        <Frame BackgroundColor="#2c55a5" CornerRadius="0" Margin="0" Padding="10" HeightRequest="160">
+            <Image Aspect="Fill" Margin="30,10,30,10" Source="logo_newshop.png"></Image>
+        </Frame>
+        <ScrollView Margin="5,0,5,0">
+            <StackLayout>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"></RowDefinition>
-                        <RowDefinition Height="60"></RowDefinition>
-                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="370"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="280"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Entry Placeholder="Họ tên" Grid.Column="0" Grid.Row="0"></Entry>
-                    <Entry Placeholder="Email" IsPassword="True" Grid.Column="0" Grid.Row="1"></Entry>
-                    <Entry Placeholder="Mật khẩu" IsPassword="True" Grid.Column="0" Grid.Row="2"></Entry>
+                    <Label Text="Tên đăng nhập:" Grid.Column="0" Grid.Row="0" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                    <Entry x:Name="dktdn" Placeholder="Tên đăng nhập" Grid.Column="1" Grid.Row="0" FontSize="Small"></Entry>
+
+                    <Label Text="Mật khẩu:" Grid.Column="0" Grid.Row="1" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                    <Entry x:Name="dkmk" Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1" FontSize="Small"></Entry>
+
+                    <Label Text="Họ tên:" Grid.Column="0" Grid.Row="2" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                    <Entry x:Name="dkhoten" Placeholder="Họ tên" Grid.Column="1" Grid.Row="2" FontSize="Small"></Entry>
+
+                    <Label Text="Email:" Grid.Column="0" Grid.Row="3" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                    <Entry x:Name="dkemail" Placeholder="Email" Keyboard="Email" Grid.Column="1" Grid.Row="3" FontSize="Small"></Entry>
+
+                    <Label Text="Số điện thoại:" Grid.Column="0" Grid.Row="4" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                    <Entry x:Name="dksdt" Placeholder="Số điện thoại" Keyboard="Telephone" Grid.Column="1" Grid.Row="4" FontSize="Small"></Entry>
+
+                    <Label Text="Ngày sinh:" Grid.Column="0" Grid.Row="5" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                    <DatePicker x:Name="dkdob" DateSelected="dkdob_DateSelected" Grid.Column="1" Grid.Row="5" FontSize="Small"></DatePicker>
+
+                    <Label Text="Giới tính:" Grid.Column="0" Grid.Row="6" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                    <Picker x:Name="dkgender" Title="Nam" SelectedIndexChanged="dkgender_SelectedIndexChanged" Grid.Column="1" Grid.Row="6" FontSize="Small"></Picker>
                 </Grid>
-                <StackLayout>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="10*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                    <CheckBox Grid.Column="0" Grid.Row="0"></CheckBox>
-                    <Label TextColor="Black" Text="Nhận các thông tin và chương trình khuyến mãi qua email" Margin="7,0,0,0" FontSize="12" Grid.Column="1" Grid.Row="0"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox x:Name="cbxSave" Color="#2e9dff" HorizontalOptions="Start" IsChecked="True" CheckedChanged="cbxSave_CheckedChanged"></CheckBox>
+                    <Label TextColor="Black" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="Nhận các thông tin cập nhật và chương trình khuyến mãi qua Email" FontSize="Small"></Label>
                 </StackLayout>
-                <Label TextColor="Black" Text="Khi đăng ký là bạn đã chấp nhận điều khoản sử dụng và chính sách của Newshop." Margin="7,0,0,0" FontSize="12"></Label>
-                <Button x:Name="btndk_dk" Text="Đăng Ký" TextTransform="None" BackgroundColor="red" TextColor="WhiteSmoke" FontSize="18"></Button>
+                <Label TextColor="Black" Text="Khi đăng ký là bạn đã chấp nhận điều khoản sử dụng và chính sách của Newshop." Margin="7,0,0,0" FontSize="Small"></Label>
+                <Button x:Name="btndk_dk" Text="Đăng Ký" TextTransform="None" BackgroundColor="red" TextColor="WhiteSmoke" FontSize="18" Clicked="btndk_dk_Clicked"></Button>
             </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
+        </ScrollView>
+    </StackLayout>
 </ContentPage>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.ThemDiaChi"
+             Title="Thêm địa chỉ
+             ">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Entry x:Name="TenNguoiNhan" Placeholder="Tên người nhận" HeightRequest="80"></Entry>
+            <Entry x:Name="SoDienThoai" Placeholder="Số điện thoại" Keyboard="Numeric" HeightRequest="80"></Entry>
+            <Entry x:Name="DiaChi" Placeholder="Địa chỉ nhận hàng"  HeightRequest="80"></Entry>
+            <Button x:Name="bntThemDiaChi" Clicked="bntThemDiaChi_Clicked" Text="Thêm" BackgroundColor="Red" Font="20" TextColor="White" Margin="0, 50,0,0"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

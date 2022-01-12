@@ -15,5 +15,6 @@ namespace DoAn
         public int GioiTinh { get; set; }
         public int IsAdmin { get; set; }
 
+
     }
 }

@@ -14,9 +14,9 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DanhMucAdmin : ContentPage
     {
+        APIString APIString = new APIString();
         public DanhMucAdmin()
         {
-
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             TaoCacLoaiSach();
@@ -28,7 +28,8 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/LayDanhSachLoaiSach");
+
+                var kq = await http.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
                 var loaisach = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 LstLoaiSach.ItemsSource = loaisach;
                 LoaiSachs = loaisach;
@@ -74,7 +75,8 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-                var kq = await http.GetStringAsync("http://172.20.10.4/newshopwebapi/api/ServiceController/XoaLoaiSach?MaLoaiSach=" + item.MaLoaiSach);
+
+                var kq = await http.GetStringAsync(APIString.str + "XoaLoaiSach?MaLoaiSach=" + item.MaLoaiSach);
                 if (int.Parse(kq) > 0)
                 {
                     await DisplayAlert("Thông Báo", "Bạn đã xóa thành công", "OK");

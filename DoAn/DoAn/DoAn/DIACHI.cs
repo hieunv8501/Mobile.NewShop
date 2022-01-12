@@ -11,5 +11,8 @@ namespace DoAn
         public string SDT { get; set; }
         public string DiaChi { get; set; }
         public string TenDangNhap { get; set; }
+        public bool MacDinh { get; set; }
+        public string MacDinhDisplay => (MacDinh == true ? "Địa chỉ giao hàng" : null);
+
     }
 }

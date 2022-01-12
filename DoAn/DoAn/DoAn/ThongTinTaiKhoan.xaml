@@ -9,13 +9,13 @@
     <ContentPage.Content>
         <StackLayout Margin="15">
             <Label Text="Họ Tên" FontSize="18"></Label>
-            <Entry x:Name="hoten" Keyboard="Text" Text="Bùi Văn Tình" Placeholder="Họ Tên" HeightRequest="50" IsReadOnly="True"></Entry>
+            <Entry x:Name="hoten" Keyboard="Text"  Placeholder="Họ Tên" HeightRequest="50" IsReadOnly="True"></Entry>
             <Label Text="Số điện thoại" FontSize="18"></Label>
-            <Entry x:Name="sdt" Keyboard="Telephone" Text="0968568803" Placeholder="Số điện thoai" HeightRequest="50" IsReadOnly="True"></Entry>
+            <Entry x:Name="sdt" Keyboard="Telephone"  Placeholder="Số điện thoai" HeightRequest="50" IsReadOnly="True"></Entry>
             <Label Text="Email" FontSize="18"></Label>
-            <Entry x:Name="email" Keyboard="Email" Text="tinhbui127@gmail.com" Placeholder="Email" HeightRequest="50" IsReadOnly="True"></Entry>
+            <Entry x:Name="email" Keyboard="Email" Placeholder="Email" HeightRequest="50" IsReadOnly="True"></Entry>
             <Label Text="Ngày sinh" FontSize="18"></Label>
-            <DatePicker x:Name="ngaysinh" Format="yyyy-MM-dd" Date="2001/07/02" HeightRequest="50" IsEnabled="False"></DatePicker>
+            <DatePicker x:Name="ngaysinh" Format="yyyy-MM-dd" DateSelected="ngaysinh_DateSelected" Date="2001/07/02" HeightRequest="50" IsEnabled="False"></DatePicker>
             <Label Text="Giới tính" FontSize="18"></Label>
             <Grid>
                 <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="40"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <CheckBox x:Name="Nam" IsChecked="True" Color="Black" Grid.Column="0" IsEnabled="False" Grid.Row="0"  CheckedChanged="Nam_CheckedChanged"></CheckBox>
+                <CheckBox x:Name="Nam" Color="Black" Grid.Column="0" IsEnabled="False" Grid.Row="0"  CheckedChanged="Nam_CheckedChanged"></CheckBox>
                 <Label Text="Nam" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" FontSize="18"></Label>
 
                 <CheckBox x:Name="Nu" Color="Black" Grid.Column="2" Grid.Row="0" IsEnabled="False"  CheckedChanged="Nu_CheckedChanged"></CheckBox>

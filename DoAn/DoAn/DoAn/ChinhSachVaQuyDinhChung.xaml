@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.ChinhSachVaQuyDinhChung"
+             Title="Hỗ trợ">
+    <ScrollView>
+        <StackLayout Padding="15">
+
+            <Label TextColor="Black" FontSize="15" Text="        Một khi đã tham gia sử dụng dịch vụ của newshop.vn nghĩa là bạn đã đọc, hiểu, chấp nhận và tuân thủ những điều khoản dưới đây:"></Label>
+
+            <Label TextColor="Black" FontAttributes="Bold" FontSize="15" Text="Điều 1: Khi đăng ký tài khoản, bạn nên cung cấp đầy đủ thông tin về tên tuổi, địa chỉ, email,..."></Label>
+            <Label TextColor="Black" FontAttributes="Italic" Margin="20,0,0,0" FontSize="15" Text="- Đây là những thông tin bắt buộc, quý khách hàng phải điền đầy đủ thông tin để chúng tôi căn cứ theo đó mà phục vụ quý khách một cách tốt nhất."></Label>
+            <Label TextColor="Black" FontAttributes="Italic" Margin="20,0,0,0" FontSize="15" Text="- Những trường hợp điền thiếu thông tin hoặc thông tin sai sự thật sẽ không được giải quyết. "></Label>
+
+            <Label TextColor="Black"  FontAttributes="Bold" FontSize="15" Text="Điều 2: Khách hàng có trách nhiệm phải tự mình bảo quản mật khẩu, nếu mật khẩu bị lộ ra ngoài dưới bất kỳ hình thức nào, Newshop.vn sẽ không chịu trách nhiệm về mọi tổn thất phát sinh. "></Label>
+
+            <Label TextColor="Black"  FontAttributes="Bold" FontSize="15" Text="Điều 3: Tuyệt đối không sử dụng bất kỳ chương trình, công cụ hay hình thức nào khác để can thiệp vào hệ thống hay làm thay đổi cấu trúc dữ liệu."></Label>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
