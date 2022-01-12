@@ -81,11 +81,10 @@ namespace DoAn
                     }
                     else
                     {
-                        string link = "http://172.20.10.4/newshopwebapi/Image/";
                         HttpClient http = new HttpClient();
                         try
                         {
-                            var kq = await http.GetStringAsync("APIString.str + "ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img+ txtHinh.Text + "&GiamGia=" + GiamGia.Text); ;
+                            var kq = await http.GetStringAsync(APIString.str + "ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img+ txtHinh.Text + "&GiamGia=" + GiamGia.Text);
                             if (int.Parse(kq) > 0)
                             {
                                 await DisplayAlert("Thông Báo", "Bạn đã thêm sách thành công", "OK");

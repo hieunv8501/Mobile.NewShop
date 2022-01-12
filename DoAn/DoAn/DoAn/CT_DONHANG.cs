@@ -7,6 +7,7 @@ namespace DoAn
     public class CT_DONHANG
     {
         public int MaHoaDon { get; set; }
+        public int MaSach { get; set; }
         public bool TinhTrang { get; set; }
         public string TenNguoiNhan { get; set; }
         public string SDT { get; set; }

@@ -37,7 +37,7 @@
                                         <Label Text="{Binding GiamGiaDisPlay}" Grid.Row="3" Grid.Column="1" TextColor="#ff4c57"></Label>
                                     </Frame>
                                 </StackLayout>
-                                <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding .}" Clicked="cmdchonmua_Clicked" Grid.Row="4" Grid.Column="1" HeightRequest="30" BackgroundColor="{DynamicResource  btnMuaColor}" TextColor="{DynamicResource background}"></Button>
+                                <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding MaSach}" Clicked="cmdchonmua_Clicked" Grid.Row="4" Grid.Column="1" HeightRequest="30" BackgroundColor="{DynamicResource  btnMuaColor}" TextColor="{DynamicResource background}"></Button>
 
                             </Grid>
 

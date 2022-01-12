@@ -20,14 +20,14 @@
             </Grid.ColumnDefinitions>
             <Label Text="Kiểm tra đơn hàng" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="red" FontAttributes="Bold" FontSize="20"  Grid.Column="0" Grid.Row="0"></Label>
             <Label Text="Điền các thông tin theo mã bên dưới" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" Grid.Column="0" Grid.Row="1"></Label>
-            
+
             <Label x:Name="lblEmail" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Blue" Grid.Column="0" Grid.Row="2"></Label>
-            <Entry Placeholder="Email / Số điện thoại" Focused="Entry_Focused" Unfocused="Entry_Unfocused" Grid.Column="0" Grid.Row="3"></Entry>
-            
+            <Entry x:Name="lbTenDangNhap" Placeholder="Tên đăng nhập" Focused="Entry_Focused" Unfocused="Entry_Unfocused" Grid.Column="0" Grid.Row="3"></Entry>
+
             <Label x:Name="lblmadh" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Blue" Grid.Column="0" Grid.Row="4"></Label>
-            <Entry Placeholder="Mã đơn hàng" Focused="Entry_Focused_1" Unfocused="Entry_Unfocused_1" VerticalTextAlignment="Center"  Grid.Column="0" Grid.Row="5"></Entry>
-            
-            <Button x:Name="check" Text="Kiểm tra" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" BackgroundColor="blue" Grid.Column="0" Grid.Row="6"></Button>
+            <Entry x:Name="lbMaDonHang" Placeholder="Mã đơn hàng" Focused="Entry_Focused_1" Unfocused="Entry_Unfocused_1" VerticalTextAlignment="Center"  Grid.Column="0" Grid.Row="5"></Entry>
+
+            <Button x:Name="check" Clicked="check_Clicked" Text="Kiểm tra" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" BackgroundColor="blue" Grid.Column="0" Grid.Row="6"></Button>
             <Label Text="Mẹo nhỏ: Đăng nhập để kiểm tra tất cả đơn hàng" BackgroundColor="#9E9F4F" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Grid.Column="0" Grid.Row="7"></Label>
         </Grid>
     </ContentPage.Content>

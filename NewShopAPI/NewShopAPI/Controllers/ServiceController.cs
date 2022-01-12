@@ -862,5 +862,27 @@ namespace NewShopAPI.Controllers
 
         }
 
+
+        [Route("api/ServiceController/KiemTraDonHang")]
+        [HttpGet]
+        public IHttpActionResult KiemTraDonHang(string TenDangNhap, int MaHoaDon)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("TenDangNhap", TenDangNhap);
+                param.Add("MaHoaDon", MaHoaDon);
+
+
+                DataTable result = Database.Database.Read_Table("sp_KiemTraDonHang", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
     }
 }
