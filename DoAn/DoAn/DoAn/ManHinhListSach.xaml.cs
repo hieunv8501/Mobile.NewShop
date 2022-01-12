@@ -33,6 +33,7 @@ namespace DoAn
             CultureInfo.CurrentCulture = new CultureInfo("vi-VN");
 
             HttpClient http = new HttpClient();
+
             var kq = await http.GetStringAsync(APIString.str + "LayDanhSachSachTheoLoaiSach?MaLoaiSach=" + LoaiSach.MaLoaiSach.ToString());
             var dssach = JsonConvert.DeserializeObject<List<Sach>>(kq);
             Sachs = dssach;

@@ -19,6 +19,7 @@
                                     <RowDefinition Height="2*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="2*"></RowDefinition>
 
                                 </Grid.RowDefinitions>
@@ -29,8 +30,15 @@
                                 <Image Source="{Binding Hinh}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" MinimumHeightRequest="150"   >
                                 </Image>
                                 <Label Text="{Binding TenSach}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" ></Label>
-                                <Label Text="{Binding GiaDisplay,StringFormat='{0:0.##}'}" Grid.Row="2" Grid.Column="1" TextColor="{DynamicResource  btnMuaColor}" ></Label>
-                                <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding MaSach}" Clicked="cmdchonmua_Clicked" Grid.Row="3" Grid.Column="1" HeightRequest="30" BackgroundColor="{DynamicResource  btnMuaColor}" TextColor="{DynamicResource background}"></Button>
+                                <Label Text="{Binding GiaDisplayOld,StringFormat='{0:0.##}'}"  Grid.Row="3" Grid.Column="1" TextColor="{DynamicResource secondaryLabel }" TextDecorations="Strikethrough"></Label>
+                                <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                    <Label Text="{Binding GiaDisplayNew,StringFormat='{0:0.##}'}" Grid.Row="2" Grid.Column="1" TextColor="{DynamicResource  giagiamColor}" FontSize="Medium"></Label>
+                                    <Frame BackgroundColor="#fff1f2" Padding="1" HorizontalOptions="Start" WidthRequest="40" HeightRequest="20" >
+                                        <Label Text="{Binding GiamGiaDisPlay}" Grid.Row="3" Grid.Column="1" TextColor="#ff4c57"></Label>
+                                    </Frame>
+                                </StackLayout>
+                                <Button x:Name="cmdchonmua" Text="Chọn Mua" CommandParameter="{Binding .}" Clicked="cmdchonmua_Clicked" Grid.Row="4" Grid.Column="1" HeightRequest="30" BackgroundColor="{DynamicResource  btnMuaColor}" TextColor="{DynamicResource background}"></Button>
+
                             </Grid>
 
                         </ViewCell>

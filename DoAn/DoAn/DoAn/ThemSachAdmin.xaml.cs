@@ -1,3 +1,4 @@
+
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace DoAn
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ThemSachAdmin : ContentPage
     {
-        APIString APIString = new APIString();
+    APIString APIString = new APIString();
         public ThemSachAdmin()
         {
             InitializeComponent();
@@ -66,28 +67,49 @@ namespace DoAn
             }
             else
             {
-                HttpClient http = new HttpClient();
-                try
+                int giamgia = new int();
+                bool check1 = int.TryParse(GiamGia.Text, out giamgia);
+                if (check1)
                 {
-                    var kq = await http.GetStringAsync(APIString.str + "ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img + txtHinh.Text); ;
-                    if (int.Parse(kq) > 0)
+                    await DisplayAlert("Thông Báo", "Phần trăm giảm giá không đúng kiểu", "OK");
+                }
+                else
+                {
+                    if(giamgia<0||giamgia>100)
                     {
-                        await DisplayAlert("Thông Báo", "Bạn đã thêm sách thành công", "OK");
-                        await Navigation.PushAsync(new DanhMucAdmin());
+                        await DisplayAlert("Thông Báo", "Phần trăm giảm giá không hợp lệ", "OK");
                     }
                     else
                     {
-                        await DisplayAlert("Thông Báo", "Thêm sách thất bại ", "OK");
-                    }
+                        string link = "http://172.20.10.4/newshopwebapi/Image/";
+                        HttpClient http = new HttpClient();
+                        try
+                        {
+                            var kq = await http.GetStringAsync("APIString.str + "ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img+ txtHinh.Text + "&GiamGia=" + GiamGia.Text); ;
+                            if (int.Parse(kq) > 0)
+                            {
+                                await DisplayAlert("Thông Báo", "Bạn đã thêm sách thành công", "OK");
+                                await Navigation.PushAsync(new DanhMucAdmin());
+                            }
+                            else
+                            {
+                                await DisplayAlert("Thông Báo", "Thêm sách thất bại ", "OK");
+                            }
 
-                }
-                catch
-                {
-                    {
-                        await DisplayAlert("Thông Báo", "Thêm sách thất bại", "OK");
+                        }
+                        catch
+                        {
+                            {
+                                await DisplayAlert("Thông Báo", "Thêm sách thất bại", "OK");
+                            }
+                        }
                     }
                 }
+                    
+                    
+                
             }
         }
     }
+
 }

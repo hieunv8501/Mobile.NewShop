@@ -23,6 +23,7 @@ namespace DoAn
 
         async private void cmdThemDanhMuc_Clicked(object sender, EventArgs e)
         {
+
             HttpClient http = new HttpClient();
             try
             {

@@ -11,6 +11,7 @@
     <Color x:Key="borderColor">#DDD</Color>
     <Color x:Key="PageBgColor">#4CAF50</Color>
     <Color x:Key="btnMuaColor">#ff0f1e</Color>
+    <Color x:Key="giagiamColor">#ff1524</Color>
     <Color x:Key="btnSuaColor">Orange</Color>
     <Color x:Key="btnCapnhatColor">#007bff</Color>
     <!--<ResourceDictionary.MergedDictionaries>

@@ -13,6 +13,7 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -40,7 +41,11 @@
                 <Label Text="Giá tiền: " FontSize="Large" VerticalOptions="Center"   Grid.Row="4" Grid.Column="0" >
                 </Label>
                 <Entry x:Name="GiaTien" Keyboard="Numeric" Grid.Row="4" Grid.Column="1"  ></Entry>
-                <Button x:Name="cmdAddSach" Text="Thêm mới" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Clicked="cmdAddSach_Clicked" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" BackgroundColor="{DynamicResource btnCapnhatColor}" TextColor="{DynamicResource mainBackground}" ></Button>
+
+                <Label Text="Giảm giá(%): " FontSize="Large" VerticalOptions="Center"   Grid.Row="5" Grid.Column="0" >
+                </Label>
+                <Entry x:Name="GiamGia" Keyboard="Numeric" Grid.Row="5" Grid.Column="1"></Entry>
+                <Button x:Name="cmdAddSach" Text="Thêm mới" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Clicked="cmdAddSach_Clicked" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" BackgroundColor="{DynamicResource btnCapnhatColor}" TextColor="{DynamicResource mainBackground}" ></Button>
 
             </Grid>
         </StackLayout>

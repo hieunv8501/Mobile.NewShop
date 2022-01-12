@@ -3,7 +3,7 @@ go
 use QuanLyBanSach
 go
 
-create table  TAIKHOAN
+create table TAIKHOAN
 (	
 	TenDangNhap varchar(50) primary key,
 	MatKhau varchar(50),
@@ -11,8 +11,8 @@ create table  TAIKHOAN
 	SoDienThoai varchar(10),
 	Email varchar(50),
 	NgaySinh datetime,
-	GioiTinh bit, 
-	IsAdmin bit default 0
+	GioiTinh int, 
+	IsAdmin int default 0
 )
 
 create table LOAISACH
