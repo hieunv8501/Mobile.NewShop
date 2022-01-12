@@ -22,11 +22,6 @@ namespace DoAn
             GenderCreate();
         }
 
-        private void cbxSave_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            //
-        }
-
         private void GenderCreate()
         {
             var genders = new List<string>();
@@ -60,8 +55,8 @@ namespace DoAn
             string TenKhachHang = dkhoten.Text;
             string Email = dkemail.Text;
             string SoDienThoai = dksdt.Text;
-            string NgaySinh = dd; /*= dkdob*/;
-            int GioiTinh = 1;/*= dkgender*/;
+            string NgaySinh = dd;
+            int GioiTinh = 1;
             if (dkgender.Title == "Nam") GioiTinh = 1;
             else if (dkgender.Title == "Nữ")
             {

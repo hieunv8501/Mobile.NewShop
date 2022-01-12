@@ -28,7 +28,6 @@ namespace DoAn
             lstdn_choice.ItemsSource = danhmuc;
         }
 
-
         private async void dnbtn_Clicked(object sender, EventArgs e)
         {
             if (lbTenDangNhap.Text != null && lbMatKhau.Text != null)
@@ -51,8 +50,6 @@ namespace DoAn
                 if (check == false)
                     await DisplayAlert("Thông báo", "Tên đăng nhập hoặc mật khẩu không đúng", "OK");
             }
-
-
 
         }
 

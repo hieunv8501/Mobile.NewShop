@@ -18,12 +18,9 @@ namespace DoAn
         APIString APIString = new APIString();
         public DaDangNhap(string TenDangNhap)
         {
-
             InitializeComponent();
             TENDANGNHAP = TenDangNhap;
-
             KhoiTao(TenDangNhap);
-
         }
 
         protected override void OnAppearing()

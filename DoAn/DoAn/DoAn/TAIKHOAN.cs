@@ -12,9 +12,7 @@ namespace DoAn
         public string SoDienThoai { get; set; }
         public string Email { get; set; }
         public DateTime NgaySinh { get; set; }
-        public int GioiTinh { get; set; }
-        public int IsAdmin { get; set; }
-
-
+        public bool GioiTinh { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

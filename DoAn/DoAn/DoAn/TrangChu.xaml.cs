@@ -24,20 +24,9 @@ namespace DoAn
             LayDanhSachSachKM();
             PhoneCall();
             LayDanhSachSachTheoMaLoai(1); LayDanhSachSachTheoMaLoai(3); LayDanhSachSachTheoMaLoai(5); LayDanhSachSachTheoMaLoai(8);
-
+            LayDanhSachLoaiSach();
         }
-        //public static string GetLocalIPAddress()
-        //{
-        //    var host = Dns.GetHostEntry(Dns.GetHostName());
-        //    foreach (var ip in host.AddressList)
-        //    {
-        //        if (ip.AddressFamily == AddressFamily.InterNetwork)
-        //        {
-        //            return ip.ToString();
-        //        }
-        //    }
-        //    throw new Exception("No network adapters with an IPv4 address in the system!");
-        //}
+
         private void CarouselInit()
         {
             var list = new List<string>
@@ -46,15 +35,36 @@ namespace DoAn
             };
             TheCarousel.ItemsSource = list;
         }
+
+        private void btnGH_Clicked(object sender, EventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == null || TENDANGNHAP.TenDangNhap == "")
+            {
+                DisplayAlert("Thông báo", "Vui lòng đăng nhập", "OK");
+                Navigation.PushAsync(new DangNhap());
+            }
+            else Navigation.PushAsync(new GioHang());
+        }
+
+        private void btnSearchTK_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TimKiem());
+        }
+        private void PhoneCall()
+        {
+            phone1.TextTransform = phone2.TextTransform = TextTransform.None;
+            phone1.Text = "02866825005" + "\n" + "Hotline mua hàng online";
+            phone2.Text = "0909354135" + "\n" + "Hotline mua hàng online";
+        }
         public async void LayDanhSachSachKM()
         {
             var httpClient = new HttpClient();
-            var resKM = await httpClient.GetStringAsync(APIString.str + "LayDanhSachSachTheoKhuyenMai");
-            var dsSachKhuyenMai = JsonConvert.DeserializeObject<List<Sach>>(resKM);
+            var resachlv = await httpClient.GetStringAsync(APIString.str + "LayDanhSachSachTheoKhuyenMai");
+            var dsSachKhuyenMai = JsonConvert.DeserializeObject<List<Sach>>(resachlv);
             listKHUYENMAI.ItemsSource = dsSachKhuyenMai;
             listKHUYENMAI.WidthRequest = (dsSachKhuyenMai.Count() / 2 + 1) * 200;
-            //listMoiCapNhap.ItemsSource = dsSach.GetRange(0, 6);
         }
+        
         public async void LayDanhSachSachTheoMaLoai(int MaLoaiSach)
         {
 
@@ -92,46 +102,180 @@ namespace DoAn
             }
         }
 
-        //private void listKHUYENMAI_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
+        Sach sachlv = new Sach();
+       
+        private void listKHUYENMAI_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listKHUYENMAI.SelectedItem != null)
+                {
+                    sachlv = (Sach)listKHUYENMAI.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listKHUYENMAI.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listKHUYENMAI.SelectedItem != null)
+                {
+                    sachlv = (Sach)listKHUYENMAI.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listKHUYENMAI.SelectedItem = null;
+                }
+            }
+        }
 
-        //}
-        LoaiSach ls = new LoaiSach();
+        private void listBANCHAY_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listBANCHAY.SelectedItem != null)
+                {
+                    sachlv = (Sach)listBANCHAY.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listBANCHAY.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listBANCHAY.SelectedItem != null)
+                {
+                    sachlv = (Sach)listBANCHAY.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listBANCHAY.SelectedItem = null;
+                }
+            }
+        }
+
+        private void listLTQG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listLTQG.SelectedItem != null)
+                {
+                    sachlv = (Sach)listLTQG.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listLTQG.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listLTQG.SelectedItem != null)
+                {
+                    sachlv = (Sach)listLTQG.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listLTQG.SelectedItem = null;
+                }
+            }
+        }
+
+        private void listVH_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listVH.SelectedItem != null)
+                {
+                    sachlv = (Sach)listVH.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listVH.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listVH.SelectedItem != null)
+                {
+                    sachlv = (Sach)listVH.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listVH.SelectedItem = null;
+                }
+            }
+        }
+
+        private void listNN_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listNN.SelectedItem != null)
+                {
+                    sachlv = (Sach)listNN.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listNN.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listNN.SelectedItem != null)
+                {
+                    sachlv = (Sach)listNN.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listNN.SelectedItem = null;
+                }
+            }
+        }
+        ////////////////////////////
+        LoaiSach listls = new LoaiSach();
+        private List<LoaiSach> listbtnSachMore;
+        public async void LayDanhSachLoaiSach()
+        {
+            var httpClient = new HttpClient();
+            var res = await httpClient.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
+            listbtnSachMore = JsonConvert.DeserializeObject<List<LoaiSach>>(res);
+        }
         private void btnBanChayMore_Clicked(object sender, EventArgs e)
         {
-
+            listls = listbtnSachMore.Where(c => c.TenLoaiSach == "Sách Bán Chạy").FirstOrDefault();
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                Navigation.PushAsync(new SachAdmin(listls));
+            }
+            else
+            {
+                Navigation.PushAsync(new ManHinhListSach(listls));
+            }
         }
 
         private void btnLTQGMore_Clicked(object sender, EventArgs e)
         {
-            //
+            listls = listbtnSachMore.Where(c => c.TenLoaiSach == "Sách Luyện Thi THPT Quốc Gia").FirstOrDefault();
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                Navigation.PushAsync(new SachAdmin(listls));
+            }
+            else
+            {
+                Navigation.PushAsync(new ManHinhListSach(listls));
+            }
         }
 
         private void btnVanHocMore_Clicked(object sender, EventArgs e)
         {
-            //
+            listls = listbtnSachMore.Where(c => c.TenLoaiSach == "Sách Văn Học").FirstOrDefault();
+
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                Navigation.PushAsync(new SachAdmin(listls));
+            }
+            else
+            {
+                Navigation.PushAsync(new ManHinhListSach(listls));
+            }
         }
 
         private void btnNN_Clicked(object sender, EventArgs e)
         {
-            //
+            listls = listbtnSachMore.Where(c => c.TenLoaiSach == "Sách Ngoại Ngữ").FirstOrDefault();
+
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                Navigation.PushAsync(new SachAdmin(listls));
+            }
+            else
+            {
+                Navigation.PushAsync(new ManHinhListSach(listls));
+            }
         }
 
-        private void btnGH_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSearchTK_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new TimKiem());
-        }
-        private void PhoneCall()
-        {
-            phone1.TextTransform = phone2.TextTransform = TextTransform.None;
-            phone1.Text = "02866825005" + "\n" + "Hotline mua hàng online";
-            phone2.Text = "0909354135" + "\n" + "Hotline mua hàng online";
-        }
         private void phone1_Clicked(object sender, EventArgs e)
         {
             Button btn = (Button)sender;

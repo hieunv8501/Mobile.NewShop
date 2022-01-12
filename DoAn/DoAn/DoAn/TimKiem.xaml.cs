@@ -20,7 +20,6 @@ namespace DoAn
         {
             InitializeComponent();
             KhoiTaoTimKiemAsync();
-
         }
         List<LoaiSach> SachLoai = new List<LoaiSach>();
         List<Sach> SachSach = new List<Sach>();
@@ -37,7 +36,12 @@ namespace DoAn
 
         private void btnGH_Clicked(object sender, EventArgs e)
         {
-            //
+            if (TENDANGNHAP.TenDangNhap == null || TENDANGNHAP.TenDangNhap == "")
+            {
+                DisplayAlert("Thông báo", "Vui lòng đăng nhập", "OK");
+                Navigation.PushAsync(new DangNhap());
+            }
+            else Navigation.PushAsync(new GioHang());
         }
 
         private void btnBack_Clicked(object sender, EventArgs e)
@@ -61,15 +65,15 @@ namespace DoAn
                 else
                 {
                     LstTK.ItemsSource = count1;
-                    LstTK.RowHeight = 90;
-                    LstTK.HeightRequest = count1.Count() * 95; 
+                    LstTK.RowHeight = 95;
+                    LstTK.HeightRequest = count1.Count() * 100; 
                 }
-                if (count2 == null) LstTK.IsVisible = false;
+                if (count2 == null) LstTK1.IsVisible = false;
                 else
                 {
-                    LstTK.ItemsSource = count2;
-                    LstTK.RowHeight = 90;
-                    LstTK.HeightRequest = (count2.Count() * 95);
+                    LstTK1.ItemsSource = count2;
+                    LstTK1.RowHeight = 95;
+                    LstTK1.HeightRequest = (count2.Count() * 100);
                 }
             }
             

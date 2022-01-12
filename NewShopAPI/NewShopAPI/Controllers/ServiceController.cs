@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -862,8 +862,7 @@ namespace NewShopAPI.Controllers
 
         }
 
-
-        [Route("api/ServiceController/KiemTraDonHang")]
+	[Route("api/ServiceController/KiemTraDonHang")]
         [HttpGet]
         public IHttpActionResult KiemTraDonHang(string TenDangNhap, int MaHoaDon)
         {
@@ -872,8 +871,6 @@ namespace NewShopAPI.Controllers
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("TenDangNhap", TenDangNhap);
                 param.Add("MaHoaDon", MaHoaDon);
-
-
                 DataTable result = Database.Database.Read_Table("sp_KiemTraDonHang", param);
                 return Ok(result);
             }

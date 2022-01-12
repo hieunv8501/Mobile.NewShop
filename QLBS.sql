@@ -3,7 +3,7 @@ go
 use QuanLyBanSach
 go
 
-create table TAIKHOAN
+create table  TAIKHOAN
 (	
 	TenDangNhap varchar(50) primary key,
 	MatKhau varchar(50),
@@ -11,11 +11,9 @@ create table TAIKHOAN
 	SoDienThoai varchar(10),
 	Email varchar(50),
 	NgaySinh datetime,
-	GioiTinh int, 
-	IsAdmin int default 0
+	GioiTinh bit, 
+	IsAdmin bit default 0
 )
-
-
 
 create table LOAISACH
 (
@@ -127,25 +125,25 @@ where Hinh is not null;
 
 --select * from SACH
 --select * from LOAISACH
-select * from TAIKHOAN
 go
 insert into TAIKHOAN values ('admin', '1', 'Admin' , '0254633254', 'admin@gmail.com', '05/07/2001', 1, 1),('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', '01/01/2001', 1,0), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', '01/01/2001', 1,0), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', '01/01/2001', 1,0)
 insert into LOAISACH values (N'Sách Văn Học', N'http://192.168.1.4/newshopwebapi/Image/vanhoc.jpg'), 
-			(N'Sách Tham Khảo', N'http://192.168.1.4/newshopwebapi/Image/thamkhao.jpg'), 
+			(N'Sách Tham Khảo', N'http://192.168.1.4/newshopwebapi/Image/thamkhao.gif'), 
 			(N'Sách Bán Chạy', N'http://192.168.1.4/newshopwebapi/Image/BanChay.jpg'), 
-			(N'Sách Quản Lý - Kinh Doanh', N'http://192.168.1.4/newshopwebapi/Image/NgoaiNgu.jpg'), 
+			(N'Sách Quản Lý - Kinh Doanh', N'http://192.168.1.4/newshopwebapi/Image/KinhDoanh.jpg'), 
 			(N'Sách Ngoại Ngữ', N'http://192.168.1.4/newshopwebapi/Image/NgoaiNgu.jpg'),
 			(N'Sách Thiếu Nhi', N'http://192.168.1.4/newshopwebapi/Image/ThieuNhi.jpg'),
 			(N'Sách Kỹ Năng Sống', N'http://192.168.1.4/newshopwebapi/Image/YChi.jpg'),
 			(N'Sách Luyện Thi THPT Quốc Gia', N'http://192.168.1.4/newshopwebapi/Image/THPTQG.jpg'),
 			(N'Sách Nghệ Thuật - Kiến Trúc', N'http://192.168.1.4/newshopwebapi/Image/NTKT.jpg'),
 			(N'Sách Chính Trị - Luật Pháp', N'http://192.168.1.4/newshopwebapi/Image/CTLP.jpg')	,
-			(N'Sách Tâm Lý - Giáo Dục Nuôi Dạy Con', N'http://192.168.1.4/newshopwebapi/Image/TamLy.jpg'),
+			(N'Sách Tâm Lý - Giáo Dục Nuôi Dạy Con', N'http://192.168.1.4/newshopwebapi/Image/TamLy.gif'),
 			(N'Sách Kiến Thức Bách Khoa', N'http://192.168.1.4/newshopwebapi/Image/KTBK.jpg')	
 
 
 insert into SACH values (1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Thành Phố - Tập tản văn cũng có những chiêm nghiệm khác rút ra từ cuộc sống hàng ngày, thể hiện cách nhìn đời nhẹ nhàng, vị tha của một bác sĩ đã từng chứng kiến nhiều cuộc sinh tử biệt ly và biết điều gì là đáng quý nhất trong đời.', N'http://192.168.1.4/newshopwebapi/Image/sach1.jpg', 20), 
 			(1, N'Người Thăng Long', 100000, N'Người Thăng Long - Bản trường ca hào hùng về các vị vương, tướng nhà Trần trong cuộc chiến chống Nguyên Mông lần thứ hai.', N'http://192.168.1.4/newshopwebapi/Image/sach2.jpg', 5),
+			(2, N'Bồi Dưỡng Học Sinh Giỏi Sinh Học 9 - Phan Khắc Nghệ', 68000, N'Hệ thống hóa, mở rộng và nâng cao các kiến thức sinh học qua các dạng câu hỏi và bài tập nâng cao theo các chuyên đề, giúp các em chuẩn bị tốt cho các kỳ thi học sinh giỏi môn sinh lớp 9', N'http://192.168.1.4/newshopwebapi/Image/stk1.jpg', 20),
 			(5, N'Chinh Phục 4 Kỹ Năng Tiếng Anh Nghe-Nói-Đọc-Viết', 100000, N'Chinh Phục 4 Kỹ Năng Tiếng Anh Nghe - Nói - Đọc - Viết Lớp 9 - Tập 1 - Sách tập trung vào việc rèn luyện các kỹ năng cơ bản như: Nghe, Nói, Đọc, Viết thông qua các bài tập và phát triển các kỹ năng giao tiếp tổng hợp về cách phát âm đúng; từ vựng phong phú, đọc các đoạn hội thoại, đoạn văn; viết câu hoặc đoạn văn theo mẫu, nói theo chủ đề từng bài học, nhằm giúp các em học sinh vận dụng và tổng hợp kiến thức hiệu quả nhất.', N'http://192.168.1.4/newshopwebapi/Image/sach3.jpg', 15), 
 			(5, N'Chuyên Sâu Ngữ Pháp Và Từ Vựng Tiếng Anh Lớp 8', 150000, N'Luyện Chuyên Sâu Ngữ Pháp Và Từ Vựng Tiếng Anh Lớp 8 - Tập 1 - Cuốn sách các em đang cầm trên tay là cuốn sách không thể thiếu trong quá trình học tập tiếng Anh dành cho các em học sinh nhằm bổ trợ và nâng cao kiến thức trong chương trình Tiếng Anh hiện hành.', N'http://192.168.1.4/newshopwebapi/Image/sach4.jpg', 17),
 			(5, N'Tự Học Tiếng Anh (Kèm CD)', 300000, N'Tự Học Tiếng Hoa Cấp Tốc (Kèm CD) - Cuốn sách với các tình huống đa dạng, cách trình bày bố cục rõ ràng cùng với cách phiên âm chuyển ngữ sang tiếng Việt', N'http://192.168.1.4/newshopwebapi/Image/sach5.jpg', 7),
@@ -305,7 +303,7 @@ go
 --Lấy CT_HOADON theo MaHoaDon
 create proc sp_LayChiTietHoaDon  @MaHoaDon int
 as begin
-	select HOADON.MaHoaDon, SACH.MaSach, TinhTrang, TenNguoiNhan, SDT, DiaChi, NgayHoaDon, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, CT_HOADON.Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+	select HOADON.MaHoaDon, SACH.MaSach, TinhTrang, TenNguoiNhan, SDT, DiaChi, NgayHoaDon, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, CT_HOADON.Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
 end
 
 go
@@ -603,7 +601,6 @@ as begin
 	delete from DIACHI where MaDiaChi = @MaDiaChi
 end
 
-go
 -- Lấy giá tiền giao hàng
 create proc sp_LayGiaGiaoHang
 as begin
@@ -736,10 +733,10 @@ GO
 
 --select * from SACH
 --select * from LOAISACH
+--select * from TAIKHOAN
 
---Tai Khoan
 --Thêm tài khoản
-alter procedure sp_ThemTaiKhoan @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit, @IsAdmin bit, @CurrentID int output
+create procedure sp_ThemTaiKhoan @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit, @IsAdmin bit, @CurrentID int output
 as 
 begin try
 if(exists(select * from TAIKHOAN where TenDangNhap=@TenDangNhap))
@@ -818,8 +815,6 @@ go
 --print @id
 --declare @id int;
 --exec sp_ThemTaiKhoan 'hau1234','1234','phamphuchau','12345678','hau@gmail.com','01/01/2001',1,1,@id;
---declare @id int;
---exec sp_ThemTaiKhoan 'tinh','1234','Bùi Văn Tình','0968568803','tinh@gmail.com','01/01/2001',1,1,@id;
 --print(@id);
 --select * from TaiKhoan
 
@@ -861,8 +856,6 @@ as begin
 		insert into SACHDAXEM values(@TenDangNhap, @MaSach)
 	end
 end
-
-
 go
 create proc sp_LaySachTheoMaSach @MaSach int
 as begin
@@ -875,3 +868,4 @@ create proc sp_KiemTraDonHang @TenDangNhap varchar(50), @MaHoaDon int
 as begin
 	select MaHoaDon from HOADON where TenDangNhap = @TenDangNhap and MaHoaDon = @MaHoaDon
 end
+go

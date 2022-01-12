@@ -45,7 +45,7 @@ namespace DoAn
             email.Text = SelectFirst.Email;
             ngaysinh.Date = SelectFirst.NgaySinh;
 
-            if (SelectFirst.GioiTinh == 1)
+            if (SelectFirst.GioiTinh == true)
             {
                 Nam.IsChecked = true;
             }

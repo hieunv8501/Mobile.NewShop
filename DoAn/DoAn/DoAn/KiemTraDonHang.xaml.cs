@@ -33,13 +33,13 @@ namespace DoAn
 
         private void Entry_Focused_1(object sender, FocusEventArgs e)
         {
-            lblmadh.Text = "Mã đơn hàng";
-            lblmadh.TextColor = Color.Blue;
+            lbMaDonHang.Text = "Mã đơn hàng";
+            lbMaDonHang.TextColor = Color.Blue;
         }
 
         private void Entry_Unfocused_1(object sender, FocusEventArgs e)
         {
-            lblmadh.Text = "";
+            lbMaDonHang.Text = "";
 
         }
 
@@ -58,8 +58,6 @@ namespace DoAn
                 var ConnectAPIConvert = JsonConvert.DeserializeObject<List<HOADON>>(ConnectAPI);
                 await Navigation.PushAsync(new ChiTietDonHang(ConnectAPIConvert.First().MaHoaDon));
             }
-
-
         }
     }
 }

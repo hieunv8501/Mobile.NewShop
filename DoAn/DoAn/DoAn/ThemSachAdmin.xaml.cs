@@ -1,4 +1,3 @@
-
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,16 +5,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 namespace DoAn
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ThemSachAdmin : ContentPage
     {
-    APIString APIString = new APIString();
+        APIString APIString = new APIString();
         public ThemSachAdmin()
         {
             InitializeComponent();
@@ -31,7 +28,7 @@ namespace DoAn
             pickerLoaiSach();
         }
         //Chua xu ly picker loai sach.
-        
+
         public async void pickerLoaiSach()
         {
             HttpClient http = new HttpClient();
@@ -40,14 +37,12 @@ namespace DoAn
                 var kq = await http.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
                 loaisachs = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 ChonLoaiSach.ItemsSource = loaisachs;
-
                 foreach (LoaiSach ct in loaisachs)
                 {
                     if (ct.MaLoaiSach == loaisach.MaLoaiSach)
                     {
                         ChonLoaiSach.SelectedIndex = loaisachs.IndexOf(ct);
                         break;
-
                     }
                 }
             }
@@ -63,7 +58,6 @@ namespace DoAn
             if (!check)
             {
                 await DisplayAlert("Thông Báo", "Giá tiền không đúng kiểu", "OK");
-
             }
             else
             {
@@ -75,7 +69,7 @@ namespace DoAn
                 }
                 else
                 {
-                    if(giamgia<0||giamgia>100)
+                    if (giamgia < 0 || giamgia > 100)
                     {
                         await DisplayAlert("Thông Báo", "Phần trăm giảm giá không hợp lệ", "OK");
                     }
@@ -84,7 +78,7 @@ namespace DoAn
                         HttpClient http = new HttpClient();
                         try
                         {
-                            var kq = await http.GetStringAsync(APIString.str + "ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img+ txtHinh.Text + "&GiamGia=" + GiamGia.Text);
+                            var kq = await http.GetStringAsync(APIString.str + "ThemSach?&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img + txtHinh.Text + "&GiamGia=" + GiamGia.Text);
                             if (int.Parse(kq) > 0)
                             {
                                 await DisplayAlert("Thông Báo", "Bạn đã thêm sách thành công", "OK");
@@ -94,7 +88,6 @@ namespace DoAn
                             {
                                 await DisplayAlert("Thông Báo", "Thêm sách thất bại ", "OK");
                             }
-
                         }
                         catch
                         {
@@ -104,11 +97,7 @@ namespace DoAn
                         }
                     }
                 }
-                    
-                    
-                
             }
         }
     }
-
 }

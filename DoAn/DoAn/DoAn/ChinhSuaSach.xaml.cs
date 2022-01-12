@@ -34,8 +34,7 @@ namespace DoAn
 
             txtMoTa.Text = sach.MoTa;
             txtNameSach.Text = sach.TenSach;
-            GiaTien.Text =sach.Gia.ToString();
-            GiamGia.Text = sach.GiamGia.ToString();
+            GiaTien.Text = String.Format("{0:0.##}", sach.Gia.ToString());
 
         }
         public async void pickerLoaiSach()
@@ -43,7 +42,6 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-
                 var kq = await http.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
                 loaisachs = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 ChonLoaiSach.ItemsSource = loaisachs;
@@ -74,7 +72,6 @@ namespace DoAn
             }
             else
             {
-
                 HttpClient http = new HttpClient();
                 try
                 {
@@ -82,7 +79,7 @@ namespace DoAn
                     if (int.Parse(kq) > 0)
                     {
                         await DisplayAlert("Thông Báo", "Bạn đã chỉnh sửa thành công", "OK");
-                        await Navigation.PushAsync(new SachAdmin(loaisachs[ChonLoaiSach.SelectedIndex]));
+                        await Navigation.PushAsync(new DanhMucAdmin());
                     }
                     else
                     {

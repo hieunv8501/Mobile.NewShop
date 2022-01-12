@@ -46,7 +46,6 @@ namespace DoAn
             lstCT_DONHANG.ItemsSource = ConnectAPIConvert;
 
         }
-
         private async void btnMuaLai_Clicked(object sender, EventArgs e)
         {
             Button selected = (Button)sender;

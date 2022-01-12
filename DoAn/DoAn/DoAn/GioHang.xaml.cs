@@ -25,7 +25,6 @@ namespace DoAn
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
             if (tENDANGNHAP.Get_TenDangNhap() != null)
             {
                 LayThongTinGioHang(tENDANGNHAP.Get_TenDangNhap());
@@ -39,7 +38,6 @@ namespace DoAn
 
         async void LayThongTinGioHang(string TenDangNhap)
         {
-
             HttpClient httpClient = new HttpClient();
             var GioHangList = await httpClient.GetStringAsync(APIString.str + "LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
 
@@ -106,7 +104,6 @@ namespace DoAn
                 }
 
             }
-
             OnAppearing();
 
         }

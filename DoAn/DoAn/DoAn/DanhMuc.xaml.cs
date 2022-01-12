@@ -27,7 +27,6 @@ namespace DoAn
             try
             {
                 HttpClient http = new HttpClient();
-
                 var kq = await http.GetStringAsync(APIString.str + "LayDanhSachLoaiSach");
                 var loaisach = JsonConvert.DeserializeObject<List<LoaiSach>>(kq);
                 List<LoaiSach> ls2 = new List<LoaiSach>();

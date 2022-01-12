@@ -7,6 +7,7 @@ namespace DoAn
     public class TENDANGNHAP
     {
         public static string TenDangNhap = null;
+        //public static bool IsAdmin = false;
 
         public void Set_TenDangNhap(string TENDANGNHAP)
         {
@@ -20,5 +21,17 @@ namespace DoAn
         {
             TenDangNhap = null;
         }
+        //public void Set_IsAdmin(bool IsAdmins)
+        //{
+        //    IsAdmin = IsAdmins;
+        //}
+        //public bool Get_IsAdmin()
+        //{
+        //    return IsAdmin;
+        //}
+        //public void SetFalse_IsAdmin()
+        //{
+        //    IsAdmin = false;
+        //}
     }
 }

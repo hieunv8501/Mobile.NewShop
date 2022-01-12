@@ -7,13 +7,10 @@
     <StackLayout>
         <SearchBar x:Name="Search" Placeholder="" TextChanged="Search_TextChanged" CancelButtonColor="Orange"/>
         <ScrollView Orientation="Vertical">
-
             <ListView x:Name="LstSach" ItemSelected="LstSach_ItemSelected" RowHeight="130" SeparatorColor="Green"  HasUnevenRows="True" >
                 <ListView.ItemTemplate>
                     <DataTemplate >
-
                         <ViewCell >
-
                             <Grid Padding="5" Margin="0,5,0,5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="2*"></RowDefinition>
@@ -21,7 +18,6 @@
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="2*"></RowDefinition>
-
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -30,9 +26,9 @@
                                 <Image Source="{Binding Hinh}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" MinimumHeightRequest="150"   >
                                 </Image>
                                 <Label Text="{Binding TenSach}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" ></Label>
-                                <Label Text="{Binding GiaDisplayOld,StringFormat='{0:0.##}'}"  Grid.Row="3" Grid.Column="1" TextColor="{DynamicResource secondaryLabel }" TextDecorations="Strikethrough"></Label>
+                                <Label Text="{Binding GiaDisplayOld, StringFormat='{0:0.##}'}"  Grid.Row="3" Grid.Column="1" TextColor="{DynamicResource secondaryLabel }" TextDecorations="Strikethrough"></Label>
                                 <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-                                    <Label Text="{Binding GiaDisplayNew,StringFormat='{0:0.##}'}" Grid.Row="2" Grid.Column="1" TextColor="{DynamicResource  giagiamColor}" FontSize="Medium"></Label>
+                                    <Label Text="{Binding GiaDisplayNew, StringFormat='{0:0.##}'}" Grid.Row="2" Grid.Column="1" TextColor="{DynamicResource  giagiamColor}" FontSize="Medium"></Label>
                                     <Frame BackgroundColor="#fff1f2" Padding="1" HorizontalOptions="Start" WidthRequest="40" HeightRequest="20" >
                                         <Label Text="{Binding GiamGiaDisPlay}" Grid.Row="3" Grid.Column="1" TextColor="#ff4c57"></Label>
                                     </Frame>

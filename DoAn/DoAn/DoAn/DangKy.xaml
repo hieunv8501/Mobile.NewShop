@@ -45,7 +45,7 @@
                     <Picker x:Name="dkgender" Title="Nam" SelectedIndexChanged="dkgender_SelectedIndexChanged" Grid.Column="1" Grid.Row="6" FontSize="Small"></Picker>
                 </Grid>
                 <StackLayout Orientation="Horizontal">
-                    <CheckBox x:Name="cbxSave" Color="#2e9dff" HorizontalOptions="Start" IsChecked="True" CheckedChanged="cbxSave_CheckedChanged"></CheckBox>
+                    <CheckBox x:Name="cbxSave" Color="#2e9dff" HorizontalOptions="Start" IsChecked="True"></CheckBox>
                     <Label TextColor="Black" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="Nhận các thông tin cập nhật và chương trình khuyến mãi qua Email" FontSize="Small"></Label>
                 </StackLayout>
                 <Label TextColor="Black" Text="Khi đăng ký là bạn đã chấp nhận điều khoản sử dụng và chính sách của Newshop." Margin="7,0,0,0" FontSize="Small"></Label>

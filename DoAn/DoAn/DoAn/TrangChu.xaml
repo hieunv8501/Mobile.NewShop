@@ -88,7 +88,8 @@
                     <CollectionView x:Name="listKHUYENMAI"
                         SelectionMode="Single"
                         HeightRequest="220"
-                        Margin="8,0,0,10"   
+                        Margin="8,0,0,10"
+                        SelectionChanged="listKHUYENMAI_SelectionChanged"
                         >
                         <CollectionView.ItemsLayout >
                             <GridItemsLayout Orientation="Horizontal" Span="2" HorizontalItemSpacing="8" VerticalItemSpacing="8"></GridItemsLayout>
@@ -146,6 +147,7 @@
                     <CollectionView x:Name="listBANCHAY"
                         SelectionMode="Single" 
                         HeightRequest="190"
+                        SelectionChanged="listBANCHAY_SelectionChanged"
                         Margin="8,0,8,0"
                         >
                         <CollectionView.ItemsLayout >
@@ -193,6 +195,7 @@
                     <CollectionView x:Name="listLTQG"
                         SelectionMode="Single" 
                         HeightRequest="190"
+                        SelectionChanged="listLTQG_SelectionChanged"
                         Margin="8,0,8,0"
                         >
                         <CollectionView.ItemsLayout >
@@ -240,6 +243,7 @@
                     <CollectionView x:Name="listVH"
                         SelectionMode="Single" 
                         HeightRequest="190"
+                        SelectionChanged="listVH_SelectionChanged"
                         Margin="8,0,8,0"
                         >
                         <CollectionView.ItemsLayout >
@@ -287,6 +291,7 @@
                     <CollectionView x:Name="listNN"
                         SelectionMode="Single" 
                         HeightRequest="190"
+                        SelectionChanged="listNN_SelectionChanged"
                         Margin="8,0,8,0"
                         >
                         <CollectionView.ItemsLayout >

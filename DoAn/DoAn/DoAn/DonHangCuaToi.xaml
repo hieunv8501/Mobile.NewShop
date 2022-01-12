@@ -12,9 +12,7 @@
                             <SwipeView>
                                 <SwipeView.RightItems>
                                     <SwipeItems>
-
                                         <SwipeItem Text="{Binding btnDisplayForUser}" BackgroundColor="Red" Invoked="btnXoa_Clicked" CommandParameter="{Binding MaHoaDon}"/>
-
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                                 <Grid Padding="10, 5, 10 , 5">

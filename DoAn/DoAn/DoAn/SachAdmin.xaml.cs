@@ -37,7 +37,6 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-
                 var kq = await http.GetStringAsync(APIString.str + "LayDanhSachSachTheoLoaiSach?MaLoaiSach=" + Loaisach.MaLoaiSach);
                 var sach = JsonConvert.DeserializeObject<List<Sach>>(kq);
                 LstSach.ItemsSource = sach;
@@ -79,7 +78,6 @@ namespace DoAn
             HttpClient http = new HttpClient();
             try
             {
-
                 var kq = await http.GetStringAsync(APIString.str + "XoaSach?MaSach=" + item.MaSach);
                 if (int.Parse(kq) > 0)
                 {

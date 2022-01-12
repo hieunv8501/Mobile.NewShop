@@ -20,20 +20,18 @@ namespace DoAn
         public ChiTietSachAdmin(Sach sach)
         {
             InitializeComponent();
-            Title = "Thông tin chi tiết sách";
+            Title = sach.TenSach;
             image.Source = sach.Hinh;
             tensach.Text = sach.TenSach;
             mota.Text = sach.MoTa;
-            giacu.Text = sach.GiaDisplayOld;
-            phantramgiam.Text = sach.GiamGiaDisPlay;
             image.MinimumHeightRequest = 300;
             image.MinimumWidthRequest = 300;
             image.WidthRequest = 300;
             image.HeightRequest = 300;
             //giaban.Text = sach.Price.ToString("C");
             CultureInfo cultureInfo = new CultureInfo("vi-VN");
-            double giasaukhigiam = double.Parse(sach.Gia.ToString()) * (1 - sach.GiamGia/(double)100);
-            giaban.Text = string.Format(cultureInfo, "{0:C}", giasaukhigiam);
+            giaban.Text = string.Format(cultureInfo, "{0:C}", sach.Gia);
+
         }
         private void cmdChonMua_Clicked(object sender, EventArgs e)
         {
