@@ -46,7 +46,7 @@ namespace DoAn
             //giaban.Text = string.Format(cultureInfo, "{0:C}", sach);
             giaban.Text = sach.GiaDisplayNew;
 
-       
+            MaSach.Text = sach.MaSach.ToString();
 
 
             TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();

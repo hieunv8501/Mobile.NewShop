@@ -47,12 +47,17 @@ namespace DoAn
 
         }
 
-        //private void btnMuaLai_Clicked(object sender, EventArgs e)
-        //{
-        //    Button selected = (Button)sender;
-        //    string MaSach = selected.CommandParameter.ToString();
+        private async void btnMuaLai_Clicked(object sender, EventArgs e)
+        {
+            Button selected = (Button)sender;
+            string MaSach = selected.CommandParameter.ToString();
 
-        //    Navigation.PushAsync(new ChiTietSach(MaSach))
-        //}
+            HttpClient httpClient = new HttpClient();
+            var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "LaySachTheoMaSach?MaSach=" + MaSach);
+            var ConnectAPIConvert = JsonConvert.DeserializeObject<List<Sach>>(ConnectAPI);
+            var First = ConnectAPIConvert.First();
+
+            await Navigation.PushAsync(new ChiTietSach(First));
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace DoAn
     public partial class GioHang : ContentPage
     {
         int MaGioHang;
-        string TenDangNhap;
+        TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
         APIString APIString = new APIString();
         public GioHang()
         {
@@ -25,11 +25,10 @@ namespace DoAn
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
+
             if (tENDANGNHAP.Get_TenDangNhap() != null)
             {
                 LayThongTinGioHang(tENDANGNHAP.Get_TenDangNhap());
-                TenDangNhap = tENDANGNHAP.Get_TenDangNhap();
             }
             else
             {
@@ -40,9 +39,8 @@ namespace DoAn
 
         async void LayThongTinGioHang(string TenDangNhap)
         {
+
             HttpClient httpClient = new HttpClient();
-
-
             var GioHangList = await httpClient.GetStringAsync(APIString.str + "LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
 
             if (GioHangList.ToString() != "[]")
@@ -96,7 +94,7 @@ namespace DoAn
             HttpClient httpClient = new HttpClient();
             var MaGiamGia = await httpClient.GetStringAsync(APIString.str + "ApDungMa?MaGiamGia=" + lbMaGiamGia.Text + "&MaGioHang=" + MaGioHang);
 
-            var GioHangList = await httpClient.GetStringAsync(APIString.str + "LayThongTinGioHang?TenDangNhap=" + TenDangNhap);
+            var GioHangList = await httpClient.GetStringAsync(APIString.str + "LayThongTinGioHang?TenDangNhap=" + tENDANGNHAP.Get_TenDangNhap());
 
             if (GioHangList.ToString() != "[]")
             {
@@ -115,7 +113,7 @@ namespace DoAn
 
         private void DatHang_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DatHang(TenDangNhap));
+            Navigation.PushAsync(new DatHang(tENDANGNHAP.Get_TenDangNhap()));
         }
     }
 }

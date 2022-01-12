@@ -15,6 +15,8 @@ create table TAIKHOAN
 	IsAdmin int default 0
 )
 
+
+
 create table LOAISACH
 (
 	MaLoaiSach int identity(1,1) primary key,
@@ -234,12 +236,12 @@ end
 
 go
 -- Lấy CTHD theo mã hóa đơn
-create procedure sp_LayCTHDTheoMaHoaDon @MaHoaDon int
-as begin
-	select MaHoaDon, SACH.TenSach, SoLuong, SACH.Gia, SACH.GiamGia, ThanhTien, SACH.Hinh
-	from CT_HOADON join SACH on CT_HOADON.MaSach = SACH.MaSach
-	where MaHoaDon = @MaHoaDon
-end
+--create procedure sp_LayCTHDTheoMaHoaDon @MaHoaDon int
+--as begin
+--	select MaHoaDon, SACH.TenSach, SoLuong, SACH.Gia, SACH.GiamGia, ThanhTien, SACH.Hinh
+--	from CT_HOADON join SACH on CT_HOADON.MaSach = SACH.MaSach
+--	where MaHoaDon = @MaHoaDon
+--end
 
 go
 -- Khi đặt hàng sẽ gọi
@@ -303,7 +305,7 @@ go
 --Lấy CT_HOADON theo MaHoaDon
 create proc sp_LayChiTietHoaDon  @MaHoaDon int
 as begin
-	select HOADON.MaHoaDon, TinhTrang, TenNguoiNhan, SDT, DiaChi, NgayHoaDon, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, CT_HOADON.Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
+	select HOADON.MaHoaDon, SACH.MaSach, TinhTrang, TenNguoiNhan, SDT, DiaChi, NgayHoaDon, HinhThucGiao, HinhThucThanhToan, Hinh, TenSach, CT_HOADON.Gia, SoLuong, ThanhTien, PhiVanChuyen, TongTien   from CT_HOADON, HOADON, DIACHI, SACH where SACH.MaSach = CT_HOADON.MaSach and DIACHI.MaDiaChi = HOADON.MaDiaChi and HOADON.MaHoaDon = CT_HOADON.MaHoaDon and HOADON.MaHoaDon = @MaHoaDon
 end
 
 go
@@ -557,6 +559,7 @@ end
 
 --exec sp_ThemDiaChi 'Bùi Văn Tình', 123456789, 'Hòa Đại - Cát Hiệp - Phù Cát - Bình Định', tinh
 
+go
 --Thay đổi địa chỉ mặc định
 create proc sp_ThayDoiDiaChiMacDinh @MaDiaChi int, @TenDangNhap varchar(50)
 as begin
@@ -595,11 +598,12 @@ end
 
 go
 -- Xóa địa chỉ
-create proc sp_SuaDiaChi @MaDiaChi int
+create proc sp_XoaDiaChi @MaDiaChi int
 as begin
 	delete from DIACHI where MaDiaChi = @MaDiaChi
 end
 
+go
 -- Lấy giá tiền giao hàng
 create proc sp_LayGiaGiaoHang
 as begin
@@ -735,7 +739,7 @@ GO
 
 --Tai Khoan
 --Thêm tài khoản
-create procedure sp_ThemTaiKhoan @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit, @IsAdmin bit, @CurrentID int output
+alter procedure sp_ThemTaiKhoan @TenDangNhap varchar(50), @MatKhau varchar(50), @TenKhachHang nvarchar(50), @SoDienThoai varchar(10), @Email varchar(50), @NgaySinh datetime, @GioiTinh bit, @IsAdmin bit, @CurrentID int output
 as 
 begin try
 if(exists(select * from TAIKHOAN where TenDangNhap=@TenDangNhap))
@@ -814,6 +818,8 @@ go
 --print @id
 --declare @id int;
 --exec sp_ThemTaiKhoan 'hau1234','1234','phamphuchau','12345678','hau@gmail.com','01/01/2001',1,1,@id;
+--declare @id int;
+--exec sp_ThemTaiKhoan 'tinh','1234','Bùi Văn Tình','0968568803','tinh@gmail.com','01/01/2001',1,1,@id;
 --print(@id);
 --select * from TaiKhoan
 
@@ -854,4 +860,18 @@ as begin
 	begin
 		insert into SACHDAXEM values(@TenDangNhap, @MaSach)
 	end
+end
+
+
+go
+create proc sp_LaySachTheoMaSach @MaSach int
+as begin
+	select * from SACH where MaSach = @MaSach
+end
+
+
+go
+create proc sp_KiemTraDonHang @TenDangNhap varchar(50), @MaHoaDon int
+as begin
+	select MaHoaDon from HOADON where TenDangNhap = @TenDangNhap and MaHoaDon = @MaHoaDon
 end
