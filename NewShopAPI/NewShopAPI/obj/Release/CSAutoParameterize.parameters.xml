@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="QLBS-Web.config Connection String" description="QLBS Connection String used in web.config by the application to access the database." defaultValue="Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyBanSach;User ID=qlbs;Password=qlbs" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Mobile\\NewShopAPI\\NewShopAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='QLBS']/@connectionString" />
-  </parameter>
-</parameters>
