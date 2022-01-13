@@ -5,24 +5,26 @@
              Title="Hỗ trợ"
              >
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="general" Clicked="general_Clicked" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Chính sách, Quy định chung" Grid.Row="0" Grid.Column="0" Margin="0,0,0,-10"></Button>
-            <Button x:Name="security" Clicked="security_Clicked"  HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Chính sách bảo mật thông tin" Grid.Row="1" Grid.Column="0" Margin="0,0,0,-10"></Button>
-            <Button x:Name="recall" Clicked="general_Clicked"  HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Chính sách đổi/trả hàng và hoàn tiền" Grid.Row="2" Grid.Column="0" Margin="0,0,0,-10"></Button>
-            <Button x:Name="pay" Clicked="security_Clicked" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Hướng dẫn thanh toán" Grid.Row="3" Grid.Column="0" Margin="0,0,0,-10"></Button>
-            <Button x:Name="purchase" Clicked="general_Clicked"  HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Hướng dẫn mua hàng" Grid.Row="4" Grid.Column="0" Margin="0,0,0,-10"></Button>
-            <Button x:Name="shipping" Clicked="security_Clicked" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Chính sách vận chuyển và giao nhận" Grid.Row="5" Grid.Column="0" ></Button>
-        </Grid>
+        <StackLayout BackgroundColor="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="general" Clicked="general_Clicked" TextTransform="None" FontSize="16" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Chính sách, Quy định chung" Grid.Row="0" Grid.Column="0" Margin="0,0,0,-10"></Button>
+                <Button x:Name="security" Clicked="security_Clicked" TextTransform="None"  FontSize="16" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Chính sách bảo mật thông tin" Grid.Row="1" Grid.Column="0" Margin="0,0,0,-10"></Button>
+                <Button x:Name="recall" Clicked="general_Clicked" TextTransform="None"  FontSize="16" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Chính sách đổi/trả hàng và hoàn tiền" Grid.Row="2" Grid.Column="0" Margin="0,0,0,-10"></Button>
+                <Button x:Name="pay" Clicked="security_Clicked" TextTransform="None"  FontSize="16" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Hướng dẫn thanh toán" Grid.Row="3" Grid.Column="0" Margin="0,0,0,-10"></Button>
+                <Button x:Name="purchase" Clicked="general_Clicked" TextTransform="None"  FontSize="16" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Hướng dẫn mua hàng" Grid.Row="4" Grid.Column="0" Margin="0,0,0,-10"></Button>
+                <Button x:Name="shipping" Clicked="security_Clicked" TextTransform="None" FontSize="16" HorizontalOptions="Start" TextColor="Black" BackgroundColor="White" Text="Chính sách vận chuyển và giao nhận" Grid.Row="5" Grid.Column="0" ></Button>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

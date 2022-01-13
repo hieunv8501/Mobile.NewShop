@@ -9,7 +9,7 @@
             <Entry x:Name="TenNguoiNhan" Placeholder="Tên người nhận" HeightRequest="80"></Entry>
             <Entry x:Name="SoDienThoai" Placeholder="Số điện thoại" Keyboard="Numeric" HeightRequest="80"></Entry>
             <Entry x:Name="DiaChi" Placeholder="Địa chỉ nhận hàng"  HeightRequest="80"></Entry>
-            <Button x:Name="bntThemDiaChi" Clicked="bntThemDiaChi_Clicked" Text="Thêm" BackgroundColor="Red" Font="20" TextColor="White" Margin="0, 50,0,0"></Button>
+            <Button x:Name="bntThemDiaChi" TextTransform="None" Clicked="bntThemDiaChi_Clicked" Text="Thêm" BackgroundColor="Red" Font="22" TextColor="White" Margin="0, 50,0,0"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

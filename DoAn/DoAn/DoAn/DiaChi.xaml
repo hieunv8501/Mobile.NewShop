@@ -25,15 +25,15 @@
                                 <Label Text="{Binding SDT}" TextColor="Black" FontSize="20" Grid.Row="1" Grid.Column="0"></Label>
                                 <Label Text="{Binding DiaChi}" TextColor="Black" Margin="0,0,0,10" FontSize="18" Grid.Row="2" Grid.Column="0" ></Label>
                                 <Label Text="{Binding MacDinhDisplay}" TextColor="Green" Margin="0,0,0,10" FontSize="16" Grid.Row="3" Grid.Column="0" ></Label>
-                                <Button x:Name="bntXoa" Clicked="bntXoa_Clicked" Text="Xóa"  FontSize="18" Grid.Row="0" Margin="0,0,0,10"  Grid.Column="1" Grid.RowSpan="2"  CommandParameter="{Binding MaDiaChi}"></Button>
-                                <Button x:Name="bntSetMacDinh" Clicked="bntSetMacDinh_Clicked" Text="Giao hàng cho địa chỉ này" CornerRadius="10" Margin="50, 0, 50, 10" BackgroundColor="Aqua"  FontSize="16" Grid.ColumnSpan="2" Grid.Row="4" Grid.Column="0"  CommandParameter="{Binding MaDiaChi}"></Button>
+                                <Button x:Name="bntXoa" Clicked="bntXoa_Clicked" TextTransform="None" Text="Xóa"  FontSize="18" Grid.Row="0" Margin="0,0,0,10"  Grid.Column="1" Grid.RowSpan="2"  CommandParameter="{Binding MaDiaChi}"></Button>
+                                <Button x:Name="bntSetMacDinh" Clicked="bntSetMacDinh_Clicked" TextTransform="None" Text="Giao hàng cho địa chỉ này" CornerRadius="10" Margin="50, 0, 50, 10" BackgroundColor="Aqua"  FontSize="16" Grid.ColumnSpan="2" Grid.Row="4" Grid.Column="0"  CommandParameter="{Binding MaDiaChi}"></Button>
 
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="bntThemDiaChi" Clicked="bntThemDiaChi_Clicked" Text="Thêm Địa chỉ mới" Margin="10" BackgroundColor="Red" TextColor="White" FontSize="20" ></Button>
+            <Button x:Name="bntThemDiaChi" Clicked="bntThemDiaChi_Clicked" TextTransform="None" Text="Thêm địa chỉ mới" Margin="10" BackgroundColor="Red" TextColor="White" FontSize="22" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

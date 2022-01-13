@@ -171,6 +171,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Image\BanChay.jpg" />
+    <Content Include="Image\banchay1.gif" />
+    <Content Include="Image\banchay2.jpg" />
     <Content Include="Image\CTLP.jpg" />
     <Content Include="Image\KinhDoanh.jpg" />
     <Content Include="Image\KTBK.jpg" />
@@ -185,6 +187,16 @@
     <Content Include="Image\ltqg-van2022.jpg" />
     <Content Include="Image\NgoaiNgu.jpg" />
     <Content Include="Image\ngoaingu1.jpg" />
+    <Content Include="Image\ngoaingu2.jpg" />
+    <Content Include="Image\ngoaingu3.jpg" />
+    <Content Include="Image\ngoaingu4.gif" />
+    <Content Include="Image\ngoaingu5.jpg" />
+    <Content Include="Image\ngoaingu6.jpg" />
+    <Content Include="Image\nguvan1.jpg" />
+    <Content Include="Image\nguvan2.png" />
+    <Content Include="Image\nguvan3.jpg" />
+    <Content Include="Image\nguvan4.jpg" />
+    <Content Include="Image\nguvan5.jpg" />
     <Content Include="Image\NTKT.jpg" />
     <Content Include="Image\sach1.jpg" />
     <Content Include="Image\sach2.jpg" />

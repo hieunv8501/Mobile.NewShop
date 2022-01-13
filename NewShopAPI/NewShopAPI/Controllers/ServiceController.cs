@@ -862,7 +862,7 @@ namespace NewShopAPI.Controllers
 
         }
 
-	[Route("api/ServiceController/KiemTraDonHang")]
+	    [Route("api/ServiceController/KiemTraDonHang")]
         [HttpGet]
         public IHttpActionResult KiemTraDonHang(string TenDangNhap, int MaHoaDon)
         {
@@ -872,6 +872,25 @@ namespace NewShopAPI.Controllers
                 param.Add("TenDangNhap", TenDangNhap);
                 param.Add("MaHoaDon", MaHoaDon);
                 DataTable result = Database.Database.Read_Table("sp_KiemTraDonHang", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Route("api/ServiceController/UpdateMatKhauQuaEmail")]
+        [HttpGet]
+        public IHttpActionResult UpdateMatKhauQuaEmail(string Email, string MatKhau)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("Email", Email);
+                param.Add("MatKhau", MatKhau);
+                DataTable result = Database.Database.Read_Table("sp_UpdateMatKhauQuaEmail", param);
                 return Ok(result);
             }
             catch
