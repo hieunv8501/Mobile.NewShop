@@ -34,7 +34,7 @@
                             </Image.GestureRecognizers>
                         </Image>
                     </StackLayout>
-                    
+
                 </Grid>
             </StackLayout>
             <StackLayout Margin="20,5,20,0">

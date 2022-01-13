@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.ThemTaiKhoan" Title="Thêm mới tài khoản">
+    <ContentPage.Content>
+        <ScrollView Margin="5,0,5,0">
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="280"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Tên đăng nhập:" Grid.Column="0" Grid.Row="0" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"></Label>
+                    <Entry x:Name="dktdn" Placeholder="Tên đăng nhập" Grid.Column="1" Grid.Row="0" FontSize="Small"></Entry>
+
+                    <Label Text="Mật khẩu:" Grid.Column="0" Grid.Row="1" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"></Label>
+                    <Entry x:Name="dkmk" Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1" FontSize="Small"></Entry>
+
+                    <Label Text="Họ tên:" Grid.Column="0" Grid.Row="2" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"></Label>
+                    <Entry x:Name="dkhoten" Placeholder="Họ tên" Grid.Column="1" Grid.Row="2" FontSize="Small"></Entry>
+
+                    <Label Text="Email:" Grid.Column="0" Grid.Row="3" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"></Label>
+                    <Entry x:Name="dkemail" Placeholder="Email" Keyboard="Email" Grid.Column="1" Grid.Row="3" FontSize="Small"></Entry>
+
+                    <Label Text="Số điện thoại:" Grid.Column="0" Grid.Row="4" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"></Label>
+                    <Entry x:Name="dksdt" Placeholder="Số điện thoại" Keyboard="Telephone" Grid.Column="1" Grid.Row="4" FontSize="Small"></Entry>
+
+                    <Label Text="Ngày sinh:" Grid.Column="0" Grid.Row="5" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"></Label>
+                    <DatePicker x:Name="dkdob" DateSelected="dkdob_DateSelected" Grid.Column="1" Grid.Row="5" FontSize="Small"></DatePicker>
+
+                    <Label Text="Giới tính:" Grid.Column="0" Grid.Row="6" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"></Label>
+                    <Picker x:Name="dkgender" Title="Nam" SelectedIndexChanged="dkgender_SelectedIndexChanged" Grid.Column="1" Grid.Row="6" FontSize="Small"></Picker>
+
+                    <Label Text="Admin?" Grid.Column="0" Grid.Row="7" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"></Label>
+                    <Switch x:Name="isadmin" IsToggled="False" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" Grid.Row="7"></Switch>
+                </Grid>
+                <Button x:Name="btnThemTaiKhoan" Text="Thêm tài khoản" TextTransform="None" BackgroundColor="red" TextColor="WhiteSmoke" FontSize="18" Clicked="btnThemTaiKhoan_Clicked"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

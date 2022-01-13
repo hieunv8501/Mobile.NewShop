@@ -24,6 +24,7 @@ namespace DoAn
             LayDanhSachSachKM();
             PhoneCall();
             LayDanhSachSachTheoMaLoai(1); LayDanhSachSachTheoMaLoai(3); LayDanhSachSachTheoMaLoai(5); LayDanhSachSachTheoMaLoai(8);
+            LayDanhSachSachTheoMaLoai(2); LayDanhSachSachTheoMaLoai(4); LayDanhSachSachTheoMaLoai(6); LayDanhSachSachTheoMaLoai(12);
             LayDanhSachLoaiSach();
         }
 
@@ -79,10 +80,22 @@ namespace DoAn
                         listVH.WidthRequest = (dsSach.Count() * 110);
                         break;
                     }
+                case 2:
+                    {
+                        listTKhao.ItemsSource = dsSach;
+                        listTKhao.WidthRequest = (dsSach.Count() * 110);
+                        break;
+                    }
                 case 3:
                     {
                         listBANCHAY.ItemsSource = dsSach;
                         listBANCHAY.WidthRequest = (dsSach.Count() * 110);
+                        break;
+                    }
+                case 4:
+                    {
+                        listTN.ItemsSource = dsSach;
+                        listTN.WidthRequest = (dsSach.Count() * 110);
                         break;
                     }
                 case 5:
@@ -91,10 +104,22 @@ namespace DoAn
                         listNN.WidthRequest = (dsSach.Count() * 110);
                         break;
                     }
+                case 6:
+                    {
+                        listQLKD.ItemsSource = dsSach;
+                        listQLKD.WidthRequest = (dsSach.Count() * 110);
+                        break;
+                    }
                 case 8:
                     {
                         listLTQG.ItemsSource = dsSach;
                         listLTQG.WidthRequest = (dsSach.Count() * 110);
+                        break;
+                    }
+                case 12:
+                    {
+                        listBK.ItemsSource = dsSach;
+                        listBK.WidthRequest = (dsSach.Count() * 110);
                         break;
                     }
                 default:
@@ -317,6 +342,150 @@ namespace DoAn
             catch (Exception)
             {
                 DisplayAlert("Lỗi", "Vui lòng thử lại", "OK");
+            }
+        }
+
+        private void listBK_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listBK.SelectedItem != null)
+                {
+                    sachlv = (Sach)listBK.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listBK.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listBK.SelectedItem != null)
+                {
+                    sachlv = (Sach)listBK.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listBK.SelectedItem = null;
+                }
+            }
+        }
+
+        private void btnTN_Clicked(object sender, EventArgs e)
+        {
+            listls = listbtnSachMore.Where(c => c.TenLoaiSach == "Sách Thiếu Nhi").FirstOrDefault();
+
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                Navigation.PushAsync(new SachAdmin(listls));
+            }
+            else
+            {
+                Navigation.PushAsync(new ManHinhListSach(listls));
+            }
+        }
+
+        private void listTN_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listTN.SelectedItem != null)
+                {
+                    sachlv = (Sach)listTN.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listTN.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listTN.SelectedItem != null)
+                {
+                    sachlv = (Sach)listTN.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listTN.SelectedItem = null;
+                }
+            }
+        }
+
+        private void btnBK_Clicked(object sender, EventArgs e)
+        {
+            listls = listbtnSachMore.Where(c => c.TenLoaiSach == "Sách Kiến Thức Bách Khoa").FirstOrDefault();
+
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                Navigation.PushAsync(new SachAdmin(listls));
+            }
+            else
+            {
+                Navigation.PushAsync(new ManHinhListSach(listls));
+            }
+        }
+
+        private void btnQLKD_Clicked(object sender, EventArgs e)
+        {
+            listls = listbtnSachMore.Where(c => c.TenLoaiSach == "Sách Quản Lý - Kinh Doanh").FirstOrDefault();
+
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                Navigation.PushAsync(new SachAdmin(listls));
+            }
+            else
+            {
+                Navigation.PushAsync(new ManHinhListSach(listls));
+            }
+        }
+
+        private void listQLKD_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listQLKD.SelectedItem != null)
+                {
+                    sachlv = (Sach)listQLKD.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listQLKD.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listQLKD.SelectedItem != null)
+                {
+                    sachlv = (Sach)listQLKD.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listQLKD.SelectedItem = null;
+                }
+            }
+        }
+
+        private void btnTKhao_Clicked(object sender, EventArgs e)
+        {
+            listls = listbtnSachMore.Where(c => c.TenLoaiSach == "Sách Tham Khảo").FirstOrDefault();
+
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                Navigation.PushAsync(new SachAdmin(listls));
+            }
+            else
+            {
+                Navigation.PushAsync(new ManHinhListSach(listls));
+            }
+        }
+
+        private void listTKhao_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TENDANGNHAP.TenDangNhap == "admin")
+            {
+                if (listTKhao.SelectedItem != null)
+                {
+                    sachlv = (Sach)listTKhao.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSachAdmin(sachlv));
+                    listTKhao.SelectedItem = null;
+                }
+            }
+            else
+            {
+                if (listTKhao.SelectedItem != null)
+                {
+                    sachlv = (Sach)listTKhao.SelectedItem;
+                    Navigation.PushAsync(new ChiTietSach(sachlv));
+                    listTKhao.SelectedItem = null;
+                }
             }
         }
     }

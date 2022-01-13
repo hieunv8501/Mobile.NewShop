@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoAn.DanhSachTaiKhoan">
+    <StackLayout>
+        <SearchBar x:Name="Search" Placeholder="Tìm kiếm tài khoản..." TextChanged="Search_TextChanged" CancelButtonColor="Blue"/>
+        <Button x:Name="btnThemTaiKhoan" Text="Thêm mới tài khoản" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" TextColor="DarkBlue" Clicked="btnThemTaiKhoan_Clicked" ></Button>
+        <ScrollView Orientation="Vertical">
+            <ListView x:Name="listTaiKhoan" RowHeight="75" ItemSelected="listTaiKhoan_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5" Margin="0,5,0,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Tên đăng nhập:" Grid.Row="0" Grid.Column="0" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Start"></Label>
+                                <Label Text="{Binding TenDangNhap}" Grid.Row="0" Grid.Column="1" FontSize="Medium" TextColor="Red" HorizontalTextAlignment="Center"></Label>
+                                <Label Text="Tên khách hàng:" Grid.Row="1" Grid.Column="0" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Start"></Label>
+                                <Label Text="{Binding TenKhachHang}" Grid.Row="1" Grid.Column="1" FontSize="Medium" TextColor="red" HorizontalTextAlignment="Center"></Label>
+                                <Button x:Name="btnXoa" Text="Xóa" CommandParameter="{Binding .}" Clicked="btnXoa_Clicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" BackgroundColor="{DynamicResource btnSuaColor}" TextColor="{DynamicResource background}"></Button>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
