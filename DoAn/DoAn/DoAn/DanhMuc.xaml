@@ -4,40 +4,27 @@
              x:Class="DoAn.DanhMuc"
              Title="Danh Mục">
 
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="search" Text="Example Item"
-                 IconImageSource="searchicon.png"
-                 Order="Primary" Clicked="search_Clicked"
-                 Priority="0" />
-    </ContentPage.ToolbarItems>-->
- 
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <SearchBar x:Name="Search" Placeholder="" TextChanged="Search_TextChanged" CancelButtonColor="Orange"/>
             <ScrollView Orientation="Vertical" HorizontalScrollBarVisibility="Never" BackgroundColor="White"  >
                 <CollectionView x:Name="LstLoaiSach"
-                        SelectionMode="Single" 
-                        
+                        SelectionMode="Single"                        
                         Margin="0,0,0,0"
-                         ItemsLayout="VerticalGrid, 3" SelectionChanged="LstLoaiSach_SelectionChanged"   >
-
+                         ItemsLayout="VerticalGrid, 3" SelectionChanged="LstLoaiSach_SelectionChanged">
                     <CollectionView.ItemTemplate >
                         <DataTemplate>
                             <Grid BackgroundColor="white" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="100"></RowDefinition>
                                     <RowDefinition Height="100"></RowDefinition>
-
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="{Binding Hinh}" WidthRequest="70" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0"/>
-                                <Label Text="{Binding TenLoaiSach}" LineBreakMode="TailTruncation" MaxLines="2" HeightRequest="40" HorizontalOptions="CenterAndExpand" TextColor="Black" Grid.Row="1" Grid.RowSpan="2"   />
-
+                                <Label Text="{Binding TenLoaiSach}" LineBreakMode="TailTruncation" MaxLines="2" HeightRequest="40" HorizontalOptions="Center" TextColor="Black" Grid.Row="1" Grid.RowSpan="2"   />
                             </Grid>
-
-
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

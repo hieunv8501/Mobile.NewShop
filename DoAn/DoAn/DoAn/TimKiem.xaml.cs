@@ -23,6 +23,9 @@ namespace DoAn
         }
         List<LoaiSach> SachLoai = new List<LoaiSach>();
         List<Sach> SachSach = new List<Sach>();
+
+        LoaiSach lstk = new LoaiSach();
+        Sach stk = new Sach();
         async void KhoiTaoTimKiemAsync()
         {
             
@@ -65,18 +68,38 @@ namespace DoAn
                 else
                 {
                     LstTK.ItemsSource = count1;
-                    LstTK.RowHeight = 95;
+                    LstTK.RowHeight = 100;
                     LstTK.HeightRequest = count1.Count() * 100; 
                 }
                 if (count2 == null) LstTK1.IsVisible = false;
                 else
                 {
                     LstTK1.ItemsSource = count2;
-                    LstTK1.RowHeight = 95;
+                    LstTK1.RowHeight = 100;
                     LstTK1.HeightRequest = (count2.Count() * 100);
                 }
             }
             
+        }
+
+        private void LstTK_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (LstTK.SelectedItem != null)
+            {
+                LoaiSach clicked_LoaiSach = (LoaiSach)LstTK.SelectedItem;
+                Navigation.PushAsync(new ManHinhListSach(clicked_LoaiSach));
+                LstTK.SelectedItem = null;
+            }
+        }
+
+        private void LstTK1_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (LstTK1.SelectedItem != null)
+            {
+                Sach clicked_Sach = (Sach)LstTK1.SelectedItem;
+                Navigation.PushAsync(new ChiTietSach(clicked_Sach));
+                LstTK.SelectedItem = null;
+            }
         }
     }
 }

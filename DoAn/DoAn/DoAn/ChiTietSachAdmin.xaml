@@ -9,8 +9,8 @@
                 <Label x:Name="tensach" TextColor="Black" FontSize="30"></Label>
                 <Label x:Name="giaban" TextColor="red" FontSize="20" FontAttributes="Bold"></Label>
                 <StackLayout Orientation="Horizontal">
-                    <Label x:Name="giacu"  FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource secondaryLabel }" TextDecorations="Strikethrough"></Label>
-                    <Frame BackgroundColor="#fff1f2" Padding="1" HorizontalOptions="Start" WidthRequest="40" HeightRequest="20" >
+                    <Label x:Name="giacu"  FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource secondaryLabel }" TextDecorations="Strikethrough" HorizontalOptions="Center"></Label>
+                    <Frame BackgroundColor="#fff1f2" Padding="1" HorizontalOptions="End" WidthRequest="40" HeightRequest="20" >
                         <Label x:Name="phantramgiam" TextColor="#ff4c57"></Label>
                     </Frame>
                 </StackLayout>

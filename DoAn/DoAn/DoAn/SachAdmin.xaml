@@ -15,21 +15,17 @@
                                     <RowDefinition Height="2*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="2*"></RowDefinition>
-
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"></ColumnDefinition>
                                     <ColumnDefinition Width="2*"></ColumnDefinition>
                                     <ColumnDefinition Width="2*"></ColumnDefinition>
-
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Hinh}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  >
-                                </Image>
+                                <Image Source="{Binding Hinh}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"></Image>
                                 <Label Text="{Binding TenSach}" Grid.Row="0" Grid.Column="1" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" Grid.ColumnSpan="2" Grid.RowSpan="2" ></Label>
                                 <Label Text="{Binding GiaDisplay }" Grid.Row="1" Grid.Column="1" TextColor="red" Grid.ColumnSpan="2"></Label>
                                 <Button x:Name="cmdXoa" Text="Xóa" CommandParameter="{Binding .}" Clicked="cmdXoa_Clicked" Grid.Row="2" Grid.Column="2" BackgroundColor="{DynamicResource btnMuaColor}" TextColor="{DynamicResource background}" ></Button>
                                 <Button x:Name="cmdSua" Text="Sửa" CommandParameter="{Binding .}" Clicked="cmdSua_Clicked" Grid.Row="2" Grid.Column="1" BackgroundColor="{DynamicResource btnSuaColor}" TextColor="{DynamicResource background}"></Button>
-
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

@@ -22,7 +22,7 @@
             <ImageButton x:Name="btnGH" Grid.Row="0" Grid.Column="2" BackgroundColor="#2296f3" HorizontalOptions="Start" Padding="3" Source="IconGioHang.png" Clicked="btnGH_Clicked"></ImageButton>
         </Grid>
         <StackLayout>
-            <ListView x:Name="LstTK">
+            <ListView x:Name="LstTK" ItemSelected="LstTK_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ImageCell ImageSource="{Binding Hinh}" Text="{Binding TenLoaiSach}" TextColor="Black" >
@@ -30,7 +30,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView x:Name="LstTK1">
+            <ListView x:Name="LstTK1" ItemSelected="LstTK1_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ImageCell ImageSource="{Binding Hinh}" Text="{Binding TenSach}" TextColor="Black" >

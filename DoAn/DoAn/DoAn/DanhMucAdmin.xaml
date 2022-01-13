@@ -13,9 +13,7 @@
     </ContentPage.Resources>-->
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-
             <SearchBar x:Name="Search" Placeholder="" TextChanged="Search_TextChanged" CancelButtonColor="Orange"/>
-
             <Button x:Name="cmdThemLS" Text="Thêm mới" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" TextColor="DarkBlue" Clicked="cmdThemLS_Clicked" ></Button>
             <ListView x:Name="LstLoaiSach" RowHeight="150" ItemSelected="LstLoaiSach_ItemSelected" FlowDirection="LeftToRight">
                 <ListView.ItemTemplate >
@@ -25,7 +23,6 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
-
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>

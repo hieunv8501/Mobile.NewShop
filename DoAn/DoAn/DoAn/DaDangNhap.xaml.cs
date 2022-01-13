@@ -36,6 +36,7 @@ namespace DoAn
             var ConnectAPIConvert = JsonConvert.DeserializeObject<List<TAIKHOAN>>(ConnectAPI);
             TenNguoiDung.Text = ConnectAPIConvert.First().TenKhachHang;
             Mail.Text = ConnectAPIConvert.First().Email;
+            
 
             List<DanhMuc_TK> DanhMuc = new List<DanhMuc_TK>();
             DanhMuc.Add(new DanhMuc_TK { ID = "TTTK", Text = "Thông tin tài khoản", Icon = "icon_TTTK.png", Icon_next = "icon_next.png" });
@@ -46,11 +47,14 @@ namespace DoAn
             DanhMuc.Add(new DanhMuc_TK { ID = "HT", Text = "Hỗ trợ", Icon = "icon_HT.png", Icon_next = "icon_next.png" });
 
             TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
-            if (tENDANGNHAP.Get_TenDangNhap() == "admin")
+            tENDANGNHAP.Set_IsAdmin(ConnectAPIConvert.First().IsAdmin);
+            if (tENDANGNHAP.Get_IsAdmin() == true)
             {
                 DanhMuc.Add(new DanhMuc_TK { ID = "QLDH", Text = "Quản lý đơn hàng", Icon = "icon_bill.png", Icon_next = "icon_next.png" });
                 DanhMuc.Add(new DanhMuc_TK { ID = "QLMGG", Text = "Quản lý mã giảm giá", Icon = "icon_discount.png", Icon_next = "icon_next.png" });
                 DanhMuc.Add(new DanhMuc_TK { ID = "QLPGH", Text = "Quản lý phí giao hàng", Icon = "icon_delivery.png", Icon_next = "icon_next.png" });
+                DanhMuc.Add(new DanhMuc_TK { ID = "QLS", Text = "Quản lý sách", Icon = "QLS.png", Icon_next = "icon_next.png" });
+                DanhMuc.Add(new DanhMuc_TK { ID = "QLTK", Text = "Quản lý tài khoản", Icon = "QLTK.png", Icon_next = "icon_next.png" });
             }
 
             lst_taikhoan.ItemsSource = DanhMuc;
@@ -89,9 +93,13 @@ namespace DoAn
                 case "QLPGH":
                     Navigation.PushAsync(new Admin_ChiPhiGiaoHang());
                     break;
-
+                case "QLS":
+                    Navigation.PushAsync(new DanhMucAdmin());
+                    break;
+                case "QLTK":
+                    Navigation.PushAsync(new DanhSachTaiKhoan());
+                    break;
             }
-
         }
 
         private void bnt_dangxuat_Clicked(object sender, EventArgs e)

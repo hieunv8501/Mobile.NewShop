@@ -54,7 +54,7 @@ namespace DoAn
                 var httpClient = new HttpClient();
                 var res = await httpClient.GetStringAsync(APIString.str + "ThemTaiKhoan?TenDangNhap=" + TenDangNhap + "&MatKhau=" + MatKhau + "&TenKhachHang=" + TenKhachHang + "&Email=" + Email + "&SoDienThoai=" + SoDienThoai + "&NgaySinh=" + NgaySinh + "&GioiTinh=" + GioiTinh.ToString() + "&IsAdmin=" + IsAdmin.ToString());
                 _ = DisplayAlert("Thông báo", "Thêm tài khoản thành công", "OK");
-                await Navigation.PushAsync(new DangNhap());
+                await Navigation.PushAsync(new DangNhap()).ConfigureAwait(false);
             }
         }
         private void GenderCreate()

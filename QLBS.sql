@@ -124,6 +124,7 @@ where Hinh is not null;
 
 --select * from SACH
 --select * from LOAISACH
+--select * from TAIKHOAN
 go
 insert into TAIKHOAN values ('admin', '1', 'Admin' , '0254633254', 'admin@gmail.com', '05/07/2001', 1, 1),('hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', '01/01/2001', 1,0), ('hau', '1', N'Hậu', '0987654321', 'hau@gmail.com', '01/01/2001', 1,0), ('tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', '01/01/2001', 1,0)
 insert into LOAISACH values (N'Sách Văn Học', N'http://192.168.1.4/newshopwebapi/Image/vanhoc.jpg'), 
@@ -137,7 +138,7 @@ insert into LOAISACH values (N'Sách Văn Học', N'http://192.168.1.4/newshopwe
 			(N'Sách Nghệ Thuật - Kiến Trúc', N'http://192.168.1.4/newshopwebapi/Image/NTKT.jpg'),
 			(N'Sách Chính Trị - Luật Pháp', N'http://192.168.1.4/newshopwebapi/Image/CTLP.jpg')	,
 			(N'Sách Tâm Lý - Giáo Dục Nuôi Dạy Con', N'http://192.168.1.4/newshopwebapi/Image/TamLy.gif'),
-			(N'Sách Kiến Thức Bách Khoa', N'http://192.168.1.4/newshopwebapi/Image/KTBK.jpg')	
+			(N'Sách Kiến Thức Bách Khoa', N'http://192.168.1.4/newshopwebapi/Image/KTBK.jpg')
 
 
 insert into SACH values (1, N'Phía Tây Thành Phố', 500000, N'Phía Tây Thành Phố - Tập tản văn cũng có những chiêm nghiệm khác rút ra từ cuộc sống hàng ngày, thể hiện cách nhìn đời nhẹ nhàng, vị tha của một bác sĩ đã từng chứng kiến nhiều cuộc sinh tử biệt ly và biết điều gì là đáng quý nhất trong đời.', N'http://192.168.1.4/newshopwebapi/Image/sach1.jpg', 20), 
@@ -196,7 +197,7 @@ insert into SACH values (6, N'Viết Cho Những Điều Bé Nhỏ - Tết Xưa 
 						(6, N'Ehon - Thực Phẩm Tâm Hồn Cho Bé - Ngày Bố Làm Bố', 55000 , N'Ehon - Thực Phẩm Tâm Hồn Cho Bé - Ngày Bố Làm Bố - Cả nhà cùng hồi hộp chào đón đứa con thứ 3 tại nhà, bố cứ nghĩ ngợi khi mấy đứa nhỏ cứ hỏi: “Lần đầu tiên bố làm bố là khi nào vậy?”. Bố không biết làm thế nào để có thể giải thích cho con hiểu về cảm xúc mà bố trải qua.', N'http://192.168.1.4/newshopwebapi/Image/stn4.jpg', 22),
 						(6, N'Ehon Tương Tác Đầu Đời - Bé Bế Bé Bồng', 29000 , N'Ehon Tương Tác Đầu Đời - Bé Bế Bé Bồng - Bộ Ehon tương tác đầu đời “Em bé xin chào” sẽ cùng bé lớn lên, cùng bé học những bài học đầu tiên như hoan hô, vẫy tay, hay xin chào! Bé sẽ có khoảng thời gian tuyệt vời cùng học, cùng chơi với bạn nhỏ và các động vật trong sách.', N'http://192.168.1.4/newshopwebapi/Image/stn5.jpg', 5),
 						(6, N'Bé Vẫy Tay Chào', 56000 , N'Ehon Tương Tác Đầu Đời - Bé Vẫy Tay Chào - Bộ Ehon tương tác đầu đời “Em bé xin chào” sẽ cùng bé lớn lên, cùng bé học những bài học đầu tiên như hoan hô, vẫy tay, hay xin chào! Bé sẽ có khoảng thời gian tuyệt vời cùng học, cùng chơi với bạn nhỏ và các động vật trong sách.', N'http://192.168.1.4/newshopwebapi/Image/stn6.jpg', 3)
-
+--MaLoaisach = 12
 insert into SACH values (12, N'Hỏa Long Trận', 50000 , N'Hỏa Long Trận - Tiếng voi gầm rền vang. Vó ngựa phi dồn dập. Tiếng chiêng trống vang lừng. Tiếng tên bay vun vút. Tiếng gươm khua vang động của vua quân nhà Trần trên chiến trường Bình Lệ Nguyên.', N'http://192.168.1.4/newshopwebapi/Image/bk1.jpg', 4),
 						(12, N'Hồ Quý Ly - Tiểu Thuyết Lịch Sử', 280000 , N'Hồ Quý Ly - Tiểu Thuyết Lịch Sử - Cuốn sách về một nhân vật mà hơn 600 năm qua vẫn còn nhiều tranh cãi về ông.', N'http://192.168.1.4/newshopwebapi/Image/bk2.jpg', 50),
 						(12, N'Binh Thư Yếu Lược (Tri Thức Trẻ)', 329000 , N'Binh Thư Yếu Lược (Tri Thức Trẻ) - được cho là một trong hai tác phẩm chính của Hưng Đạo Đại vương Trần Quốc Tuấn, vị danh tướng lẫy lừng không chỉ ở Việt Nam mà còn là toàn thế giới.', N'http://192.168.1.4/newshopwebapi/Image/bk3.jpg', 45),
@@ -207,10 +208,10 @@ insert into SACH values (12, N'Hỏa Long Trận', 50000 , N'Hỏa Long Trận -
 insert into GIAOHANG values (15000)
 
 
-declare @CurrentID int
-exec sp_ThemTaiKhoan admin,1,Admin,0254633254,'admin@gmail.com','2001/07/05',1,1, @CurrentID
-exec sp_ThemTaiKhoan 'hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', '01/01/2001', 1,0, @CurrentID
-exec sp_ThemTaiKhoan 'tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', '01/01/2001', 1,0, @CurrentID
+--declare @CurrentID int
+--exec sp_ThemTaiKhoan admin,1,Admin,0254633254,'admin@gmail.com','2001/07/05',1,1, @CurrentID
+--exec sp_ThemTaiKhoan 'hieu', '1' , N'Hiếu', '0123456789', 'hieu@gmail.com', '01/01/2001', 1,0, @CurrentID
+--exec sp_ThemTaiKhoan 'tinh', '1', N'Tình', '0984221251', 'tinh@gmail.com', '01/01/2001', 1,0, @CurrentID
 
 
 --select * from SACH
@@ -812,6 +813,7 @@ begin
 set @CurrentID=0
 return
 end
+delete from GIOHANG where TenDangNhap = @TenDangNhap;
 Delete From TAIKHOAN where TenDangNhap=@TenDangNhap;
 set @CurrentID=1
 end try

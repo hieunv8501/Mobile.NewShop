@@ -39,10 +39,16 @@ namespace DoAn
                 listTaiKhoan.SelectedItem = null;
             }
         }
-
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //
+            if (Search.Text == null || Search.Text == "")
+            {
+                listTaiKhoan.ItemsSource = tks;
+            }
+            else
+            {
+                listTaiKhoan.ItemsSource = tks.Where(c => c.TenDangNhap.ToLower().Contains(Search.Text.ToLower()) || c.TenDangNhap.ToLower().Contains(Search.Text.ToLower()));
+            }
         }
 
         private async void btnThemTaiKhoan_Clicked(object sender, EventArgs e)
@@ -50,13 +56,13 @@ namespace DoAn
             await Navigation.PushAsync(new ThemTaiKhoan());
         }
 
-        private async void btnXoa_Clicked(object sender, EventArgs e)
+        async void btnXoa_Clicked(object sender, EventArgs e)
         {
             var b = (Button)sender;
             TAIKHOAN tkbixoa = (TAIKHOAN)b.CommandParameter;
             HttpClient http = new HttpClient();
-            var dec = DisplayAlert("Thông báo", "Bạn có thực sự muốn xóa tài khoản này?", "Đồng ý", "Hủy");
-            if (await dec == true)
+            var dec = await DisplayAlert("Thông báo", "Bạn có thực sự muốn xóa tài khoản này?", "Đồng ý", "Hủy") ? true : false;
+            if (dec == true)
             {
                 try
                 {

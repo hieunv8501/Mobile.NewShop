@@ -52,7 +52,6 @@ namespace DoAn
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             LstLoaiSach.ItemsSource = LoaiSachs.Where(p => p.TenLoaiSach.ToLower().Contains(Search.Text.ToLower()));
-
         }
 
         
