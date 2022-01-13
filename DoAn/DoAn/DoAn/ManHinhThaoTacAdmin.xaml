@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="DoAn.ManHinhThaoTacAdmin"
+           android:TabbedPage.ToolbarPlacement="Bottom"  
+            NavigationPage.HasNavigationBar="False"
+             xmlns:view="clr-namespace:DoAn"
+             >
+    <!--<Tab Title="Domestic"
+             Icon="paw.png">
+            <ShellContent Title="Cats"
+                          Icon="cat.png"
+                          ContentTemplate="{DataTemplate view:DanhMucAdmin}" />
+            <ShellContent Title="Dogs"
+                          Icon="dog.png"
+                          ContentTemplate="{DataTemplate view:TaiKhoan}" />
+        </Tab>-->
+    
+    <NavigationPage IconImageSource="IconDanhMuc.png" Title="Danh Mục">
+        <x:Arguments>
+            <view:DanhMucAdmin />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage IconImageSource="IconTimKiem.png" Title="QLTài khoản">
+        <x:Arguments>
+            <view:TimKiem/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage IconImageSource="icon_bill.png" Title="Đơn hàng">
+        <x:Arguments>
+            <view:Admin_DanhSachDonHang/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage IconImageSource="icon_discount.png" Title="Giảm giá">
+        <x:Arguments>
+            <view:Admin_MaGiamGia />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage IconImageSource="icon_delivery.png" Title="Phí giao hàng ">
+        <x:Arguments>
+            <view:Admin_ChiPhiGiaoHang />
+        </x:Arguments>
+    </NavigationPage>
+    
+    <!--<ShellContent Title="About"
+                  Icon="info.png"
+                  ContentTemplate="{DataTemplate view:DanhMucAdmin}" />-->
+</TabbedPage>

@@ -16,13 +16,20 @@ namespace DoAn
     {
         string TENDANGNHAP;
         APIString APIString = new APIString();
+        TAIKHOAN taikhoan = new TAIKHOAN();
         public DaDangNhap(string TenDangNhap)
         {
             InitializeComponent();
             TENDANGNHAP = TenDangNhap;
             KhoiTao(TenDangNhap);
         }
-
+        public DaDangNhap(TAIKHOAN taikhoan1)
+        {
+            InitializeComponent();
+            TENDANGNHAP = taikhoan1.TenDangNhap;
+            KhoiTao(taikhoan1.TenDangNhap);
+            taikhoan = taikhoan1;
+        }
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -46,11 +53,10 @@ namespace DoAn
             DanhMuc.Add(new DanhMuc_TK { ID = "HT", Text = "Hỗ trợ", Icon = "icon_HT.png", Icon_next = "icon_next.png" });
 
             TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
-            if (tENDANGNHAP.Get_TenDangNhap() == "admin")
+            if (taikhoan.IsAdmin)
             {
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLDH", Text = "Quản lý đơn hàng", Icon = "icon_bill.png", Icon_next = "icon_next.png" });
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLMGG", Text = "Quản lý mã giảm giá", Icon = "icon_discount.png", Icon_next = "icon_next.png" });
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLPGH", Text = "Quản lý phí giao hàng", Icon = "icon_delivery.png", Icon_next = "icon_next.png" });
+                DanhMuc.Add(new DanhMuc_TK { ID = "MHAMIN", Text = "Màn hình Admin", Icon = "icon_bill.png", Icon_next = "icon_next.png" });
+               
             }
 
             lst_taikhoan.ItemsSource = DanhMuc;
@@ -89,7 +95,10 @@ namespace DoAn
                 case "QLPGH":
                     Navigation.PushAsync(new Admin_ChiPhiGiaoHang());
                     break;
-
+                case "MHAMIN":
+                    App.Current.MainPage = new NavigationPage(new ManHinhThaoTacAdmin(taikhoan));
+                   // Navigation.PushAsync(new ManHinhThaoTacAdmin());
+                    break;
             }
 
         }

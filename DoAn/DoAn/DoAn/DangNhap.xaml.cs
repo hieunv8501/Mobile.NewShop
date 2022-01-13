@@ -15,6 +15,7 @@ namespace DoAn
     public partial class DangNhap : ContentPage
     {
         APIString APIString = new APIString();
+        TAIKHOAN taikhoan = new TAIKHOAN();
         public DangNhap()
         {
             InitializeComponent();
@@ -43,8 +44,10 @@ namespace DoAn
                     {
                         check = true;
                         TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
+                        taikhoan = ConnectAPIConvert[i];
                         tENDANGNHAP.Set_TenDangNhap(lbTenDangNhap.Text);
-                        await Navigation.PushAsync(new DaDangNhap(lbTenDangNhap.Text));
+                        //await Navigation.PushAsync(new DaDangNhap(lbTenDangNhap.Text));
+                        await Navigation.PushAsync(new DaDangNhap(taikhoan));
                     }
                 }
                 if (check == false)
