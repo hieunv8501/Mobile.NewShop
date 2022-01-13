@@ -76,6 +76,18 @@ namespace DoAn
                 await Navigation.PushAsync(new DangNhap());
             }
         }
-
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if (dkmk.IsPassword)
+            {
+                dkmk.IsPassword = false;
+                show_pass_eye.Source = "hidepass.png";
+            }
+            else
+            {
+                dkmk.IsPassword = true;
+                show_pass_eye.Source = "showpass.png";
+            }
+        }
     }
 }

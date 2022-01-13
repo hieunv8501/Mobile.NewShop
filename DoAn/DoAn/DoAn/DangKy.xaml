@@ -27,7 +27,17 @@
                     <Entry x:Name="dktdn" Placeholder="Tên đăng nhập" Grid.Column="1" Grid.Row="0" FontSize="Small"></Entry>
 
                     <Label Text="Mật khẩu:" Grid.Column="0" Grid.Row="1" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
-                    <Entry x:Name="dkmk" Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1" FontSize="Small"></Entry>
+                    <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <Entry x:Name="dkmk" Placeholder="Mật khẩu" IsPassword="True" Grid.Column="1" Grid.Row="1" FontSize="Small" WidthRequest="220"></Entry>
+                        <Image x:Name="show_pass_eye"  Source="showpass.png"  VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" WidthRequest="30" HeightRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="TapGestureRecognizer_Tapped"
+                NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    
 
                     <Label Text="Họ tên:" Grid.Column="0" Grid.Row="2" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start"></Label>
                     <Entry x:Name="dkhoten" Placeholder="Họ tên" Grid.Column="1" Grid.Row="2" FontSize="Small"></Entry>

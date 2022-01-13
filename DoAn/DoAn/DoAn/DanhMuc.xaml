@@ -14,35 +14,34 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <SearchBar x:Name="Search" Placeholder="" TextChanged="Search_TextChanged" CancelButtonColor="Orange"/>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition ></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+            <ScrollView Orientation="Vertical" HorizontalScrollBarVisibility="Never" BackgroundColor="White"  >
+                <CollectionView x:Name="LstLoaiSach"
+                        SelectionMode="Single" 
+                        
+                        Margin="0,0,0,0"
+                         ItemsLayout="VerticalGrid, 3" SelectionChanged="LstLoaiSach_SelectionChanged"   >
 
-                </Grid.ColumnDefinitions>
-
-                <ListView x:Name="LstLoaiSach" RowHeight="100" ItemSelected="LstLoaiSach_ItemSelected" FlowDirection="LeftToRight" Grid.Row="0" Grid.Column="0">
-                    <ListView.ItemTemplate>
+                    <CollectionView.ItemTemplate >
                         <DataTemplate>
+                            <Grid BackgroundColor="white" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"></RowDefinition>
+                                    <RowDefinition Height="100"></RowDefinition>
 
-                            <ImageCell ImageSource="{Binding Hinh}" Text="{Binding TenLoaiSach}" TextColor="Black" >
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Hinh}" WidthRequest="70" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0"/>
+                                <Label Text="{Binding TenLoaiSach}" LineBreakMode="TailTruncation" MaxLines="2" HeightRequest="40" HorizontalOptions="CenterAndExpand" TextColor="Black" Grid.Row="1" Grid.RowSpan="2"   />
 
-                            </ImageCell>
+                            </Grid>
+
+
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ListView x:Name="LstLoaiSach1" RowHeight="100" ItemSelected="LstLoaiSach_ItemSelected1" FlowDirection="LeftToRight" Grid.Row="0" Grid.Column="1">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ImageCell ImageSource="{Binding Hinh}" Text="{Binding TenLoaiSach}" TextColor="Black">
-                            </ImageCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

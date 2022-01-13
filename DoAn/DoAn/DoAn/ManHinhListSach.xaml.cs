@@ -93,5 +93,14 @@ namespace DoAn
             LstSach.ItemsSource = Sachs.Where(p => p.TenSach.ToLower().Contains(Search.Text.ToLower()));
 
         }
+        private void LstSach_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LstSach.SelectedItem != null)
+            {
+                Sach Sach = (Sach)LstSach.SelectedItem;
+                Navigation.PushAsync(new ChiTietSach(Sach));
+                LstSach.SelectedItem = null;
+            }
+        }
     }
 }

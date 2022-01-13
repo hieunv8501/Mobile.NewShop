@@ -77,5 +77,18 @@ namespace DoAn
                 DisplayAlert("Đăng nhập bằng Google", "Google", "OK");
             }
         }
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if (lbMatKhau.IsPassword)
+            {
+                lbMatKhau.IsPassword = false;
+                show_pass_eye.Source = "hidepass.png";
+            }
+            else
+            {
+                lbMatKhau.IsPassword = true;
+                show_pass_eye.Source = "showpass.png";
+            }
+        }
     }
 }
