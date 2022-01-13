@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +22,13 @@ namespace DoAn
 
         private void Entry_Focused(object sender, FocusEventArgs e)
         {
-            lblEmail.Text = "Tên đăng nhập";
-            lblEmail.TextColor = Color.Blue;
+            lblTenDangNhap.Text = "Tên đăng nhập";
+            lblTenDangNhap.TextColor = Color.Blue;
         }
 
         private void Entry_Unfocused(object sender, FocusEventArgs e)
         {
-            lblEmail.Text = "";
+            lblTenDangNhap.Text = "";
         }
 
         private void Entry_Focused_1(object sender, FocusEventArgs e)
@@ -46,12 +46,11 @@ namespace DoAn
         private async void check_Clicked(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
-            var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "KiemTraDonHang?TenDangNhap=" + lbTenDangNhap.Text + "&MaHoaDon=" + lbMaDonHang.Text);
+            var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "KiemTraDonHang?TenDangNhap=" + entryTenDangNhap.Text + "&MaHoaDon=" + entryMaDonHang.Text);
             if (ConnectAPI.ToString() == "[]")
             {
 
-                await DisplayAlert("Thông báo", "Không tìm thấy đơn hàng", "Ok");
-
+                await DisplayAlert("Thông báo", "Không tìm thấy đơn hàng", "OK");
             }
             else
             {
