@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,6 +16,7 @@ namespace DoAn
     public partial class DangKy : ContentPage
     {
         APIString APIString = new APIString();
+        TAIKHOAN taikhoan = new TAIKHOAN();
         public DangKy()
         {
             InitializeComponent();
@@ -73,7 +74,22 @@ namespace DoAn
                 var httpClient = new HttpClient();
                 var res = await httpClient.GetStringAsync(APIString.str + "ThemTaiKhoan?TenDangNhap=" + TenDangNhap + "&MatKhau=" + MatKhau + "&TenKhachHang=" + TenKhachHang + "&Email=" + Email + "&SoDienThoai=" + SoDienThoai + "&NgaySinh=" + NgaySinh + "&GioiTinh=" + GioiTinh.ToString() + "&IsAdmin=0");
                 _ = DisplayAlert("Thông báo", "Đăng ký tài khoản thành công", "OK");
-                await Navigation.PushAsync(new DangNhap());
+                bool check = false;
+                var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "LayDanhSachTaiKhoan");
+                var ConnectAPIConvert = JsonConvert.DeserializeObject<List<TAIKHOAN>>(ConnectAPI);
+
+                for (int i = 0; i < ConnectAPIConvert.Count(); i++)
+                {
+                    if (ConnectAPIConvert[i].TenDangNhap == dktdn.Text && ConnectAPIConvert[i].MatKhau == dkmk.Text)
+                    {
+                        check = true;
+                        TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
+                        taikhoan = ConnectAPIConvert[i];
+                        tENDANGNHAP.Set_TenDangNhap(dktdn.Text);
+                        //await Navigation.PushAsync(new DaDangNhap(lbTenDangNhap.Text));
+                        await Navigation.PushAsync(new DaDangNhap(taikhoan));
+                    }
+                }
             }
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
