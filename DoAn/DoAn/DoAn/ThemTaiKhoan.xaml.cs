@@ -16,7 +16,6 @@ namespace DoAn
     public partial class ThemTaiKhoan : ContentPage
     {
         APIString APIString = new APIString();
-        TAIKHOAN taikhoan = new TAIKHOAN();
 
         public ThemTaiKhoan()
         {
@@ -56,22 +55,7 @@ namespace DoAn
                 var httpClient = new HttpClient();
                 var res = await httpClient.GetStringAsync(APIString.str + "ThemTaiKhoan?TenDangNhap=" + TenDangNhap + "&MatKhau=" + MatKhau + "&TenKhachHang=" + TenKhachHang + "&Email=" + Email + "&SoDienThoai=" + SoDienThoai + "&NgaySinh=" + NgaySinh + "&GioiTinh=" + GioiTinh.ToString() + "&IsAdmin=" + IsAdmin.ToString());
                 _ = DisplayAlert("Thông báo", "Thêm tài khoản thành công", "OK");
-                bool check = false;
-                var ConnectAPI = await httpClient.GetStringAsync(APIString.str + "LayDanhSachTaiKhoan");
-                var ConnectAPIConvert = JsonConvert.DeserializeObject<List<TAIKHOAN>>(ConnectAPI);
-
-                for (int i = 0; i < ConnectAPIConvert.Count(); i++)
-                {
-                    if (ConnectAPIConvert[i].TenDangNhap == dktdn.Text && ConnectAPIConvert[i].MatKhau == dkmk.Text)
-                    {
-                        check = true;
-                        TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
-                        taikhoan = ConnectAPIConvert[i];
-                        tENDANGNHAP.Set_TenDangNhap(dktdn.Text);
-                        //await Navigation.PushAsync(new DaDangNhap(lbTenDangNhap.Text));
-                        await Navigation.PushAsync(new DaDangNhap(taikhoan));
-                    }
-                }
+                await Navigation.PushAsync(new DanhSachTaiKhoan());
             }
         }
         private void GenderCreate()
