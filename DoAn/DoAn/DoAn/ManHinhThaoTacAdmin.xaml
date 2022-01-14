@@ -22,7 +22,7 @@
             <view:DanhMucAdmin />
         </x:Arguments>
     </NavigationPage>
-     <NavigationPage IconImageSource="QLTK.png" Title="QLTài khoản">
+     <NavigationPage IconImageSource="QLTK.png" Title="QL Tài khoản">
         <x:Arguments>
             <view:DanhSachTaiKhoan/>
         </x:Arguments>
