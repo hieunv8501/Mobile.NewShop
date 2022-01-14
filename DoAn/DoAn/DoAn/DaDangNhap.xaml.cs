@@ -57,7 +57,7 @@ namespace DoAn
             tENDANGNHAP.Set_IsAdmin(ConnectAPIConvert.First().IsAdmin);
             if (taikhoan.IsAdmin)
             {
-                DanhMuc.Add(new DanhMuc_TK { ID = "MHAMIN", Text = "Admin quản lý hệ thống", Icon = "icon_bill.png", Icon_next = "icon_next.png" });
+                DanhMuc.Add(new DanhMuc_TK { ID = "MHAMIN", Text = "Quản lý hệ thống", Icon = "Admin.png", Icon_next = "icon_next.png" });
             }
 
             lst_taikhoan.ItemsSource = DanhMuc;

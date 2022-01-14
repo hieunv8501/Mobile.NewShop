@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DoAn.DanhSachTaiKhoan">
+             x:Class="DoAn.DanhSachTaiKhoan" NavigationPage.HasBackButton="False" Title="Danh sách tài khoản">
     <StackLayout>
         <SearchBar x:Name="Search" Placeholder="Tìm kiếm tài khoản..." TextChanged="Search_TextChanged" CancelButtonColor="Blue"/>
         <Button x:Name="btnThemTaiKhoan" Text="Thêm mới tài khoản" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" TextColor="DarkBlue" Clicked="btnThemTaiKhoan_Clicked" ></Button>

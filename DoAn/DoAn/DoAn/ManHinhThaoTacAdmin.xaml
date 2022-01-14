@@ -7,22 +7,13 @@
             NavigationPage.HasNavigationBar="False"
              xmlns:view="clr-namespace:DoAn"
              >
-    <!--<Tab Title="Domestic"
-             Icon="paw.png">
-            <ShellContent Title="Cats"
-                          Icon="cat.png"
-                          ContentTemplate="{DataTemplate view:DanhMucAdmin}" />
-            <ShellContent Title="Dogs"
-                          Icon="dog.png"
-                          ContentTemplate="{DataTemplate view:TaiKhoan}" />
-        </Tab>-->
 
     <NavigationPage IconImageSource="IconDanhMuc.png" Title="Danh Mục">
         <x:Arguments>
             <view:DanhMucAdmin />
         </x:Arguments>
     </NavigationPage>
-     <NavigationPage IconImageSource="QLTK.png" Title="QL Tài khoản">
+    <NavigationPage IconImageSource="QLTK.png" Title="QL Tài khoản">
         <x:Arguments>
             <view:DanhSachTaiKhoan/>
         </x:Arguments>
