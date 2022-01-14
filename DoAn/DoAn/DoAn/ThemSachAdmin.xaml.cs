@@ -63,7 +63,7 @@ namespace DoAn
             {
                 int giamgia = new int();
                 bool check1 = int.TryParse(GiamGia.Text, out giamgia);
-                if (check1)
+                if (!check1)
                 {
                     await DisplayAlert("Thông Báo", "Phần trăm giảm giá không đúng kiểu", "OK");
                 }
