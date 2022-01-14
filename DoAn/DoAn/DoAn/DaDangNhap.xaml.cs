@@ -15,6 +15,7 @@ namespace DoAn
     public partial class DaDangNhap : ContentPage
     {
         string TENDANGNHAP;
+        TAIKHOAN taikhoan = new TAIKHOAN();
         APIString APIString = new APIString();
         public DaDangNhap(string TenDangNhap)
         {
@@ -22,7 +23,13 @@ namespace DoAn
             TENDANGNHAP = TenDangNhap;
             KhoiTao(TenDangNhap);
         }
-
+        public DaDangNhap(TAIKHOAN taikhoan1)
+        {
+            InitializeComponent();
+            TENDANGNHAP = taikhoan1.TenDangNhap;
+            KhoiTao(taikhoan1.TenDangNhap);
+            taikhoan = taikhoan1;
+        }
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -48,13 +55,9 @@ namespace DoAn
 
             TENDANGNHAP tENDANGNHAP = new TENDANGNHAP();
             tENDANGNHAP.Set_IsAdmin(ConnectAPIConvert.First().IsAdmin);
-            if (tENDANGNHAP.Get_IsAdmin() == true)
+            if (taikhoan.IsAdmin)
             {
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLDH", Text = "Quản lý đơn hàng", Icon = "icon_bill.png", Icon_next = "icon_next.png" });
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLMGG", Text = "Quản lý mã giảm giá", Icon = "icon_discount.png", Icon_next = "icon_next.png" });
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLPGH", Text = "Quản lý phí giao hàng", Icon = "icon_delivery.png", Icon_next = "icon_next.png" });
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLS", Text = "Quản lý sách", Icon = "QLS.png", Icon_next = "icon_next.png" });
-                DanhMuc.Add(new DanhMuc_TK { ID = "QLTK", Text = "Quản lý tài khoản", Icon = "QLTK.png", Icon_next = "icon_next.png" });
+                DanhMuc.Add(new DanhMuc_TK { ID = "MHAMIN", Text = "Màn hình Admin", Icon = "icon_bill.png", Icon_next = "icon_next.png" });
             }
 
             lst_taikhoan.ItemsSource = DanhMuc;
@@ -98,6 +101,10 @@ namespace DoAn
                     break;
                 case "QLTK":
                     Navigation.PushAsync(new DanhSachTaiKhoan());
+                    break;
+                case "MHAMIN":
+                    App.Current.MainPage = new NavigationPage(new ManHinhThaoTacAdmin(taikhoan));
+                    // Navigation.PushAsync(new ManHinhThaoTacAdmin());
                     break;
             }
         }

@@ -9,13 +9,13 @@
         <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" BackgroundColor="LightGray" >
             <CollectionView x:Name="LstSach"
                         SelectionMode="Single" 
-                        
+
                         Margin="5,5,5,5"
-                           
+
                             SelectionChanged="LstSach_SelectionChanged"
                             ItemsLayout="VerticalGrid, 2"
                            BackgroundColor="LightGray"
-                            
+
                         >
 
                 <CollectionView.ItemTemplate>
@@ -31,11 +31,11 @@
 
                                 <Image Source="{Binding Hinh}" WidthRequest="70" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0" />
                                 <Label Text="{Binding TenSach}" LineBreakMode="TailTruncation" MaxLines="2" HeightRequest="40" HorizontalOptions="CenterAndExpand" TextColor="Black" Grid.Row="1" />
-                                <Label Text="{Binding GiaDisplayOld,StringFormat='{0:0.##}'}"  Grid.Row="3"  TextColor="{DynamicResource secondaryLabel }" TextDecorations="Strikethrough" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding GiaDisplayOld,StringFormat='{0:0.##}'}"  Grid.Row="3"  TextColor="{DynamicResource secondaryLabel }" TextDecorations="Strikethrough" HorizontalOptions="StartAndExpand">
                                 </Label>
-                                <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="CenterAndExpand" >
+                                <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="StartAndExpand" >
                                     <Label Text="{Binding GiaDisplayNew,StringFormat='{0:0.##}'}"   TextColor="{DynamicResource  giagiamColor}" FontSize="Medium"></Label>
-                                    <Frame BackgroundColor="#fff1f2" Padding="0" HorizontalOptions="Center" WidthRequest="40" HeightRequest="20" >
+                                    <Frame BackgroundColor="#fff1f2" Padding="0" HorizontalOptions="Start" WidthRequest="40" HeightRequest="20" >
                                         <Label Text="{Binding GiamGiaDisPlay}"  TextColor="#ff4c57"></Label>
                                     </Frame>
                                 </StackLayout>
