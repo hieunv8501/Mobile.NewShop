@@ -35,6 +35,7 @@ namespace DoAn
             txtMoTa.Text = sach.MoTa;
             txtNameSach.Text = sach.TenSach;
             GiaTien.Text = String.Format("{0:0.##}", sach.Gia.ToString());
+            GiamGia.Text = sach.GiamGia.ToString();
 
         }
         public async void pickerLoaiSach()
@@ -72,28 +73,46 @@ namespace DoAn
             }
             else
             {
-                HttpClient http = new HttpClient();
-                try
+                int giamgia = new int();
+                bool check1 = int.TryParse(GiamGia.Text, out giamgia);
+                if (!check1)
                 {
-                    var kq = await http.GetStringAsync(APIString.str + "CapNhatSach?MaSach=" + globalSach.MaSach + "&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img + txtHinh.Text);
-                    if (int.Parse(kq) > 0)
+                    await DisplayAlert("Thông Báo", "Phần trăm giảm giá không đúng kiểu", "OK");
+                }
+                else
+                {
+                    if (giamgia < 0 || giamgia > 100)
                     {
-                        await DisplayAlert("Thông Báo", "Bạn đã chỉnh sửa thành công", "OK");
-                        await Navigation.PushAsync(new DanhMucAdmin());
+                        await DisplayAlert("Thông Báo", "Phần trăm giảm giá không hợp lệ", "OK");
                     }
                     else
                     {
-                        await DisplayAlert("Thông Báo", "Chỉnh sửa thất bại ", "OK");
+                        HttpClient http = new HttpClient();
+                        try
+                        {
+                            var kq = await http.GetStringAsync(APIString.str + "CapNhatSach?MaSach=" + globalSach.MaSach + "&MaLoaiSach=" + loaisachs[ChonLoaiSach.SelectedIndex].MaLoaiSach + "&TenSach=" + txtNameSach.Text + "&Gia=" + giatien + "&MoTa=" + txtMoTa.Text + "&Hinh=" + APIString.str_img + txtHinh.Text + "&GiamGia="+giamgia);
+                            if (int.Parse(kq) > 0)
+                            {
+                                await DisplayAlert("Thông Báo", "Bạn đã chỉnh sửa thành công", "OK");
+                                await Navigation.PushAsync(new DanhMucAdmin());
+                            }
+                            else
+                            {
+                                await DisplayAlert("Thông Báo", "Chỉnh sửa thất bại ", "OK");
+                            }
+
+                        }
+                        catch
+                        {
+                            {
+                                await DisplayAlert("Thông Báo", "Chỉnh sửa thất bại", "OK");
+                            }
+                        }
                     }
 
-                }
-                catch
-                {
-                    {
-                        await DisplayAlert("Thông Báo", "Chỉnh sửa thất bại", "OK");
-                    }
+
                 }
             }
-        }
+            }
     }
 }
