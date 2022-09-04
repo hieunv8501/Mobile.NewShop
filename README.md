@@ -1,7 +1,14 @@
 # Mobile
-Đồ án môn học Công nghệ lập trình đa nền tảng cho ứng dụng di động
+Project of Introduction to Cross-Platform Programming Technology on Mobile Devices
 
-Nhóm xây dựng phần mềm:
+Group:
 1. Nguyễn Văn Hiếu
 2. Phạm Phúc Hậu
 3. Bùi Văn Tình
+
+#Technologies: .NET Framework Programming with Xamarin
+- Môi trường Mobile development with MS Visual Studio
+- Database: MSSQL Server 
+- Backend: C#
+- Frontend: XAML
+- WEB API
